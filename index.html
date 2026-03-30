@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Fine Electronics | Premium Electronics Store - Luxury Tech Destination</title>
+  <meta name="description" content="Experience excellence at Fine Electronics. Premium mobiles, laptops, accessories, TVs and audio with exceptional service and best prices.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Swiper JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0C12;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
+    
+    :root {
+      --bg-deep: #05070C;
+      --bg-dark: #0C0F16;
+      --bg-card: #12151E;
+      --bg-elevated: #191D28;
+      --accent-gold: #D4AF37;
+      --accent-gold-dark: #B4942C;
+      --text-primary: #FFFFFF;
+      --text-secondary: #9AA0B0;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+    }
+    
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-gold);
+      border-radius: 10px;
+    }
+    
+    .navbar-glass {
+      background: rgba(10, 12, 18, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .dropdown-premium {
+      position: relative;
+    }
+    .dropdown-premium-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--bg-elevated);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 0.6rem 0;
+      min-width: 230px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.25s ease;
+      z-index: 100;
+    }
+    .dropdown-premium:hover .dropdown-premium-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .dropdown-item-premium {
+      padding: 0.6rem 1.5rem;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .dropdown-item-premium:hover {
+      background: var(--bg-card);
+      color: var(--accent-gold);
+      padding-left: 1.8rem;
+    }
+    
+    .product-card-premium {
+      background: var(--bg-card);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card-premium:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-3px);
+    }
+    .product-image-container {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg-deep);
+      height: 230px;
+    }
+    .product-image-premium {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card-premium:hover .product-image-premium {
+      transform: scale(1.03);
+    }
+    .product-badge-premium {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--accent-gold);
+      color: #0A0C12;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+    .product-info-premium {
+      padding: 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-title-premium {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.4;
+    }
+    .product-price-premium {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      margin-bottom: 1rem;
+    }
+    .product-actions-premium {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+    }
+    .btn-buy-premium {
+      flex: 1;
+      background: var(--accent-gold);
+      color: #0A0C12;
+      padding: 10px 0;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-align: center;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-buy-premium:hover {
+      background: var(--accent-gold-dark);
+      transform: translateY(-2px);
+    }
+    .btn-view-premium {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 10px 0;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-align: center;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .btn-view-premium:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+      background: rgba(212, 175, 55, 0.05);
+    }
+    
+    .category-card-premium {
+      background: var(--bg-card);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      position: relative;
+    }
+    .category-card-premium:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-3px);
+    }
+    .category-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .category-card-premium:hover .category-image {
+      transform: scale(1.03);
+    }
+    .category-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      padding: 1.2rem;
+    }
+    .category-name-premium {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: white;
+    }
+    .category-count {
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+    }
+    
+    .feature-box-premium {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.3s;
+    }
+    .feature-box-premium:hover {
+      border-color: var(--accent-gold);
+      transform: translateY(-3px);
+    }
+    
+    .swiper-button-next, .swiper-button-prev {
+      color: var(--accent-gold);
+      background: rgba(0, 0, 0, 0.5);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      backdrop-filter: blur(4px);
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .swiper-pagination-bullet {
+      background: var(--border-subtle);
+    }
+    .swiper-pagination-bullet-active {
+      background: var(--accent-gold);
+    }
+    @media (max-width: 768px) {
+      .swiper-button-next, .swiper-button-prev {
+        display: none;
+      }
+    }
+    
+    .hero-title-gradient {
+      background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .modal-premium {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(14px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+    }
+    .modal-content-premium {
+      background: var(--bg-elevated);
+      border-radius: 32px;
+      max-width: 500px;
+      width: 90%;
+      padding: 1.8rem;
+      border: 1px solid var(--border-subtle);
+      animation: modalSlideIn 0.3s ease;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+    @keyframes modalSlideIn {
+      from { opacity: 0; transform: scale(0.96) translateY(15px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .form-input-premium {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 12px 18px;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+    .form-input-premium:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+    }
+    .btn-primary-premium {
+      background: var(--accent-gold);
+      color: #0A0C12;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 700;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+    }
+    .btn-primary-premium:hover {
+      background: var(--accent-gold-dark);
+      transform: translateY(-2px);
+    }
+    
+    .slide-menu-premium {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 360px;
+      height: 100%;
+      background: rgba(12, 15, 22, 0.98);
+      backdrop-filter: blur(24px);
+      z-index: 1000;
+      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+      padding: 2rem 1.5rem;
+      border-left: 1px solid var(--border-subtle);
+      overflow-y: auto;
+    }
+    .slide-menu-premium.open {
+      right: 0;
+    }
+    .menu-overlay-premium {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      display: none;
+    }
+    .menu-overlay-premium.active {
+      display: block;
+    }
+    
+    .mobile-cat-dropdown {
+      margin-top: 1rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 1rem;
+    }
+    .mobile-cat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+    .mobile-cat-header i {
+      transition: transform 0.3s ease;
+    }
+    .mobile-cat-header.open i {
+      transform: rotate(180deg);
+    }
+    .mobile-cat-list-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding-left: 0.5rem;
+    }
+    .mobile-cat-list-dropdown.open {
+      max-height: 400px;
+    }
+    .mobile-cat-item-side {
+      padding: 0.8rem 1rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-radius: 12px;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    
+    .product-grid-responsive {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 640px) {
+      .product-grid-responsive {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .product-grid-responsive {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 1280px) {
+      .product-grid-responsive {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    .newsletter-section {
+      background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+      border-radius: 32px;
+      padding: 3rem 2rem;
+      border: 1px solid var(--border-subtle);
+    }
+    
+    .footer-link {
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .footer-link:hover {
+      color: var(--accent-gold);
+    }
+
+    /* Product Detail Styles */
+    .product-detail-container {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .product-detail-container.active {
+      display: block;
+    }
+    .home-container {
+      display: block;
+    }
+    .home-container.hide {
+      display: none;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .detail-main-image {
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      background: var(--bg-deep);
+    }
+    .star-rating-gold i, .star-rating i {
+      color: #FFB83B;
+      margin-right: 2px;
+    }
+    .thumbnail-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .thumbnail-img.active {
+      border-color: var(--accent-gold);
+      transform: scale(1.02);
+    }
+    .btn-gold {
+      background: var(--accent-gold);
+      color: #0A0C12;
+      font-weight: 700;
+      border-radius: 40px;
+      transition: all 0.25s;
+      border: none;
+      padding: 14px 28px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn-gold:hover {
+      background: var(--accent-gold-dark);
+      transform: translateY(-2px);
+    }
+    .btn-outline-gold {
+      background: transparent;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      border-radius: 40px;
+      font-weight: 600;
+      transition: 0.25s;
+      padding: 14px 28px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn-outline-gold:hover {
+      background: rgba(212, 175, 55, 0.1);
+      transform: translateY(-2px);
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .spec-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .spec-item:last-child {
+      border-bottom: none;
+    }
+    .info-box {
+      background: var(--bg-elevated);
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-subtle);
+    }
+    @media (min-width: 769px) {
+      .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .thumbnail-img { width: 60px; height: 60px; }
+      .detail-action-buttons {
+        flex-direction: column;
+      }
+      .detail-action-buttons button {
+        width: 100%;
+      }
+      .btn-gold, .btn-outline-gold {
+        padding: 12px 20px;
+      }
+    }
+    
+    .user-avatar {
+      background: var(--accent-gold);
+      color: #0A0C12;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .user-avatar:hover {
+      transform: scale(1.05);
+      background: var(--accent-gold-dark);
+    }
+    .dropdown-user-menu {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 0.5rem 0;
+      min-width: 200px;
+      display: none;
+      z-index: 200;
+    }
+    .dropdown-user-menu.active {
+      display: block;
+    }
+    .dropdown-user-item {
+      padding: 0.75rem 1.25rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dropdown-user-item:hover {
+      background: var(--bg-card);
+      color: var(--accent-gold);
+    }
+    .relative {
+      position: relative;
+    }
+    .auth-toggle {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .auth-tab.active {
+      background: var(--accent-gold);
+      color: #0A0C12;
+    }
+    .auth-form {
+      display: none;
+    }
+    .auth-form.active {
+      display: block;
+    }
+    .success-message {
+      background: rgba(212, 175, 55, 0.2);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 12px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .order-item {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border-subtle);
+    }
+    .profile-section {
+      margin-bottom: 20px;
+    }
+    .profile-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .profile-value {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="menu-overlay-premium" id="menuOverlay"></div>
+
+<div class="slide-menu-premium" id="slideMenu">
+  <div class="flex justify-between items-center mb-6 pb-4 border-b border-border-subtle">
+    <img src="images/logo.webp" alt="Fine Electronics" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/120x40/D4AF37/0A0C12?text=FINE'">
+    <button id="closeMenuBtn" class="text-2xl text-text-secondary hover:text-accent-gold transition">&times;</button>
+  </div>
+  <nav class="flex flex-col gap-4">
+    <a href="#" class="home-nav-link py-2 hover:text-accent-gold transition flex items-center gap-3"><i class="fas fa-home w-5"></i> Home</a>
+    <a href="#arrivals" class="py-2 hover:text-accent-gold transition flex items-center gap-3"><i class="fas fa-star w-5"></i> New Arrivals</a>
+    <a href="#offers" class="py-2 hover:text-accent-gold transition flex items-center gap-3"><i class="fas fa-tag w-5"></i> Special Offers</a>
+  </nav>
+  <div class="mobile-cat-dropdown">
+    <div class="mobile-cat-header" id="mobileCatHeader">
+      <span class="flex items-center gap-2"><i class="fas fa-th-large"></i> Categories</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+    <div class="mobile-cat-list-dropdown" id="mobileCatListDropdown">
+      <div class="mobile-cat-item-side" data-cat="Mobile"><i class="fas fa-mobile-alt"></i> Mobile Phones</div>
+      <div class="mobile-cat-item-side" data-cat="Laptop"><i class="fas fa-laptop"></i> Laptops</div>
+      <div class="mobile-cat-item-side" data-cat="Accessories"><i class="fas fa-headphones"></i> Accessories</div>
+      <div class="mobile-cat-item-side" data-cat="TV"><i class="fas fa-tv"></i> Televisions</div>
+      <div class="mobile-cat-item-side" data-cat="Audio"><i class="fas fa-music"></i> Audio</div>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar-glass fixed top-0 left-0 right-0 z-50 py-3 px-5 md:px-10">
+  <div class="max-w-[1440px] mx-auto flex justify-between items-center">
+    <img src="images/logo.webp" alt="Fine Electronics" class="h-10 md:h-12 w-auto cursor-pointer home-nav-link" onerror="this.onerror=null; this.src='https://placehold.co/140x48/D4AF37/0A0C12?text=FINE'">
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#" class="home-nav-link font-medium hover:text-accent-gold transition">Home</a>
+      <div class="dropdown-premium">
+        <span class="font-medium cursor-pointer hover:text-accent-gold transition flex items-center gap-1">Categories <i class="fas fa-chevron-down text-xs"></i></span>
+        <div class="dropdown-premium-menu">
+          <div class="dropdown-item-premium" data-cat="Mobile"><i class="fas fa-mobile-alt"></i> Mobile Phones</div>
+          <div class="dropdown-item-premium" data-cat="Laptop"><i class="fas fa-laptop"></i> Laptops</div>
+          <div class="dropdown-item-premium" data-cat="Accessories"><i class="fas fa-headphones"></i> Accessories</div>
+          <div class="dropdown-item-premium" data-cat="TV"><i class="fas fa-tv"></i> Televisions</div>
+          <div class="dropdown-item-premium" data-cat="Audio"><i class="fas fa-music"></i> Audio</div>
+        </div>
+      </div>
+      <a href="#arrivals" class="font-medium hover:text-accent-gold transition">New Arrivals</a>
+      <a href="#offers" class="font-medium hover:text-accent-gold transition">Offers</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="relative" id="userMenuContainer">
+        <div id="accountButton" class="user-avatar cursor-pointer">
+          <i class="fas fa-user"></i>
+        </div>
+        <div id="userDropdown" class="dropdown-user-menu">
+          <div id="userInfoDisplay" class="dropdown-user-item border-b border-border-subtle"></div>
+          <div id="profileOption" class="dropdown-user-item">My Profile</div>
+          <div id="ordersOption" class="dropdown-user-item">My Orders</div>
+          <div id="logoutOption" class="dropdown-user-item" style="display: none;">Sign Out</div>
+          <div id="loginOption" class="dropdown-user-item">Sign In / Create Account</div>
+        </div>
+      </div>
+      <button id="menuToggle" class="md:hidden text-2xl text-white hover:text-accent-gold transition"><i class="fas fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div id="homeContainer" class="home-container">
+  <main class="pt-24 max-w-[1440px] mx-auto px-5 md:px-10 pb-12">
+    <div class="mb-14 rounded-2xl overflow-hidden" data-aos="fade-up">
+      <div class="swiper heroSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide relative"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1400" class="w-full h-[420px] md:h-[560px] object-cover"><div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-6 md:px-12"><h1 class="hero-title-gradient text-4xl md:text-6xl font-extrabold mb-3">Elevate Your Tech</h1><p class="text-gray-300">Discover excellence in every device</p></div></div>
+          <div class="swiper-slide relative"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1400" class="w-full h-[420px] md:h-[560px] object-cover"><div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-6 md:px-12"><h1 class="hero-title-gradient text-4xl md:text-6xl font-extrabold mb-3">Ultimate Performance</h1><p class="text-gray-300">Flagship power meets elegance</p></div></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+    
+    <section class="mb-16" data-aos="fade-up">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Shop by Category</h2>
+      <div class="swiper catSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Mobiles</div><div class="category-count">24 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Laptops</div><div class="category-count">18 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Accessories</div><div class="category-count">32 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">TVs</div><div class="category-count">12 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Audio</div><div class="category-count">20 Products</div></div></div></div>
+        </div>
+      </div>
+    </section>
+    
+    <section id="arrivals" class="mb-16" data-aos="fade-up">
+      <div class="flex justify-between items-center mb-6"><h2 class="text-2xl md:text-3xl font-bold tracking-tight">New Arrivals</h2><span class="text-accent-gold text-sm font-medium">12 fresh products</span></div>
+      <div class="product-grid-responsive" id="newArrivalsGrid"></div>
+    </section>
+    
+    <section id="offers" class="mb-16" data-aos="fade-up">
+      <div class="bg-gradient-to-r from-[#1a1f2e] to-[#0f121c] rounded-3xl p-8 md:p-12 text-center border border-accent-gold/20">
+        <span class="text-accent-gold text-sm font-semibold uppercase tracking-wider">Limited Time</span>
+        <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Summer Mega Sale</h2>
+        <p class="text-text-secondary mb-6">Up to 40% off on select premium electronics.</p>
+      </div>
+    </section>
+    
+    <div id="dynamicCategoryGrids" class="space-y-16"></div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-16">
+      <div class="feature-box-premium"><i class="fas fa-truck-fast text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">Express Delivery</h3></div>
+      <div class="feature-box-premium"><i class="fas fa-shield-alt text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">2 Year Warranty</h3></div>
+      <div class="feature-box-premium"><i class="fas fa-undo-alt text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">14 Days Return</h3></div>
+      <div class="feature-box-premium"><i class="fas fa-gem text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">Premium Support</h3></div>
+    </div>
+  </main>
+</div>
+
+<div id="productDetailContainer" class="product-detail-container"></div>
+
+<footer class="bg-bg-dark border-t border-border-subtle py-12 px-5">
+  <div class="max-w-[1440px] mx-auto text-center text-text-secondary text-sm">2025 Fine Electronics. All rights reserved. Luxury Tech Destination</div>
+</footer>
+
+<div id="orderModalPremium" class="modal-premium">
+  <div class="modal-content-premium">
+    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">Complete Order</h3><button id="closeModalBtnPremium" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
+    <form id="whatsappFormPremium">
+      <input type="hidden" id="productNameInputPremium">
+      <input type="text" id="fullNamePremium" placeholder="Full Name" class="form-input-premium mb-3" required>
+      <input type="tel" id="phonePremium" placeholder="Phone Number" class="form-input-premium mb-3" required>
+      <textarea id="addressPremium" rows="2" placeholder="Delivery Address" class="form-input-premium mb-4" required></textarea>
+      <button type="submit" class="btn-primary-premium">Order via WhatsApp</button>
+    </form>
+  </div>
+</div>
+
+<div id="authModal" class="modal-premium">
+  <div class="modal-content-premium">
+    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">Account Access</h3><button id="closeAuthModal" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
+    <div class="auth-toggle">
+      <div class="auth-tab active" data-tab="login">Sign In</div>
+      <div class="auth-tab" data-tab="register">Create Account</div>
+    </div>
+    <form id="loginForm" class="auth-form active">
+      <input type="email" id="loginEmail" placeholder="Email Address" class="form-input-premium mb-3" required>
+      <input type="password" id="loginPassword" placeholder="Password" class="form-input-premium mb-4" required>
+      <button type="submit" class="btn-primary-premium">Sign In</button>
+    </form>
+    <form id="registerForm" class="auth-form">
+      <input type="text" id="regName" placeholder="Full Name" class="form-input-premium mb-3" required>
+      <input type="email" id="regEmail" placeholder="Email Address" class="form-input-premium mb-3" required>
+      <input type="password" id="regPassword" placeholder="Password (min 6 characters)" class="form-input-premium mb-4" required>
+      <button type="submit" class="btn-primary-premium">Create Account</button>
+    </form>
+  </div>
+</div>
+
+<div id="profileModal" class="modal-premium">
+  <div class="modal-content-premium">
+    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">My Profile</h3><button id="closeProfileModal" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
+    <div id="profileContent"></div>
+  </div>
+</div>
+
+<div id="ordersModal" class="modal-premium">
+  <div class="modal-content-premium">
+    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">My Orders</h3><button id="closeOrdersModal" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
+    <div id="ordersContent"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 600, once: true });
+  
+  // Auth System
+  let currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
+  
+  function updateUserUI() {
+    const userInfoDisplay = document.getElementById('userInfoDisplay');
+    const logoutOption = document.getElementById('logoutOption');
+    const loginOption = document.getElementById('loginOption');
+    const profileOption = document.getElementById('profileOption');
+    const ordersOption = document.getElementById('ordersOption');
+    
+    if(currentUser) {
+      userInfoDisplay.innerHTML = `<i class="fas fa-user-circle mr-2"></i>${currentUser.name}`;
+      logoutOption.style.display = 'block';
+      loginOption.style.display = 'none';
+      profileOption.style.display = 'block';
+      ordersOption.style.display = 'block';
+    } else {
+      userInfoDisplay.innerHTML = '<i class="fas fa-user mr-2"></i>Account';
+      logoutOption.style.display = 'none';
+      loginOption.style.display = 'block';
+      profileOption.style.display = 'none';
+      ordersOption.style.display = 'none';
+    }
+  }
+  
+  function handleLogin(email, password) {
+    let users = JSON.parse(localStorage.getItem('users') || '{}');
+    if(users[email] && users[email].password === password) {
+      currentUser = { email: email, name: users[email].name };
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+      updateUserUI();
+      document.getElementById('authModal').style.display = 'none';
+      return true;
+    }
+    alert('Invalid email or password');
+    return false;
+  }
+  
+  function handleRegister(name, email, password) {
+    if(password.length < 6) {
+      alert('Password must be at least 6 characters');
+      return false;
+    }
+    let users = JSON.parse(localStorage.getItem('users') || '{}');
+    if(users[email]) {
+      alert('Email already registered. Please sign in.');
+      return false;
+    }
+    users[email] = { 
+      name: name, 
+      password: password, 
+      profile: { phone: '', address: '' }, 
+      orders: [] 
+    };
+    localStorage.setItem('users', JSON.stringify(users));
+    currentUser = { email: email, name: name };
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    updateUserUI();
+    document.getElementById('authModal').style.display = 'none';
+    return true;
+  }
+  
+  function logout() {
+    localStorage.removeItem('currentUser');
+    currentUser = null;
+    updateUserUI();
+  }
+  
+  function showProfile() {
+    let users = JSON.parse(localStorage.getItem('users') || '{}');
+    let userData = users[currentUser.email] || { profile: { phone: '', address: '' }, name: currentUser.name };
+    let profile = userData.profile || { phone: '', address: '' };
+    
+    const profileHTML = `
+      <div class="profile-section">
+        <div class="profile-label">Full Name</div>
+        <div class="profile-value">${currentUser.name}</div>
+        
+        <div class="profile-label">Email Address</div>
+        <div class="profile-value">${currentUser.email}</div>
+        
+        <div class="profile-label mt-3">Phone Number</div>
+        <input type="tel" id="profilePhone" value="${profile.phone || ''}" placeholder="Enter phone number" class="form-input-premium mb-3">
+        
+        <div class="profile-label mt-2">Delivery Address</div>
+        <textarea id="profileAddress" rows="2" placeholder="Enter your full address" class="form-input-premium mb-4">${profile.address || ''}</textarea>
+        
+        <button id="saveProfileBtn" class="btn-primary-premium mb-3">Save Changes</button>
+        <button id="logoutFromProfileBtn" class="btn-outline-gold w-full py-3">Sign Out</button>
+      </div>
+    `;
+    
+    document.getElementById('profileContent').innerHTML = profileHTML;
+    document.getElementById('profileModal').style.display = 'flex';
+    
+    // Fix: Save Profile Button Event
+    const saveBtn = document.getElementById('saveProfileBtn');
+    if(saveBtn) {
+      saveBtn.onclick = function() {
+        let phone = document.getElementById('profilePhone').value;
+        let address = document.getElementById('profileAddress').value;
+        let users = JSON.parse(localStorage.getItem('users') || '{}');
+        if(users[currentUser.email]) {
+          users[currentUser.email].profile = { phone: phone, address: address };
+          localStorage.setItem('users', JSON.stringify(users));
+          alert('Profile updated successfully!');
+          document.getElementById('profileModal').style.display = 'none';
+        } else {
+          alert('Error saving profile');
+        }
+      };
+    }
+    
+    const logoutBtn = document.getElementById('logoutFromProfileBtn');
+    if(logoutBtn) {
+      logoutBtn.onclick = function() {
+        logout();
+        document.getElementById('profileModal').style.display = 'none';
+      };
+    }
+  }
+  
+  function showOrders() {
+    let users = JSON.parse(localStorage.getItem('users') || '{}');
+    let orders = users[currentUser.email]?.orders || [];
+    
+    if(orders.length === 0) {
+      document.getElementById('ordersContent').innerHTML = '<p class="text-text-secondary text-center py-4">No orders placed yet. Start shopping to see your orders here!</p>';
+    } else {
+      const ordersHTML = orders.map((order, idx) => `
+        <div class="order-item">
+          <div class="flex justify-between items-start mb-2">
+            <div>
+              <div class="font-bold text-accent-gold">Order #${idx + 1}</div>
+              <div class="text-sm text-text-secondary">${order.date}</div>
+            </div>
+            <div class="text-accent-gold font-bold">${order.total}</div>
+          </div>
+          <div class="text-sm mt-2">Product: ${order.product}</div>
+          <div class="text-sm">Delivery to: ${order.address}</div>
+          <div class="text-xs text-text-secondary mt-2">Status: Delivered</div>
+        </div>
+      `).join('');
+      document.getElementById('ordersContent').innerHTML = ordersHTML;
+    }
+    document.getElementById('ordersModal').style.display = 'flex';
+  }
+  
+  function addOrder(product, total, address) {
+    if(currentUser) {
+      let users = JSON.parse(localStorage.getItem('users') || '{}');
+      if(users[currentUser.email]) {
+        if(!users[currentUser.email].orders) users[currentUser.email].orders = [];
+        users[currentUser.email].orders.unshift({
+          product: product,
+          total: total,
+          address: address,
+          date: new Date().toLocaleString()
+        });
+        localStorage.setItem('users', JSON.stringify(users));
+      }
+    }
+  }
+  
+  // Auth Modal Tabs
+  document.querySelectorAll('.auth-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
+      document.getElementById(`${tab.dataset.tab}Form`).classList.add('active');
+    });
+  });
+  
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const pwd = document.getElementById('loginPassword').value;
+    handleLogin(email, pwd);
+  });
+  
+  document.getElementById('registerForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('regName').value;
+    const email = document.getElementById('regEmail').value;
+    const pwd = document.getElementById('regPassword').value;
+    if(name && email && pwd) handleRegister(name, email, pwd);
+    else alert('Please fill all fields');
+  });
+  
+  document.getElementById('closeAuthModal').addEventListener('click', () => document.getElementById('authModal').style.display = 'none');
+  document.getElementById('closeProfileModal').addEventListener('click', () => document.getElementById('profileModal').style.display = 'none');
+  document.getElementById('closeOrdersModal').addEventListener('click', () => document.getElementById('ordersModal').style.display = 'none');
+  
+  // User Dropdown
+  const accountButton = document.getElementById('accountButton');
+  const userDropdown = document.getElementById('userDropdown');
+  accountButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    userDropdown.classList.toggle('active');
+  });
+  document.addEventListener('click', () => userDropdown.classList.remove('active'));
+  
+  document.getElementById('loginOption').addEventListener('click', () => {
+    document.getElementById('authModal').style.display = 'flex';
+    userDropdown.classList.remove('active');
+  });
+  document.getElementById('logoutOption').addEventListener('click', () => {
+    logout();
+    userDropdown.classList.remove('active');
+  });
+  document.getElementById('profileOption').addEventListener('click', () => {
+    if(currentUser) showProfile();
+    userDropdown.classList.remove('active');
+  });
+  document.getElementById('ordersOption').addEventListener('click', () => {
+    if(currentUser) showOrders();
+    userDropdown.classList.remove('active');
+  });
+  
+  updateUserUI();
+  
+  // Product Database - No "Hot" badges
+  const productDB = {
+    Mobile: [
+      { id: 1, name: "iPhone 16 Pro Max", price: "$1,399", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 2, name: "Samsung Galaxy S24 Ultra", price: "$1,249", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 3, name: "Google Pixel 9 Pro", price: "$999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 4, name: "OnePlus 12", price: "$799", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    ],
+    Laptop: [
+      { id: 5, name: "MacBook Pro M4", price: "$2,499", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 6, name: "Dell XPS 16", price: "$1,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 7, name: "ASUS ROG Zephyrus", price: "$1,899", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 8, name: "HP Spectre x360", price: "$1,499", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    ],
+    Accessories: [
+      { id: 9, name: "Logitech MX Master 3S", price: "$99", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 10, name: "Keychron Q1 Pro", price: "$189", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 11, name: "Anker Prime 240W", price: "$139", img: "https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 12, name: "Samsung T9 SSD", price: "$189", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    ],
+    TV: [
+      { id: 13, name: "LG G4 OLED 65", price: "$2,899", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 14, name: "Samsung S95D", price: "$2,599", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 15, name: "Sony A95L", price: "$3,299", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 16, name: "TCL QM851G", price: "$1,199", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" }
+    ],
+    Audio: [
+      { id: 17, name: "Sony WH-1000XM5", price: "$349", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 18, name: "Bose QuietComfort Ultra", price: "$429", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 19, name: "AirPods Pro 2", price: "$249", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
+      { id: 20, name: "JBL Charge 5", price: "$199", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    ]
+  };
+  
+  // 12 New Arrivals
+  const newArrivals = [
+    { id: 101, name: "iPhone 16 Pro Max", price: "$1,399", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 102, name: "MacBook Pro M4", price: "$2,499", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 103, name: "Sony WH-1000XM6", price: "$399", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 104, name: "Samsung Neo QLED 8K", price: "$3,499", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 105, name: "Razer Blade 16", price: "$2,899", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 106, name: "Nothing Ear 3", price: "$149", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 107, name: "iPad Pro M4", price: "$1,299", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 108, name: "Google Pixel Watch 3", price: "$349", img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 109, name: "Garmin Epix Pro", price: "$899", img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 110, name: "SteelSeries Nova Pro", price: "$329", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 111, name: "DJI Osmo Mobile 6", price: "$159", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
+    { id: 112, name: "GoPro Hero 12", price: "$399", img: "https://images.pexels.com/photos/51383/camera-dslr-photography-lens-51383.jpeg?auto=compress&cs=tinysrgb&w=400" }
+  ];
+  
+  const productDetailsDB = {};
+  
+  function createProductDetail(name, price, mainImg, description, specs) {
+    return { name, price, mainImg, gallery: [mainImg], description, specs };
+  }
+  
+  productDetailsDB["iPhone 16 Pro Max"] = createProductDetail("iPhone 16 Pro Max", "$1,399", "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "The iPhone 16 Pro Max features the powerful A17 Pro chip, titanium design, and a revolutionary 5x optical zoom camera.",
+    ["6.9-inch Super Retina XDR Display", "A17 Pro Chip", "48MP Main Camera", "Up to 29 Hours Battery", "Titanium Body"]);
+  
+  [...newArrivals, ...Object.values(productDB).flat()].forEach(p => {
+    if(!productDetailsDB[p.name]) {
+      productDetailsDB[p.name] = createProductDetail(p.name, p.price, p.img,
+        `Experience premium technology with the ${p.name}. Engineered for excellence.`,
+        ["Premium Build Quality", "Latest Technology", "Energy Efficient", "Advanced Connectivity"]);
+    }
+  });
+  
+  function showProductDetail(productName) {
+    const p = productDetailsDB[productName];
+    const detailHTML = `
+      <main class="pt-24 max-w-[1280px] mx-auto px-5 md:px-8 pb-12">
+        <button class="back-to-home-btn bg-bg-card px-5 py-2 rounded-full text-sm mb-6 hover:text-accent-gold transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back to Shop</button>
+        
+        <div class="bg-bg-card rounded-3xl border border-border-subtle overflow-hidden">
+          <div class="grid lg:grid-cols-2 gap-8 p-6 md:p-8">
+            <div>
+              <div class="bg-bg-deep rounded-2xl overflow-hidden">
+                <img id="detailMainImage" src="${p.mainImg}" class="detail-main-image h-80 lg:h-[450px] object-contain">
+              </div>
+              <div class="flex gap-3 mt-4 justify-center flex-wrap">
+                ${p.gallery.map((img,i)=>`<img src="${img}" class="thumbnail-img ${i===0?'active':''}" data-img="${img}">`).join('')}
+              </div>
+            </div>
+            
+            <div>
+              <h1 class="text-3xl lg:text-4xl font-bold">${p.name}</h1>
+              <div class="star-rating-gold text-2xl mt-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <div class="text-4xl font-extrabold text-accent-gold mt-4">${p.price}</div>
+              <div class="detail-action-buttons flex gap-4 mt-6">
+                <button class="btn-gold flex-1 buy-now-detail" data-name="${p.name}" data-price="${p.price}"><i class="fas fa-shopping-cart mr-2"></i>Buy Now</button>
+                <button class="btn-outline-gold flex-1 chat-with-us"><i class="fab fa-whatsapp mr-2"></i>Chat with Expert</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="px-6 md:px-8 pb-8 space-y-6">
+            <div class="info-box">
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-info-circle text-accent-gold"></i> Product Description</h3>
+              <p class="text-text-secondary leading-relaxed">${p.description}</p>
+            </div>
+            
+            <div class="info-box">
+              <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-microchip text-accent-gold"></i> Technical Specifications</h3>
+              <div class="specs-grid">
+                ${p.specs.map(s => `<div class="spec-item"><i class="fas fa-check-circle text-accent-gold text-lg w-6"></i><span class="text-text-secondary">${s}</span></div>`).join('')}
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    `;
+    
+    document.getElementById('productDetailContainer').innerHTML = detailHTML;
+    document.getElementById('homeContainer').classList.add('hide');
+    document.getElementById('productDetailContainer').classList.add('active');
+    window.scrollTo(0,0);
+    
+    document.querySelectorAll('.thumbnail-img').forEach(t => t.addEventListener('click', function() {
+      document.getElementById('detailMainImage').src = this.dataset.img;
+      document.querySelectorAll('.thumbnail-img').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+    }));
+    
+    document.querySelectorAll('.buy-now-detail').forEach(b => b.addEventListener('click', () => {
+      document.getElementById('productNameInputPremium').value = b.dataset.name;
+      document.getElementById('orderModalPremium').style.display = 'flex';
+    }));
+    
+    document.querySelectorAll('.chat-with-us').forEach(c => c.addEventListener('click', () => 
+      window.open(`https://wa.me/923323403516?text=Hi%20Fine%20Electronics%2C%20I%20need%20assistance%20with%20${encodeURIComponent(p.name)}`, '_blank')
+    ));
+    
+    document.querySelectorAll('.back-to-home-btn').forEach(b => b.addEventListener('click', () => {
+      document.getElementById('homeContainer').classList.remove('hide');
+      document.getElementById('productDetailContainer').classList.remove('active');
+    }));
+  }
+  
+  function attachEvents() {
+    document.querySelectorAll('.buy-now-btn').forEach(btn => btn.addEventListener('click', () => {
+      document.getElementById('productNameInputPremium').value = btn.dataset.name;
+      document.getElementById('orderModalPremium').style.display = 'flex';
+    }));
+    document.querySelectorAll('.view-detail-btn').forEach(btn => btn.addEventListener('click', () => showProductDetail(btn.dataset.name)));
+  }
+  
+  function renderProductGrid(products, containerId, showBadge = true) {
+    const container = document.getElementById(containerId);
+    if(!container) return;
+    container.innerHTML = products.map(p => `
+      <div class="product-card-premium">
+        <div class="product-image-container"><img src="${p.img}" class="product-image-premium">${showBadge ? '<div class="product-badge-premium">Premium</div>' : ''}</div>
+        <div class="product-info-premium"><h3 class="product-title-premium">${p.name}</h3><div class="product-price-premium">${p.price}</div><div class="product-actions-premium"><button class="btn-buy-premium buy-now-btn" data-name="${p.name}">Buy Now</button><button class="btn-view-premium view-detail-btn" data-name="${p.name}">Details</button></div></div>
+      </div>
+    `).join('');
+    attachEvents();
+  }
+  
+  function renderCategoryGrids() {
+    const container = document.getElementById('dynamicCategoryGrids');
+    if(!container) return;
+    container.innerHTML = '';
+    const categories = ['Mobile', 'Laptop', 'Accessories', 'TV', 'Audio'];
+    categories.forEach(cat => {
+      const products = productDB[cat];
+      const section = document.createElement('section');
+      section.innerHTML = `
+        <div class="flex justify-between items-center mb-5">
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">${cat}</h2>
+          <span class="text-accent-gold text-sm cursor-pointer font-medium view-all transition hover:opacity-80" data-cat="${cat}">View All →</span>
+        </div>
+        <div class="product-grid-responsive" id="grid-${cat}"></div>
+      `;
+      container.appendChild(section);
+      const grid = section.querySelector(`#grid-${cat}`);
+      if(grid) {
+        grid.innerHTML = products.map(p => `
+          <div class="product-card-premium">
+            <div class="product-image-container"><img src="${p.img}" class="product-image-premium"></div>
+            <div class="product-info-premium"><h3 class="product-title-premium">${p.name}</h3><div class="product-price-premium">${p.price}</div><div class="product-actions-premium"><button class="btn-buy-premium buy-now-btn" data-name="${p.name}">Buy Now</button><button class="btn-view-premium view-detail-btn" data-name="${p.name}">Details</button></div></div>
+          </div>
+        `).join('');
+      }
+    });
+    attachEvents();
+    document.querySelectorAll('.view-all').forEach(el => {
+      el.addEventListener('click', () => alert(`Explore all ${el.dataset.cat} products at Fine Electronics`));
+    });
+  }
+  
+  new Swiper('.heroSwiper', { loop: true, autoplay: { delay: 5000 }, pagination: { clickable: true }, navigation: true });
+  new Swiper('.catSwiper', { slidesPerView: 2.2, spaceBetween: 16, breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 4.5 } } });
+  renderProductGrid(newArrivals, 'newArrivalsGrid', true);
+  renderCategoryGrids();
+  
+  // Mobile Menu
+  document.getElementById('menuToggle')?.addEventListener('click', () => { document.getElementById('slideMenu').classList.add('open'); document.getElementById('menuOverlay').classList.add('active'); });
+  document.getElementById('closeMenuBtn')?.addEventListener('click', () => { document.getElementById('slideMenu').classList.remove('open'); document.getElementById('menuOverlay').classList.remove('active'); });
+  document.getElementById('menuOverlay')?.addEventListener('click', () => { document.getElementById('slideMenu').classList.remove('open'); document.getElementById('menuOverlay').classList.remove('active'); });
+  document.querySelectorAll('.home-nav-link').forEach(l => l.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('homeContainer').classList.remove('hide'); document.getElementById('productDetailContainer').classList.remove('active'); window.scrollTo(0,0); }));
+  document.getElementById('mobileCatHeader')?.addEventListener('click', () => { document.getElementById('mobileCatListDropdown').classList.toggle('open'); });
+  document.querySelectorAll('.mobile-cat-item-side').forEach(el => el.addEventListener('click', () => alert(`Explore ${el.dataset.cat} collection`)));
+  
+  // Order Modal
+  const modal = document.getElementById('orderModalPremium'), closeModal = document.getElementById('closeModalBtnPremium'), whatsappForm = document.getElementById('whatsappFormPremium');
+  closeModal?.addEventListener('click', () => modal.style.display = 'none');
+  window.addEventListener('click', (e) => { if(e.target === modal) modal.style.display = 'none'; });
+  whatsappForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('fullNamePremium').value;
+    const phone = document.getElementById('phonePremium').value;
+    const address = document.getElementById('addressPremium').value;
+    const product = document.getElementById('productNameInputPremium').value;
+    const price = document.querySelector(`.buy-now-btn[data-name="${product}"]`)?.closest('.product-card-premium')?.querySelector('.product-price-premium')?.innerText || '$0';
+    
+    if(currentUser) {
+      addOrder(product, price, address);
+    }
+    
+    window.open(`https://wa.me/923323403516?text=FINE%20ELECTRONICS%20ORDER%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0AProduct: ${product}%0APrice: ${price}`, '_blank');
+    modal.style.display = 'none';
+    whatsappForm.reset();
+  });
+  
+  document.querySelectorAll('.dropdown-item-premium').forEach(el => el.addEventListener('click', () => alert(`Explore ${el.dataset.cat} collection`)));
+</script>
+</body>
+</html>
