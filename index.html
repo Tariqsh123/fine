@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Fine Electronics | Premium Electronics Store - Luxury Tech Destination</title>
-  <meta name="description" content="Experience excellence at Fine Electronics. Premium mobiles, laptops, accessories, TVs and audio with exceptional service and best prices.">
+  <title>Fine Electronics | Premium Tech Store Pakistan</title>
+  <meta name="description" content="Fine Electronics Pakistan - Curated collection of premium electronics. Flagship mobiles, laptops, audio & accessories with expert service in PKR.">
   
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
@@ -31,710 +31,543 @@
     
     body {
       font-family: 'Inter', sans-serif;
-      background: #0A0C12;
-      color: #FFFFFF;
+      background: #0A0A0A;
+      color: #E0E0E0;
       overflow-x: hidden;
     }
     
+    /* No gradients - solid colors only */
     :root {
-      --bg-deep: #05070C;
-      --bg-dark: #0C0F16;
-      --bg-card: #12151E;
-      --bg-elevated: #191D28;
-      --accent-gold: #D4AF37;
-      --accent-gold-dark: #B4942C;
+      --bg-deep: #050505;
+      --bg-dark: #0F0F0F;
+      --bg-card: #141414;
+      --bg-elevated: #1A1A1A;
+      --yellow: #F5C518;
+      --blue: #2A7FFF;
+      --yellow-dark: #D4A800;
+      --blue-dark: #1A5FD9;
       --text-primary: #FFFFFF;
-      --text-secondary: #9AA0B0;
-      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-secondary: #B0B0B0;
+      --text-muted: #707070;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-medium: rgba(255, 255, 255, 0.1);
     }
     
     ::-webkit-scrollbar {
-      width: 5px;
+      width: 4px;
     }
     ::-webkit-scrollbar-track {
       background: var(--bg-dark);
     }
     ::-webkit-scrollbar-thumb {
-      background: var(--accent-gold);
-      border-radius: 10px;
+      background: var(--yellow);
+      border-radius: 4px;
     }
     
-    .navbar-glass {
-      background: rgba(10, 12, 18, 0.95);
-      backdrop-filter: blur(20px);
+    /* Navbar */
+    .navbar-premium {
+      background: rgba(10, 10, 10, 0.96);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
     }
     
-    .dropdown-premium {
-      position: relative;
-    }
-    .dropdown-premium-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--bg-elevated);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-subtle);
+    /* Product Cards */
+    .product-card {
+      background: var(--bg-card);
       border-radius: 20px;
-      padding: 0.6rem 0;
-      min-width: 230px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all 0.25s ease;
-      z-index: 100;
-    }
-    .dropdown-premium:hover .dropdown-premium-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-    .dropdown-item-premium {
-      padding: 0.6rem 1.5rem;
-      color: var(--text-secondary);
-      transition: all 0.2s;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-subtle);
       cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--yellow);
+      background: var(--bg-elevated);
+    }
+    .product-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      background: #0A0A0A;
+    }
+    .product-info {
+      padding: 1.25rem;
+    }
+    .product-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .product-price {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--yellow);
+      margin: 0.5rem 0;
+    }
+    .product-rating {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 500;
-      font-size: 0.9rem;
+      gap: 4px;
+      margin-bottom: 0.75rem;
     }
-    .dropdown-item-premium:hover {
-      background: var(--bg-card);
-      color: var(--accent-gold);
-      padding-left: 1.8rem;
+    .product-rating i {
+      color: var(--yellow);
+      font-size: 11px;
+    }
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: #0A0A0A;
+      font-weight: 700;
+      padding: 10px 0;
+      border-radius: 40px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      flex: 1;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .btn-primary:hover {
+      background: var(--yellow-dark);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-medium);
+      color: var(--text-secondary);
+      padding: 10px 0;
+      border-radius: 40px;
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: pointer;
+      flex: 1;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .btn-outline:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      background: rgba(245, 197, 24, 0.08);
     }
     
-    .product-card-premium {
+    /* Category Cards */
+    .category-card {
       background: var(--bg-card);
       border-radius: 24px;
       overflow: hidden;
       transition: all 0.3s ease;
       border: 1px solid var(--border-subtle);
+      cursor: pointer;
       position: relative;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
     }
-    .product-card-premium:hover {
-      border-color: var(--accent-gold);
+    .category-card:hover {
       transform: translateY(-3px);
+      border-color: var(--yellow);
     }
-    .product-image-container {
-      position: relative;
-      overflow: hidden;
-      background: var(--bg-deep);
-      height: 230px;
-    }
-    .product-image-premium {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .product-card-premium:hover .product-image-premium {
-      transform: scale(1.03);
-    }
-    .product-badge-premium {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: var(--accent-gold);
-      color: #0A0C12;
-      padding: 4px 12px;
-      border-radius: 30px;
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-      z-index: 2;
-    }
-    .product-info-premium {
-      padding: 1.2rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .product-title-premium {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-    .product-price-premium {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--accent-gold);
-      margin-bottom: 1rem;
-    }
-    .product-actions-premium {
-      display: flex;
-      gap: 10px;
-      margin-top: auto;
-    }
-    .btn-buy-premium {
-      flex: 1;
-      background: var(--accent-gold);
-      color: #0A0C12;
-      padding: 10px 0;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-align: center;
-      transition: all 0.25s;
-      cursor: pointer;
-      border: none;
-    }
-    .btn-buy-premium:hover {
-      background: var(--accent-gold-dark);
-      transform: translateY(-2px);
-    }
-    .btn-view-premium {
-      flex: 1;
-      background: transparent;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      padding: 10px 0;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      text-align: center;
-      transition: all 0.25s;
-      cursor: pointer;
-    }
-    .btn-view-premium:hover {
-      border-color: var(--accent-gold);
-      color: var(--accent-gold);
-      background: rgba(212, 175, 55, 0.05);
-    }
-    
-    .category-card-premium {
-      background: var(--bg-card);
-      border-radius: 28px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      border: 1px solid var(--border-subtle);
-      cursor: pointer;
-      position: relative;
-    }
-    .category-card-premium:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-3px);
-    }
-    .category-image {
+    .category-img {
       width: 100%;
       height: 180px;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.4s ease;
     }
-    .category-card-premium:hover .category-image {
-      transform: scale(1.03);
+    .category-card:hover .category-img {
+      transform: scale(1.02);
     }
     .category-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-      padding: 1.2rem;
+      background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+      padding: 1.25rem;
     }
-    .category-name-premium {
-      font-size: 1.2rem;
+    .category-name {
       font-weight: 700;
+      font-size: 1.1rem;
       color: white;
     }
     .category-count {
       font-size: 0.75rem;
-      color: var(--accent-gold);
+      color: var(--yellow);
     }
     
-    .feature-box-premium {
+    /* Feature Cards */
+    .feature-card {
       background: var(--bg-card);
-      border-radius: 24px;
+      border-radius: 20px;
       padding: 1.5rem;
       text-align: center;
       border: 1px solid var(--border-subtle);
-      transition: all 0.3s;
+      transition: all 0.2s;
     }
-    .feature-box-premium:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-3px);
+    .feature-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--blue);
+    }
+    .feature-card i {
+      color: var(--yellow);
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: inline-block;
     }
     
+    /* Banner */
+    .banner-card {
+      background: var(--bg-elevated);
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border: 1px solid var(--border-subtle);
+    }
+    
+    /* Hero Slider */
+    .hero-slide {
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(245,197,24,0.08) 0%, rgba(42,127,255,0.04) 50%, transparent 80%);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
     .swiper-button-next, .swiper-button-prev {
-      color: var(--accent-gold);
-      background: rgba(0, 0, 0, 0.5);
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+      color: var(--yellow);
+      background: rgba(20,20,20,0.8);
+      width: 44px;
+      height: 44px;
+      border-radius: 44px;
       backdrop-filter: blur(4px);
+      border: 1px solid var(--border-subtle);
+      display: none;
     }
     .swiper-button-next:after, .swiper-button-prev:after {
       font-size: 16px;
-      font-weight: bold;
     }
     .swiper-pagination-bullet {
-      background: var(--border-subtle);
+      background: var(--text-secondary);
+      opacity: 0.5;
     }
     .swiper-pagination-bullet-active {
-      background: var(--accent-gold);
-    }
-    @media (max-width: 768px) {
-      .swiper-button-next, .swiper-button-prev {
-        display: none;
-      }
+      background: var(--yellow);
+      opacity: 1;
     }
     
-    .hero-title-gradient {
-      background: linear-gradient(135deg, #FFFFFF 0%, var(--accent-gold) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    /* Reviews Carousel */
+    .review-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 1.8rem;
+      border: 1px solid var(--border-subtle);
+    }
+    .review-stars i {
+      color: var(--yellow);
+      font-size: 14px;
+      margin-right: 2px;
     }
     
-    .modal-premium {
+    /* Newsletter */
+    .newsletter-card {
+      background: var(--bg-elevated);
+      border-radius: 28px;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border-subtle);
+    }
+    
+    /* Detail Modal */
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5,5,5,0.98);
+      backdrop-filter: blur(20px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .detail-container {
+      max-width: 1100px;
+      width: 100%;
+      background: var(--bg-dark);
+      border-radius: 32px;
+      border: 1px solid var(--border-medium);
+      overflow: auto;
+      height: 100%;
+    }
+    #closeDetailBtn{
+      color: red;
+      position: absolute;
+      top: 5px ;
+      right: 05px;
+    }
+    .detail-thumb {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+    .detail-thumb.active {
+      border-color: var(--yellow);
+    }
+    
+    /* Order Modal */
+    .order-modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(14px);
+      background: rgba(5,5,5,0.98);
+      backdrop-filter: blur(20px);
       align-items: center;
       justify-content: center;
-      z-index: 1200;
+      z-index: 2100;
     }
-    .modal-content-premium {
+    .order-modal-content {
       background: var(--bg-elevated);
-      border-radius: 32px;
-      max-width: 500px;
+      border-radius: 28px;
+      max-width: 480px;
       width: 90%;
-      padding: 1.8rem;
-      border: 1px solid var(--border-subtle);
-      animation: modalSlideIn 0.3s ease;
-      max-height: 85vh;
-      overflow-y: auto;
+      padding: 2rem;
+      border: 1px solid var(--border-medium);
     }
-    @keyframes modalSlideIn {
-      from { opacity: 0; transform: scale(0.96) translateY(15px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .form-input-premium {
+    .form-input {
       width: 100%;
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 12px 18px;
+      padding: 12px 16px;
       color: var(--text-primary);
-      transition: all 0.2s;
     }
-    .form-input-premium:focus {
+    .form-input:focus {
       outline: none;
-      border-color: var(--accent-gold);
-    }
-    .btn-primary-premium {
-      background: var(--accent-gold);
-      color: #0A0C12;
-      padding: 12px 24px;
-      border-radius: 40px;
-      font-weight: 700;
-      transition: all 0.25s;
-      cursor: pointer;
-      border: none;
-      width: 100%;
-    }
-    .btn-primary-premium:hover {
-      background: var(--accent-gold-dark);
-      transform: translateY(-2px);
+      border-color: var(--yellow);
     }
     
-    .slide-menu-premium {
+    /* Mobile Menu */
+    .mobile-menu {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 85%;
-      max-width: 360px;
+      width: 80%;
+      max-width: 340px;
       height: 100%;
-      background: rgba(12, 15, 22, 0.98);
-      backdrop-filter: blur(24px);
-      z-index: 1000;
-      transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+      background: var(--bg-deep);
+      backdrop-filter: blur(20px);
+      z-index: 1500;
+      transition: right 0.3s ease;
       padding: 2rem 1.5rem;
       border-left: 1px solid var(--border-subtle);
-      overflow-y: auto;
     }
-    .slide-menu-premium.open {
-      right: 0;
-    }
-    .menu-overlay-premium {
+    .mobile-menu.open { right: 0; }
+    .menu-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(6px);
-      z-index: 999;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1499;
       display: none;
     }
-    .menu-overlay-premium.active {
-      display: block;
+    .menu-overlay.active { display: block; }
+    
+    .phone-badge {
+      background: rgba(245, 197, 24, 0.12);
+      border-radius: 60px;
+      padding: 8px 18px;
+      transition: all 0.2s;
+      border: 1px solid rgba(245,197,24,0.2);
+    }
+    .phone-badge:hover {
+      background: var(--yellow);
+      color: #0A0A0A;
     }
     
-    .mobile-cat-dropdown {
-      margin-top: 1rem;
+    /* Footer */
+    .footer {
+      background: #050505;
       border-top: 1px solid var(--border-subtle);
-      padding-top: 1rem;
     }
-    .mobile-cat-header {
+    .footer a {
+      transition: color 0.2s;
+    }
+    .footer a:hover {
+      color: var(--yellow);
+    }
+    
+    .section-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 0.8rem 0;
-      cursor: pointer;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-size: 1.8rem;
       font-weight: 700;
-      color: var(--accent-gold);
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
     }
-    .mobile-cat-header i {
-      transition: transform 0.3s ease;
-    }
-    .mobile-cat-header.open i {
-      transform: rotate(180deg);
-    }
-    .mobile-cat-list-dropdown {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-      padding-left: 0.5rem;
-    }
-    .mobile-cat-list-dropdown.open {
-      max-height: 400px;
-    }
-    .mobile-cat-item-side {
-      padding: 0.8rem 1rem;
+    .section-subtitle {
       color: var(--text-secondary);
-      display: flex;
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+    .view-all-link {
+      color: var(--yellow);
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
       align-items: center;
-      gap: 12px;
-      border-radius: 12px;
+      gap: 6px;
       transition: all 0.2s;
       cursor: pointer;
-    }
-    
-    .product-grid-responsive {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    @media (min-width: 640px) {
-      .product-grid-responsive {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 1024px) {
-      .product-grid-responsive {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    @media (min-width: 1280px) {
-      .product-grid-responsive {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    .newsletter-section {
-      background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
-      border-radius: 32px;
-      padding: 3rem 2rem;
-      border: 1px solid var(--border-subtle);
-    }
-    
-    .footer-link {
-      transition: color 0.2s;
-      cursor: pointer;
-    }
-    .footer-link:hover {
-      color: var(--accent-gold);
-    }
-
-    /* Product Detail Styles */
-    .product-detail-container {
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-    .product-detail-container.active {
-      display: block;
-    }
-    .home-container {
-      display: block;
-    }
-    .home-container.hide {
-      display: none;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .detail-main-image {
-      width: 100%;
-      border-radius: 24px;
-      object-fit: cover;
-      background: var(--bg-deep);
-    }
-    .star-rating-gold i, .star-rating i {
-      color: #FFB83B;
-      margin-right: 2px;
-    }
-    .thumbnail-img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 1px solid var(--border-subtle);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .thumbnail-img.active {
-      border-color: var(--accent-gold);
-      transform: scale(1.02);
-    }
-    .btn-gold {
-      background: var(--accent-gold);
-      color: #0A0C12;
-      font-weight: 700;
+      background: rgba(245,197,24,0.1);
+      padding: 6px 14px;
       border-radius: 40px;
-      transition: all 0.25s;
-      border: none;
-      padding: 14px 28px;
-      cursor: pointer;
-      font-size: 1rem;
+      border: 1px solid rgba(245,197,24,0.2);
     }
-    .btn-gold:hover {
-      background: var(--accent-gold-dark);
-      transform: translateY(-2px);
-    }
-    .btn-outline-gold {
-      background: transparent;
-      border: 1px solid var(--accent-gold);
-      color: var(--accent-gold);
-      border-radius: 40px;
-      font-weight: 600;
-      transition: 0.25s;
-      padding: 14px 28px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    .btn-outline-gold:hover {
-      background: rgba(212, 175, 55, 0.1);
-      transform: translateY(-2px);
-    }
-    .specs-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .spec-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .spec-item:last-child {
-      border-bottom: none;
-    }
-    .info-box {
-      background: var(--bg-elevated);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px solid var(--border-subtle);
-    }
-    @media (min-width: 769px) {
-      .specs-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 768px) {
-      .thumbnail-img { width: 60px; height: 60px; }
-      .detail-action-buttons {
-        flex-direction: column;
-      }
-      .detail-action-buttons button {
-        width: 100%;
-      }
-      .btn-gold, .btn-outline-gold {
-        padding: 12px 20px;
-      }
-    }
-    
-    .user-avatar {
-      background: var(--accent-gold);
-      color: #0A0C12;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .user-avatar:hover {
-      transform: scale(1.05);
-      background: var(--accent-gold-dark);
-    }
-    .dropdown-user-menu {
-      position: absolute;
-      top: 50px;
-      right: 0;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-subtle);
-      border-radius: 16px;
-      padding: 0.5rem 0;
-      min-width: 200px;
-      display: none;
-      z-index: 200;
-    }
-    .dropdown-user-menu.active {
-      display: block;
-    }
-    .dropdown-user-item {
-      padding: 0.75rem 1.25rem;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .dropdown-user-item:hover {
-      background: var(--bg-card);
-      color: var(--accent-gold);
-    }
-    .relative {
-      position: relative;
-    }
-    .auth-toggle {
-      display: flex;
+    .view-all-link:hover {
+      background: var(--yellow);
+      color: #0A0A0A;
       gap: 10px;
-      margin-bottom: 1rem;
     }
-    .auth-tab {
-      flex: 1;
-      text-align: center;
-      padding: 10px;
-      background: var(--bg-card);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
+    .view-all-link i {
+      font-size: 11px;
     }
-    .auth-tab.active {
-      background: var(--accent-gold);
-      color: #0A0C12;
+    
+    /* Mobile Responsive - Center Everything */
+    @media (max-width: 768px) {
+      .product-img { height: 200px; }
+      .section-title { font-size: 1.5rem; text-align: center; }
+      .section-subtitle { text-align: center; }
+      .section-header { flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+      .product-card { text-align: center; }
+      .product-rating { justify-content: center; }
+      .product-actions { justify-content: center; }
+      .category-card { text-align: center; }
+      .category-overlay { text-align: center; }
+      .feature-card { text-align: center; }
+      .banner-card { text-align: center; }
+      .review-card { text-align: center; }
+      .review-stars { justify-content: center; display: flex; }
+      .newsletter-card { text-align: center; }
+      .hero-content { text-align: center; align-items: center; }
+      .hero-content h1 { text-align: center; }
+      .hero-content p { text-align: center; margin-left: auto; margin-right: auto; }
+      .footer { text-align: center; }
+      .footer .grid > div { text-align: center; }
+      .footer ul { display: flex; flex-direction: column; align-items: center; }
+      .footer .flex.items-center { justify-content: center; }
     }
-    .auth-form {
-      display: none;
-    }
-    .auth-form.active {
-      display: block;
-    }
-    .success-message {
-      background: rgba(212, 175, 55, 0.2);
-      border: 1px solid var(--accent-gold);
-      color: var(--accent-gold);
-      padding: 12px;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .order-item {
-      background: var(--bg-card);
-      border-radius: 12px;
-      padding: 12px;
-      margin-bottom: 10px;
-      border: 1px solid var(--border-subtle);
-    }
-    .profile-section {
-      margin-bottom: 20px;
-    }
-    .profile-label {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-bottom: 4px;
-    }
-    .profile-value {
-      font-weight: 600;
-      margin-bottom: 12px;
+    
+    @media (max-width: 480px) {
+      .product-actions { flex-direction: column; gap: 8px; }
+      .btn-primary, .btn-outline { width: 100%; }
+      .hero-content h1 { font-size: 2rem; }
+      .banner-card { padding: 1.5rem; }
+      .banner-card h2 { font-size: 1.5rem; }
+      .section-title { font-size: 1.3rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="menu-overlay-premium" id="menuOverlay"></div>
-
-<div class="slide-menu-premium" id="slideMenu">
-  <div class="flex justify-between items-center mb-6 pb-4 border-b border-border-subtle">
-    <img src="images/logo.webp" alt="Fine Electronics" class="h-12 w-auto" onerror="this.onerror=null; this.src='https://placehold.co/120x40/D4AF37/0A0C12?text=FINE'">
-    <button id="closeMenuBtn" class="text-2xl text-text-secondary hover:text-accent-gold transition">&times;</button>
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <div class="flex justify-between items-center mb-8 pb-4 border-b border-border-subtle">
+    <span class="text-xl font-bold text-yellow">FINE</span>
+    <button id="closeMenuBtn" class="text-2xl text-text-secondary hover:text-yellow">&times;</button>
   </div>
-  <nav class="flex flex-col gap-4">
-    <a href="#" class="home-nav-link py-2 hover:text-accent-gold transition flex items-center gap-3"><i class="fas fa-home w-5"></i> Home</a>
-    <a href="#arrivals" class="py-2 hover:text-accent-gold transition flex items-center gap-3"><i class="fas fa-star w-5"></i> New Arrivals</a>
-    <a href="#offers" class="py-2 hover:text-accent-gold transition flex items-center gap-3"><i class="fas fa-tag w-5"></i> Special Offers</a>
+  <nav class="flex flex-col gap-5">
+    <a href="#" class="home-nav-link text-base font-medium hover:text-yellow transition">Home</a>
+    <a href="#arrivals" class="home-nav-link text-base font-medium hover:text-yellow transition">New Arrivals</a>
+    <a href="#categories" class="home-nav-link text-base font-medium hover:text-yellow transition">Categories</a>
+    <a href="#trending" class="home-nav-link text-base font-medium hover:text-yellow transition">Trending</a>
+    <a href="#offers" class="home-nav-link text-base font-medium hover:text-yellow transition">Offers</a>
+    <a href="#brands" class="home-nav-link text-base font-medium hover:text-yellow transition">Brands</a>
+    <a href="#reviews" class="home-nav-link text-base font-medium hover:text-yellow transition">Reviews</a>
   </nav>
-  <div class="mobile-cat-dropdown">
-    <div class="mobile-cat-header" id="mobileCatHeader">
-      <span class="flex items-center gap-2"><i class="fas fa-th-large"></i> Categories</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div class="mobile-cat-list-dropdown" id="mobileCatListDropdown">
-      <div class="mobile-cat-item-side" data-cat="Mobile"><i class="fas fa-mobile-alt"></i> Mobile Phones</div>
-      <div class="mobile-cat-item-side" data-cat="Laptop"><i class="fas fa-laptop"></i> Laptops</div>
-      <div class="mobile-cat-item-side" data-cat="Accessories"><i class="fas fa-headphones"></i> Accessories</div>
-      <div class="mobile-cat-item-side" data-cat="TV"><i class="fas fa-tv"></i> Televisions</div>
-      <div class="mobile-cat-item-side" data-cat="Audio"><i class="fas fa-music"></i> Audio</div>
+  <div class="mt-8 pt-6 border-t border-border-subtle">
+    <div class="flex items-center gap-3 p-3 rounded-xl bg-bg-card">
+      <div class="w-9 h-9 rounded-full bg-yellow/10 flex items-center justify-center"><i class="fas fa-phone-alt text-yellow"></i></div>
+      <div><div class="text-xs text-text-muted">Tech Support</div><a href="tel:+923323403516" class="text-base font-semibold text-yellow">+92 332 3403516</a></div>
     </div>
   </div>
 </div>
 
-<nav class="navbar-glass fixed top-0 left-0 right-0 z-50 py-3 px-5 md:px-10">
+<nav class="navbar-premium fixed top-0 left-0 right-0 z-50 py-3.5 px-6 md:px-12">
   <div class="max-w-[1440px] mx-auto flex justify-between items-center">
-    <img src="images/logo.webp" alt="Fine Electronics" class="h-10 md:h-12 w-auto cursor-pointer home-nav-link" onerror="this.onerror=null; this.src='https://placehold.co/140x48/D4AF37/0A0C12?text=FINE'">
+    <div class="flex items-center gap-2 cursor-pointer home-nav-link">
+      <i class="fas fa-microchip text-yellow text-xl"></i>
+      <span class="text-xl font-bold tracking-tight text-white">FINE<span class="text-yellow">.</span></span>
+    </div>
     <div class="hidden md:flex items-center gap-8">
-      <a href="#" class="home-nav-link font-medium hover:text-accent-gold transition">Home</a>
-      <div class="dropdown-premium">
-        <span class="font-medium cursor-pointer hover:text-accent-gold transition flex items-center gap-1">Categories <i class="fas fa-chevron-down text-xs"></i></span>
-        <div class="dropdown-premium-menu">
-          <div class="dropdown-item-premium" data-cat="Mobile"><i class="fas fa-mobile-alt"></i> Mobile Phones</div>
-          <div class="dropdown-item-premium" data-cat="Laptop"><i class="fas fa-laptop"></i> Laptops</div>
-          <div class="dropdown-item-premium" data-cat="Accessories"><i class="fas fa-headphones"></i> Accessories</div>
-          <div class="dropdown-item-premium" data-cat="TV"><i class="fas fa-tv"></i> Televisions</div>
-          <div class="dropdown-item-premium" data-cat="Audio"><i class="fas fa-music"></i> Audio</div>
+      <a href="#" class="home-nav-link text-sm font-medium text-text-secondary hover:text-yellow transition">Home</a>
+      <div class="relative group">
+        <span class="text-sm font-medium text-text-secondary hover:text-yellow transition cursor-pointer flex items-center gap-1">Categories <i class="fas fa-chevron-down text-[9px]"></i></span>
+        <div class="absolute top-full left-0 mt-2 w-56 bg-bg-elevated border border-border-subtle rounded-xl py-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="Mobile"><i class="fas fa-mobile-alt mr-2"></i> Mobile Phones</div>
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="Laptop"><i class="fas fa-laptop mr-2"></i> Laptops</div>
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="Tablet"><i class="fas fa-tablet-alt mr-2"></i> Tablets</div>
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="Smartwatch"><i class="fas fa-clock mr-2"></i> Smartwatches</div>
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="Accessories"><i class="fas fa-headphones mr-2"></i> Accessories</div>
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="TV"><i class="fas fa-tv mr-2"></i> Televisions</div>
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="Audio"><i class="fas fa-music mr-2"></i> Audio</div>
+          <div class="cat-dropdown-item px-4 py-2.5 hover:bg-bg-card hover:text-yellow cursor-pointer text-sm" data-cat="Gaming"><i class="fas fa-gamepad mr-2"></i> Gaming</div>
         </div>
       </div>
-      <a href="#arrivals" class="font-medium hover:text-accent-gold transition">New Arrivals</a>
-      <a href="#offers" class="font-medium hover:text-accent-gold transition">Offers</a>
+      <a href="#arrivals" class="text-sm font-medium text-text-secondary hover:text-yellow transition">New</a>
+      <a href="#trending" class="text-sm font-medium text-text-secondary hover:text-yellow transition">Trending</a>
+      <a href="#offers" class="text-sm font-medium text-text-secondary hover:text-yellow transition">Offers</a>
+      <a href="#brands" class="text-sm font-medium text-text-secondary hover:text-yellow transition">Brands</a>
     </div>
     <div class="flex items-center gap-4">
-      <div class="relative" id="userMenuContainer">
-        <div id="accountButton" class="user-avatar cursor-pointer">
-          <i class="fas fa-user"></i>
-        </div>
-        <div id="userDropdown" class="dropdown-user-menu">
-          <div id="userInfoDisplay" class="dropdown-user-item border-b border-border-subtle"></div>
-          <div id="profileOption" class="dropdown-user-item">My Profile</div>
-          <div id="ordersOption" class="dropdown-user-item">My Orders</div>
-          <div id="logoutOption" class="dropdown-user-item" style="display: none;">Sign Out</div>
-          <div id="loginOption" class="dropdown-user-item">Sign In / Create Account</div>
-        </div>
-      </div>
-      <button id="menuToggle" class="md:hidden text-2xl text-white hover:text-accent-gold transition"><i class="fas fa-bars"></i></button>
+      <a href="tel:+923323403516" class="phone-badge hidden md:flex items-center gap-2 text-sm font-medium"><i class="fas fa-phone-alt"></i> +92 332 3403516</a>
+      <button id="menuToggle" class="md:hidden text-xl text-white hover:text-yellow"><i class="fas fa-bars"></i></button>
     </div>
   </div>
 </nav>
 
-<div id="homeContainer" class="home-container">
-  <main class="pt-24 max-w-[1440px] mx-auto px-5 md:px-10 pb-12">
-    <div class="mb-14 rounded-2xl overflow-hidden" data-aos="fade-up">
+<div id="homeContainer">
+  <main class="pt-24 max-w-[1440px] mx-auto px-6 md:px-12 pb-16">
+    <!-- Hero Slider -->
+    <div class="mb-16" data-aos="fade-up">
       <div class="swiper heroSwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide relative"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1400" class="w-full h-[420px] md:h-[560px] object-cover"><div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-6 md:px-12"><h1 class="hero-title-gradient text-4xl md:text-6xl font-extrabold mb-3">Elevate Your Tech</h1><p class="text-gray-300">Discover excellence in every device</p></div></div>
-          <div class="swiper-slide relative"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1400" class="w-full h-[420px] md:h-[560px] object-cover"><div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-6 md:px-12"><h1 class="hero-title-gradient text-4xl md:text-6xl font-extrabold mb-3">Ultimate Performance</h1><p class="text-gray-300">Flagship power meets elegance</p></div></div>
+          <div class="swiper-slide hero-slide">
+            <div class="hero-bg"></div>
+            <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1600" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
+            <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 hero-content">
+              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3">Next-Gen <span class="text-yellow">Tech</span></h1>
+              <p class="text-white/70 text-base max-w-md">Discover the future of electronics. Premium devices with expert support.</p>
+            </div>
+          </div>
+          <div class="swiper-slide hero-slide">
+            <div class="hero-bg"></div>
+            <img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1600" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
+            <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 hero-content">
+              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3">Flagship <span class="text-yellow">Power</span></h1>
+              <p class="text-white/70 text-base max-w-md">Uncompromising performance. Latest technology at your fingertips.</p>
+            </div>
+          </div>
+          <div class="swiper-slide hero-slide">
+            <div class="hero-bg"></div>
+            <img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=1600" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
+            <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 hero-content">
+              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3">Smart <span class="text-yellow">Ecosystem</span></h1>
+              <p class="text-white/70 text-base max-w-md">Connect, create, innovate. Seamless integration across devices.</p>
+            </div>
+          </div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-next"></div>
@@ -742,549 +575,279 @@
       </div>
     </div>
     
-    <section class="mb-16" data-aos="fade-up">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-6">Shop by Category</h2>
+    <!-- Categories -->
+    <section id="categories" class="mb-16" data-aos="fade-up">
+      <div class="text-center mb-8"><h2 class="section-title">Shop by Category</h2><p class="section-subtitle">Explore our curated collections</p></div>
       <div class="swiper catSwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Mobiles</div><div class="category-count">24 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Laptops</div><div class="category-count">18 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Accessories</div><div class="category-count">32 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">TVs</div><div class="category-count">12 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card-premium"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-image"><div class="category-overlay"><div class="category-name-premium">Audio</div><div class="category-count">20 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Mobile"><img src="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Mobiles</div><div class="category-count">8 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Laptop"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Laptops</div><div class="category-count">6 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Tablet"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Tablets</div><div class="category-count">5 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Smartwatch"><img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Smartwatches</div><div class="category-count">6 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Accessories"><img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Accessories</div><div class="category-count">12 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="TV"><img src="https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">TVs</div><div class="category-count">5 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Audio"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Audio</div><div class="category-count">7 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Gaming"><img src="https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Gaming</div><div class="category-count">4 Products</div></div></div></div>
         </div>
       </div>
     </section>
     
+    <!-- New Arrivals -->
     <section id="arrivals" class="mb-16" data-aos="fade-up">
-      <div class="flex justify-between items-center mb-6"><h2 class="text-2xl md:text-3xl font-bold tracking-tight">New Arrivals</h2><span class="text-accent-gold text-sm font-medium">12 fresh products</span></div>
-      <div class="product-grid-responsive" id="newArrivalsGrid"></div>
+      <div class="section-header">
+        <div><h2 class="section-title">New Arrivals</h2><p class="section-subtitle">Fresh from the tech world — 12 new arrivals</p></div>
+        <div class="view-all-link" onclick="alert('View all new arrivals coming soon!')">View All <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="newArrivalsGrid"></div>
     </section>
     
+    <!-- Trending Products -->
+    <section id="trending" class="mb-16" data-aos="fade-up">
+      <div class="section-header">
+        <div><h2 class="section-title">Trending Now</h2><p class="section-subtitle">Most popular products this week</p></div>
+        <div class="view-all-link" onclick="alert('View all trending products coming soon!')">View All <i class="fas fa-arrow-right"></i></div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="trendingGrid"></div>
+    </section>
+    
+    <!-- Offer Banner -->
     <section id="offers" class="mb-16" data-aos="fade-up">
-      <div class="bg-gradient-to-r from-[#1a1f2e] to-[#0f121c] rounded-3xl p-8 md:p-12 text-center border border-accent-gold/20">
-        <span class="text-accent-gold text-sm font-semibold uppercase tracking-wider">Limited Time</span>
-        <h2 class="text-3xl md:text-4xl font-bold mt-2 mb-4">Summer Mega Sale</h2>
-        <p class="text-text-secondary mb-6">Up to 40% off on select premium electronics.</p>
+      <div class="banner-card">
+        <div class="max-w-2xl mx-auto">
+          <div class="inline-block px-3 py-1 rounded-full border border-yellow/40 text-yellow text-xs font-medium tracking-wide mb-4">LIMITED TIME</div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-3">Summer <span class="text-yellow">Tech Fest</span></h2>
+          <p class="text-text-secondary text-base mb-6">Up to 30% off on select premium electronics + complimentary extended warranty.</p>
+          <a href="tel:+923323403516" class="inline-flex items-center gap-2 bg-yellow text-black px-7 py-2.5 rounded-full font-semibold text-sm hover:bg-yellow-dark transition"><i class="fas fa-headset"></i> Contact Concierge</a>
+        </div>
       </div>
     </section>
     
-    <div id="dynamicCategoryGrids" class="space-y-16"></div>
+    <!-- All Categories Sections -->
+    <div id="allCategoriesContainer" class="space-y-14"></div>
     
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 my-16">
-      <div class="feature-box-premium"><i class="fas fa-truck-fast text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">Express Delivery</h3></div>
-      <div class="feature-box-premium"><i class="fas fa-shield-alt text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">2 Year Warranty</h3></div>
-      <div class="feature-box-premium"><i class="fas fa-undo-alt text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">14 Days Return</h3></div>
-      <div class="feature-box-premium"><i class="fas fa-gem text-3xl text-accent-gold mb-2 block"></i><h3 class="font-bold text-base">Premium Support</h3></div>
+    <!-- Brands Section -->
+    <section id="brands" class="my-16" data-aos="fade-up">
+      <div class="section-header">
+        <div><h2 class="section-title">Trusted Brands</h2><p class="section-subtitle">We partner with the world's leading technology brands</p></div>
+        <!-- <div class="view-all-link" onclick="alert('View all brands coming soon!')">View All <i class="fas fa-arrow-right"></i></div> -->
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-apple text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Apple</p></div>
+        <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-samsung text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Samsung</p></div>
+        <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-google text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Google</p></div>
+        <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-microsoft text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Microsoft</p></div>
+        <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fas fa-headphones text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Sony</p></div>
+        <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fas fa-laptop text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Dell</p></div>
+      </div>
+    </section>
+    
+    <!-- Customer Reviews -->
+    <section id="reviews" class="my-16" data-aos="fade-up">
+      <div class="section-header">
+        <div><h2 class="section-title">What Our Customers Say</h2><p class="section-subtitle">Trusted by tech enthusiasts worldwide</p></div>
+      </div>
+      <div class="swiper reviewsSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-text-secondary text-sm">"Exceptional service and premium quality products. The delivery was lightning fast and customer support is top-notch."</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Ahmed Raza</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
+          <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-text-secondary text-sm">"The iPhone 16 Pro Max arrived in perfect condition. The concierge service helped me choose the right device. Highly recommend!"</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Sarah Khan</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
+          <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="text-text-secondary text-sm">"Great selection of premium electronics. The 2-year warranty gives me peace of mind. Will shop again!"</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Omar Farooq</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
+          <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-text-secondary text-sm">"Amazing customer service! They helped me find the perfect laptop for my needs. Highly professional."</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Zain Malik</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
+        </div>
+        <div class="swiper-pagination mt-6"></div>
+      </div>
+    </section>
+    
+    <!-- Newsletter Section -->
+    <!-- <section class="my-16" data-aos="fade-up">
+      <div class="newsletter-card">
+        <div class="max-w-2xl mx-auto text-center">
+          <i class="fas fa-envelope-open-text text-3xl text-yellow mb-3"></i>
+          <h2 class="text-2xl md:text-3xl font-bold mb-3">Stay Tech Informed</h2>
+          <p class="text-text-secondary mb-6">Subscribe for exclusive deals,新品通知, and tech insights.</p>
+          <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"><input type="email" placeholder="Your email address" class="form-input flex-1"><button class="btn-primary px-6 py-3 whitespace-nowrap">Subscribe</button></div>
+          <p class="text-xs text-text-muted mt-4">No spam. Unsubscribe anytime.</p>
+        </div>
+      </div>
+    </section>
+     -->
+    <!-- Features -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+      <div class="feature-card"><i class="fas fa-truck-fast"></i><h3 class="font-semibold text-sm">Express Delivery</h3><p class="text-xs text-text-muted mt-1">2-3 business days</p></div>
+      <div class="feature-card"><i class="fas fa-shield-alt"></i><h3 class="font-semibold text-sm">2 Year Warranty</h3><p class="text-xs text-text-muted mt-1">Complete coverage</p></div>
+      <div class="feature-card"><i class="fas fa-headset"></i><h3 class="font-semibold text-sm">24/7 Tech Support</h3><p class="text-xs text-text-muted mt-1">Dedicated experts</p></div>
+      <div class="feature-card"><i class="fas fa-gem"></i><h3 class="font-semibold text-sm">Premium Service</h3><p class="text-xs text-text-muted mt-1">White-glove care</p></div>
     </div>
   </main>
 </div>
 
-<div id="productDetailContainer" class="product-detail-container"></div>
-
-<footer class="bg-bg-dark border-t border-border-subtle py-12 px-5">
-  <div class="max-w-[1440px] mx-auto text-center text-text-secondary text-sm">2025 Fine Electronics. All rights reserved. Luxury Tech Destination</div>
-</footer>
-
-<div id="orderModalPremium" class="modal-premium">
-  <div class="modal-content-premium">
-    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">Complete Order</h3><button id="closeModalBtnPremium" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
-    <form id="whatsappFormPremium">
-      <input type="hidden" id="productNameInputPremium">
-      <input type="text" id="fullNamePremium" placeholder="Full Name" class="form-input-premium mb-3" required>
-      <input type="tel" id="phonePremium" placeholder="Phone Number" class="form-input-premium mb-3" required>
-      <textarea id="addressPremium" rows="2" placeholder="Delivery Address" class="form-input-premium mb-4" required></textarea>
-      <button type="submit" class="btn-primary-premium">Order via WhatsApp</button>
-    </form>
-  </div>
-</div>
-
-<div id="authModal" class="modal-premium">
-  <div class="modal-content-premium">
-    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">Account Access</h3><button id="closeAuthModal" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
-    <div class="auth-toggle">
-      <div class="auth-tab active" data-tab="login">Sign In</div>
-      <div class="auth-tab" data-tab="register">Create Account</div>
+<!-- Product Detail Overlay -->
+<div id="detailOverlay" class="detail-overlay">
+  <div class="detail-container">
+    <div class="relative p-6 md:p-8">
+      <button id="closeDetailBtn" class="absolute top-4 right-5 text-2xl text-text-secondary hover:text-yellow">&times;</button>
+      <div class="grid lg:grid-cols-2 gap-8" id="detailContent"></div>
     </div>
-    <form id="loginForm" class="auth-form active">
-      <input type="email" id="loginEmail" placeholder="Email Address" class="form-input-premium mb-3" required>
-      <input type="password" id="loginPassword" placeholder="Password" class="form-input-premium mb-4" required>
-      <button type="submit" class="btn-primary-premium">Sign In</button>
-    </form>
-    <form id="registerForm" class="auth-form">
-      <input type="text" id="regName" placeholder="Full Name" class="form-input-premium mb-3" required>
-      <input type="email" id="regEmail" placeholder="Email Address" class="form-input-premium mb-3" required>
-      <input type="password" id="regPassword" placeholder="Password (min 6 characters)" class="form-input-premium mb-4" required>
-      <button type="submit" class="btn-primary-premium">Create Account</button>
+  </div>
+</div>
+
+<!-- Order Modal -->
+<div id="orderModal" class="order-modal">
+  <div class="order-modal-content">
+    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">Complete Order</h3><button id="closeOrderBtn" class="text-2xl text-text-secondary hover:text-yellow">&times;</button></div>
+    <form id="orderForm">
+      <input type="hidden" id="orderProductName">
+      <input type="text" id="fullName" placeholder="Full Name" class="form-input mb-3" required>
+      <input type="tel" id="phoneNumber" placeholder="Phone Number" class="form-input mb-3" required>
+      <textarea id="address" rows="2" placeholder="Delivery Address" class="form-input mb-4" required></textarea>
+      <button type="submit" class="btn-primary w-full py-3 text-sm font-semibold">Order via WhatsApp</button>
     </form>
   </div>
 </div>
 
-<div id="profileModal" class="modal-premium">
-  <div class="modal-content-premium">
-    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">My Profile</h3><button id="closeProfileModal" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
-    <div id="profileContent"></div>
+<!-- Footer -->
+<footer class="footer pt-16 pb-8 px-6">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+      <div><div class="flex items-center gap-2 mb-4"><i class="fas fa-microchip text-yellow text-xl"></i><span class="text-xl font-bold text-white">FINE<span class="text-yellow">.</span></span></div><p class="text-sm text-text-muted mb-4">Premium electronics destination since 2025. Curated collection of flagship devices with expert support.</p><div class="flex gap-3"><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-facebook-f text-sm"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-twitter text-sm"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-instagram text-sm"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-linkedin-in text-sm"></i></a></div></div>
+      <div><h4 class="text-white font-semibold mb-4">Shop</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">Mobile Phones</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Laptops</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Tablets</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Smartwatches</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Audio</a></li></ul></div>
+      <div><h4 class="text-white font-semibold mb-4">Support</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">Help Center</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Warranty Info</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Returns & Refunds</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Shipping Info</a></li><li><a href="#" class="text-text-muted hover:text-yellow">FAQs</a></li></ul></div>
+      <div><h4 class="text-white font-semibold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">About Us</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Careers</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Press</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Privacy Policy</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Terms of Service</a></li></ul></div>
+      <div><h4 class="text-white font-semibold mb-4">Contact Us</h4><ul class="space-y-3 text-sm"><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-phone-alt w-4 text-yellow"></i> +92 332 3403516</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-envelope w-4 text-yellow"></i> info@fineelectronics.pk</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-map-marker-alt w-4 text-yellow"></i> 123 Tech Plaza, Gulberg, Lahore, Pakistan</li></ul><div class="mt-4"><p class="text-xs text-text-muted mb-2">Opening Hours:</p><p class="text-xs text-text-muted">Mon-Fri: 9AM - 8PM<br>Sat-Sun: 10AM - 6PM</p></div></div>
+    </div>
+    <div class="border-t border-white/10 pt-6 text-center text-text-muted text-xs">© 2025 Fine Electronics Pakistan. All rights reserved. Premium Technology Concierge.</div>
   </div>
-</div>
-
-<div id="ordersModal" class="modal-premium">
-  <div class="modal-content-premium">
-    <div class="flex justify-between items-center mb-5"><h3 class="text-xl font-bold">My Orders</h3><button id="closeOrdersModal" class="text-2xl text-text-secondary hover:text-accent-gold">&times;</button></div>
-    <div id="ordersContent"></div>
-  </div>
-</div>
+</footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ duration: 600, once: true });
+  AOS.init({ duration: 500, once: true });
   
-  // Auth System
-  let currentUser = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : null;
-  
-  function updateUserUI() {
-    const userInfoDisplay = document.getElementById('userInfoDisplay');
-    const logoutOption = document.getElementById('logoutOption');
-    const loginOption = document.getElementById('loginOption');
-    const profileOption = document.getElementById('profileOption');
-    const ordersOption = document.getElementById('ordersOption');
-    
-    if(currentUser) {
-      userInfoDisplay.innerHTML = `<i class="fas fa-user-circle mr-2"></i>${currentUser.name}`;
-      logoutOption.style.display = 'block';
-      loginOption.style.display = 'none';
-      profileOption.style.display = 'block';
-      ordersOption.style.display = 'block';
-    } else {
-      userInfoDisplay.innerHTML = '<i class="fas fa-user mr-2"></i>Account';
-      logoutOption.style.display = 'none';
-      loginOption.style.display = 'block';
-      profileOption.style.display = 'none';
-      ordersOption.style.display = 'none';
-    }
-  }
-  
-  function handleLogin(email, password) {
-    let users = JSON.parse(localStorage.getItem('users') || '{}');
-    if(users[email] && users[email].password === password) {
-      currentUser = { email: email, name: users[email].name };
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
-      updateUserUI();
-      document.getElementById('authModal').style.display = 'none';
-      return true;
-    }
-    alert('Invalid email or password');
-    return false;
-  }
-  
-  function handleRegister(name, email, password) {
-    if(password.length < 6) {
-      alert('Password must be at least 6 characters');
-      return false;
-    }
-    let users = JSON.parse(localStorage.getItem('users') || '{}');
-    if(users[email]) {
-      alert('Email already registered. Please sign in.');
-      return false;
-    }
-    users[email] = { 
-      name: name, 
-      password: password, 
-      profile: { phone: '', address: '' }, 
-      orders: [] 
-    };
-    localStorage.setItem('users', JSON.stringify(users));
-    currentUser = { email: email, name: name };
-    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    updateUserUI();
-    document.getElementById('authModal').style.display = 'none';
-    return true;
-  }
-  
-  function logout() {
-    localStorage.removeItem('currentUser');
-    currentUser = null;
-    updateUserUI();
-  }
-  
-  function showProfile() {
-    let users = JSON.parse(localStorage.getItem('users') || '{}');
-    let userData = users[currentUser.email] || { profile: { phone: '', address: '' }, name: currentUser.name };
-    let profile = userData.profile || { phone: '', address: '' };
-    
-    const profileHTML = `
-      <div class="profile-section">
-        <div class="profile-label">Full Name</div>
-        <div class="profile-value">${currentUser.name}</div>
-        
-        <div class="profile-label">Email Address</div>
-        <div class="profile-value">${currentUser.email}</div>
-        
-        <div class="profile-label mt-3">Phone Number</div>
-        <input type="tel" id="profilePhone" value="${profile.phone || ''}" placeholder="Enter phone number" class="form-input-premium mb-3">
-        
-        <div class="profile-label mt-2">Delivery Address</div>
-        <textarea id="profileAddress" rows="2" placeholder="Enter your full address" class="form-input-premium mb-4">${profile.address || ''}</textarea>
-        
-        <button id="saveProfileBtn" class="btn-primary-premium mb-3">Save Changes</button>
-        <button id="logoutFromProfileBtn" class="btn-outline-gold w-full py-3">Sign Out</button>
-      </div>
-    `;
-    
-    document.getElementById('profileContent').innerHTML = profileHTML;
-    document.getElementById('profileModal').style.display = 'flex';
-    
-    // Fix: Save Profile Button Event
-    const saveBtn = document.getElementById('saveProfileBtn');
-    if(saveBtn) {
-      saveBtn.onclick = function() {
-        let phone = document.getElementById('profilePhone').value;
-        let address = document.getElementById('profileAddress').value;
-        let users = JSON.parse(localStorage.getItem('users') || '{}');
-        if(users[currentUser.email]) {
-          users[currentUser.email].profile = { phone: phone, address: address };
-          localStorage.setItem('users', JSON.stringify(users));
-          alert('Profile updated successfully!');
-          document.getElementById('profileModal').style.display = 'none';
-        } else {
-          alert('Error saving profile');
-        }
-      };
-    }
-    
-    const logoutBtn = document.getElementById('logoutFromProfileBtn');
-    if(logoutBtn) {
-      logoutBtn.onclick = function() {
-        logout();
-        document.getElementById('profileModal').style.display = 'none';
-      };
-    }
-  }
-  
-  function showOrders() {
-    let users = JSON.parse(localStorage.getItem('users') || '{}');
-    let orders = users[currentUser.email]?.orders || [];
-    
-    if(orders.length === 0) {
-      document.getElementById('ordersContent').innerHTML = '<p class="text-text-secondary text-center py-4">No orders placed yet. Start shopping to see your orders here!</p>';
-    } else {
-      const ordersHTML = orders.map((order, idx) => `
-        <div class="order-item">
-          <div class="flex justify-between items-start mb-2">
-            <div>
-              <div class="font-bold text-accent-gold">Order #${idx + 1}</div>
-              <div class="text-sm text-text-secondary">${order.date}</div>
-            </div>
-            <div class="text-accent-gold font-bold">${order.total}</div>
-          </div>
-          <div class="text-sm mt-2">Product: ${order.product}</div>
-          <div class="text-sm">Delivery to: ${order.address}</div>
-          <div class="text-xs text-text-secondary mt-2">Status: Delivered</div>
-        </div>
-      `).join('');
-      document.getElementById('ordersContent').innerHTML = ordersHTML;
-    }
-    document.getElementById('ordersModal').style.display = 'flex';
-  }
-  
-  function addOrder(product, total, address) {
-    if(currentUser) {
-      let users = JSON.parse(localStorage.getItem('users') || '{}');
-      if(users[currentUser.email]) {
-        if(!users[currentUser.email].orders) users[currentUser.email].orders = [];
-        users[currentUser.email].orders.unshift({
-          product: product,
-          total: total,
-          address: address,
-          date: new Date().toLocaleString()
-        });
-        localStorage.setItem('users', JSON.stringify(users));
-      }
-    }
-  }
-  
-  // Auth Modal Tabs
-  document.querySelectorAll('.auth-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      document.querySelectorAll('.auth-form').forEach(form => form.classList.remove('active'));
-      document.getElementById(`${tab.dataset.tab}Form`).classList.add('active');
-    });
-  });
-  
-  document.getElementById('loginForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const pwd = document.getElementById('loginPassword').value;
-    handleLogin(email, pwd);
-  });
-  
-  document.getElementById('registerForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('regName').value;
-    const email = document.getElementById('regEmail').value;
-    const pwd = document.getElementById('regPassword').value;
-    if(name && email && pwd) handleRegister(name, email, pwd);
-    else alert('Please fill all fields');
-  });
-  
-  document.getElementById('closeAuthModal').addEventListener('click', () => document.getElementById('authModal').style.display = 'none');
-  document.getElementById('closeProfileModal').addEventListener('click', () => document.getElementById('profileModal').style.display = 'none');
-  document.getElementById('closeOrdersModal').addEventListener('click', () => document.getElementById('ordersModal').style.display = 'none');
-  
-  // User Dropdown
-  const accountButton = document.getElementById('accountButton');
-  const userDropdown = document.getElementById('userDropdown');
-  accountButton.addEventListener('click', (e) => {
-    e.stopPropagation();
-    userDropdown.classList.toggle('active');
-  });
-  document.addEventListener('click', () => userDropdown.classList.remove('active'));
-  
-  document.getElementById('loginOption').addEventListener('click', () => {
-    document.getElementById('authModal').style.display = 'flex';
-    userDropdown.classList.remove('active');
-  });
-  document.getElementById('logoutOption').addEventListener('click', () => {
-    logout();
-    userDropdown.classList.remove('active');
-  });
-  document.getElementById('profileOption').addEventListener('click', () => {
-    if(currentUser) showProfile();
-    userDropdown.classList.remove('active');
-  });
-  document.getElementById('ordersOption').addEventListener('click', () => {
-    if(currentUser) showOrders();
-    userDropdown.classList.remove('active');
-  });
-  
-  updateUserUI();
-  
-  // Product Database - No "Hot" badges
-  const productDB = {
+  // Product Database with PKR pricing
+  const productsData = {
     Mobile: [
-      { id: 1, name: "iPhone 16 Pro Max", price: "$1,399", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 2, name: "Samsung Galaxy S24 Ultra", price: "$1,249", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 3, name: "Google Pixel 9 Pro", price: "$999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 4, name: "OnePlus 12", price: "$799", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" }
+      { id: 1, name: "iPhone 16 Pro Max", price: "₨ 389,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["A17 Pro Chip", "48MP Main Camera", "Titanium Design", "5x Optical Zoom"] },
+      { id: 2, name: "Samsung Galaxy S24 Ultra", price: "₨ 349,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Galaxy AI", "200MP Camera", "S Pen Included", "7 Years Updates"] },
+      { id: 3, name: "Google Pixel 9 Pro", price: "₨ 279,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Tensor G4", "Gemini AI", "Pro Camera", "Pure Android"] },
+      { id: 4, name: "OnePlus 12", price: "₨ 219,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Snapdragon 8 Gen 3", "100W Charging", "Hasselblad Camera", "Fluid AMOLED"] }
     ],
     Laptop: [
-      { id: 5, name: "MacBook Pro M4", price: "$2,499", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 6, name: "Dell XPS 16", price: "$1,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 7, name: "ASUS ROG Zephyrus", price: "$1,899", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 8, name: "HP Spectre x360", price: "$1,499", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" }
+      { id: 5, name: "MacBook Pro M4", price: "₨ 699,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["M4 Chip", "32GB RAM", "Liquid Retina XDR", "22hr Battery"] },
+      { id: 6, name: "Dell XPS 16", price: "₨ 559,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Intel Core Ultra 9", "OLED Touch", "RTX 4070", "InfinityEdge"] },
+      { id: 7, name: "ASUS ROG Zephyrus", price: "₨ 529,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Ryzen 9", "RTX 4080", "240Hz Display", "RGB Keyboard"] },
+      { id: 8, name: "HP Spectre x360", price: "₨ 419,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4, specs: ["2-in-1 Design", "OLED Display", "Intel Evo", "Thunderbolt 4"] }
     ],
     Accessories: [
-      { id: 9, name: "Logitech MX Master 3S", price: "$99", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 10, name: "Keychron Q1 Pro", price: "$189", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 11, name: "Anker Prime 240W", price: "$139", img: "https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 12, name: "Samsung T9 SSD", price: "$189", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" }
+      { id: 9, name: "Logitech MX Master 3S", price: "₨ 27,999", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["8K DPI", "MagSpeed Wheel", "Ergonomic", "Multi-device"] },
+      { id: 10, name: "Keychron Q1 Pro", price: "₨ 52,999", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Wireless", "QMK/VIA", "Aluminum Body", "Hot-swappable"] },
+      { id: 11, name: "Anker Prime 240W", price: "₨ 38,999", img: "https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["GaN Technology", "240W Output", "Smart Display", "3 Ports"] },
+      { id: 12, name: "Samsung T9 SSD", price: "₨ 52,999", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["2TB Storage", "2000MB/s", "Rugged", "USB 3.2 Gen 2x2"] }
     ],
     TV: [
-      { id: 13, name: "LG G4 OLED 65", price: "$2,899", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 14, name: "Samsung S95D", price: "$2,599", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 15, name: "Sony A95L", price: "$3,299", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 16, name: "TCL QM851G", price: "$1,199", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" }
+      { id: 13, name: "LG G4 OLED 65", price: "₨ 809,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["MLA Technology", "Brightness Booster", "Gallery Design", "AI Processor"] },
+      { id: 14, name: "Samsung S95D", price: "₨ 729,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["QD-OLED", "Glare Free", "144Hz", "Neural Processor"] },
+      { id: 15, name: "Sony A95L", price: "₨ 919,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["QD-OLED", "XR Processor", "Acoustic Surface", "Google TV"] },
+      { id: 16, name: "TCL QM851G", price: "₨ 339,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4, specs: ["Mini-LED", "High Brightness", "Google TV", "120Hz"] }
     ],
     Audio: [
-      { id: 17, name: "Sony WH-1000XM5", price: "$349", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 18, name: "Bose QuietComfort Ultra", price: "$429", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 19, name: "AirPods Pro 2", price: "$249", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
-      { id: 20, name: "JBL Charge 5", price: "$199", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" }
+      { id: 17, name: "Sony WH-1000XM5", price: "₨ 97,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Noise Cancelling", "30hr Battery", "LDAC", "Comfort Fit"] },
+      { id: 18, name: "Bose QuietComfort Ultra", price: "₨ 119,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Immersive Audio", "Aware Mode", "CustomTune", "24hr Battery"] },
+      { id: 19, name: "AirPods Pro 2", price: "₨ 69,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["H2 Chip", "ANC", "MagSafe", "Adaptive Audio"] },
+      { id: 20, name: "JBL Charge 5", price: "₨ 55,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4, specs: ["IP67 Waterproof", "20hr Playtime", "Powerbank", "JBL Pro Sound"] }
     ]
   };
   
-  // 12 New Arrivals
+  // 12 New Arrivals with PKR
   const newArrivals = [
-    { id: 101, name: "iPhone 16 Pro Max", price: "$1,399", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 102, name: "MacBook Pro M4", price: "$2,499", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 103, name: "Sony WH-1000XM6", price: "$399", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 104, name: "Samsung Neo QLED 8K", price: "$3,499", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 105, name: "Razer Blade 16", price: "$2,899", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 106, name: "Nothing Ear 3", price: "$149", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 107, name: "iPad Pro M4", price: "$1,299", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 108, name: "Google Pixel Watch 3", price: "$349", img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 109, name: "Garmin Epix Pro", price: "$899", img: "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 110, name: "SteelSeries Nova Pro", price: "$329", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 111, name: "DJI Osmo Mobile 6", price: "$159", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=400" },
-    { id: 112, name: "GoPro Hero 12", price: "$399", img: "https://images.pexels.com/photos/51383/camera-dslr-photography-lens-51383.jpeg?auto=compress&cs=tinysrgb&w=400" }
+    { id: 101, name: "iPhone 16 Pro Max", price: "₨ 389,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
+    { id: 102, name: "Samsung Galaxy S24 Ultra", price: "₨ 349,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
+    { id: 103, name: "MacBook Pro M4", price: "₨ 699,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
+    { id: 104, name: "Dell XPS 16", price: "₨ 559,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
+    { id: 105, name: "Sony WH-1000XM5", price: "₨ 97,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
+    { id: 106, name: "Bose QuietComfort Ultra", price: "₨ 119,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
+    { id: 107, name: "LG G4 OLED 65", price: "₨ 809,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
+    { id: 108, name: "Samsung S95D", price: "₨ 729,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
+    { id: 109, name: "Google Pixel 9 Pro", price: "₨ 279,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
+    { id: 110, name: "ASUS ROG Zephyrus", price: "₨ 529,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
+    { id: 111, name: "AirPods Pro 2", price: "₨ 69,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
+    { id: 112, name: "Sony A95L", price: "₨ 919,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 }
   ];
   
-  const productDetailsDB = {};
+  const trending = newArrivals.slice(0, 8);
   
-  function createProductDetail(name, price, mainImg, description, specs) {
-    return { name, price, mainImg, gallery: [mainImg], description, specs };
+  function renderStars(rating) {
+    let stars = '';
+    for(let i=1; i<=5; i++) stars += `<i class="fas fa-star${i<=Math.floor(rating) ? '' : i<=rating ? '-half-alt' : '-o'}"></i>`;
+    return stars;
   }
   
-  productDetailsDB["iPhone 16 Pro Max"] = createProductDetail("iPhone 16 Pro Max", "$1,399", "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=800",
-    "The iPhone 16 Pro Max features the powerful A17 Pro chip, titanium design, and a revolutionary 5x optical zoom camera.",
-    ["6.9-inch Super Retina XDR Display", "A17 Pro Chip", "48MP Main Camera", "Up to 29 Hours Battery", "Titanium Body"]);
+  function renderProductCard(product) {
+    return `<div class="product-card" data-product='${JSON.stringify(product)}'><div><img src="${product.img}" class="product-img"></div><div class="product-info"><h3 class="product-title">${product.name}</h3><div class="product-rating">${renderStars(product.rating)} <span class="text-text-muted text-xs">(${product.rating})</span></div><div class="product-price">${product.price}</div><div class="product-actions"><button class="btn-primary buy-from-card" data-name="${product.name}">Buy Now</button><button class="btn-outline view-detail-btn">Details</button></div></div></div>`;
+  }
   
-  [...newArrivals, ...Object.values(productDB).flat()].forEach(p => {
-    if(!productDetailsDB[p.name]) {
-      productDetailsDB[p.name] = createProductDetail(p.name, p.price, p.img,
-        `Experience premium technology with the ${p.name}. Engineered for excellence.`,
-        ["Premium Build Quality", "Latest Technology", "Energy Efficient", "Advanced Connectivity"]);
+  document.getElementById('newArrivalsGrid').innerHTML = newArrivals.map(p => renderProductCard(p)).join('');
+  document.getElementById('trendingGrid').innerHTML = trending.map(p => renderProductCard(p)).join('');
+  
+  const container = document.getElementById('allCategoriesContainer');
+  ['Mobile', 'Laptop', 'Accessories', 'TV', 'Audio'].forEach(cat => {
+    const products = productsData[cat];
+    if(products) {
+      const section = document.createElement('section');
+      section.className = 'mb-12';
+      section.setAttribute('data-aos', 'fade-up');
+      section.innerHTML = `
+        <div class="section-header">
+          <div><h2 class="text-xl md:text-2xl font-bold tracking-tight">${cat} Collection</h2><p class="text-text-muted text-sm">Curated premium selection</p></div>
+          <div class="view-all-link" onclick="alert('View all ${cat} products coming soon!')">View All <i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="grid-${cat}"></div>
+      `;
+      container.appendChild(section);
+      section.querySelector(`#grid-${cat}`).innerHTML = products.map(p => renderProductCard(p)).join('');
     }
   });
   
-  function showProductDetail(productName) {
-    const p = productDetailsDB[productName];
-    const detailHTML = `
-      <main class="pt-24 max-w-[1280px] mx-auto px-5 md:px-8 pb-12">
-        <button class="back-to-home-btn bg-bg-card px-5 py-2 rounded-full text-sm mb-6 hover:text-accent-gold transition flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back to Shop</button>
-        
-        <div class="bg-bg-card rounded-3xl border border-border-subtle overflow-hidden">
-          <div class="grid lg:grid-cols-2 gap-8 p-6 md:p-8">
-            <div>
-              <div class="bg-bg-deep rounded-2xl overflow-hidden">
-                <img id="detailMainImage" src="${p.mainImg}" class="detail-main-image h-80 lg:h-[450px] object-contain">
-              </div>
-              <div class="flex gap-3 mt-4 justify-center flex-wrap">
-                ${p.gallery.map((img,i)=>`<img src="${img}" class="thumbnail-img ${i===0?'active':''}" data-img="${img}">`).join('')}
-              </div>
-            </div>
-            
-            <div>
-              <h1 class="text-3xl lg:text-4xl font-bold">${p.name}</h1>
-              <div class="star-rating-gold text-2xl mt-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-              <div class="text-4xl font-extrabold text-accent-gold mt-4">${p.price}</div>
-              <div class="detail-action-buttons flex gap-4 mt-6">
-                <button class="btn-gold flex-1 buy-now-detail" data-name="${p.name}" data-price="${p.price}"><i class="fas fa-shopping-cart mr-2"></i>Buy Now</button>
-                <button class="btn-outline-gold flex-1 chat-with-us"><i class="fab fa-whatsapp mr-2"></i>Chat with Expert</button>
-              </div>
-            </div>
-          </div>
-          
-          <div class="px-6 md:px-8 pb-8 space-y-6">
-            <div class="info-box">
-              <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-info-circle text-accent-gold"></i> Product Description</h3>
-              <p class="text-text-secondary leading-relaxed">${p.description}</p>
-            </div>
-            
-            <div class="info-box">
-              <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><i class="fas fa-microchip text-accent-gold"></i> Technical Specifications</h3>
-              <div class="specs-grid">
-                ${p.specs.map(s => `<div class="spec-item"><i class="fas fa-check-circle text-accent-gold text-lg w-6"></i><span class="text-text-secondary">${s}</span></div>`).join('')}
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    `;
-    
-    document.getElementById('productDetailContainer').innerHTML = detailHTML;
-    document.getElementById('homeContainer').classList.add('hide');
-    document.getElementById('productDetailContainer').classList.add('active');
-    window.scrollTo(0,0);
-    
-    document.querySelectorAll('.thumbnail-img').forEach(t => t.addEventListener('click', function() {
-      document.getElementById('detailMainImage').src = this.dataset.img;
-      document.querySelectorAll('.thumbnail-img').forEach(x => x.classList.remove('active'));
-      this.classList.add('active');
-    }));
-    
-    document.querySelectorAll('.buy-now-detail').forEach(b => b.addEventListener('click', () => {
-      document.getElementById('productNameInputPremium').value = b.dataset.name;
-      document.getElementById('orderModalPremium').style.display = 'flex';
-    }));
-    
-    document.querySelectorAll('.chat-with-us').forEach(c => c.addEventListener('click', () => 
-      window.open(`https://wa.me/923323403516?text=Hi%20Fine%20Electronics%2C%20I%20need%20assistance%20with%20${encodeURIComponent(p.name)}`, '_blank')
-    ));
-    
-    document.querySelectorAll('.back-to-home-btn').forEach(b => b.addEventListener('click', () => {
-      document.getElementById('homeContainer').classList.remove('hide');
-      document.getElementById('productDetailContainer').classList.remove('active');
-    }));
+  function showProductDetail(product) {
+    const fullProduct = productsData[Object.keys(productsData).find(cat => productsData[cat]?.some(p => p.name === product.name))]?.find(p => p.name === product.name) || product;
+    const specs = fullProduct.specs || ["Premium Build", "Latest Technology", "Advanced Features"];
+    const detailContent = document.getElementById('detailContent');
+    detailContent.innerHTML = `<div><img src="${fullProduct.img}" class="w-full rounded-xl h-80 lg:h-96 object-cover"><div class="flex gap-2 mt-3"><img src="${fullProduct.img}" class="detail-thumb active" data-img="${fullProduct.img}"></div></div><div><h1 class="text-2xl lg:text-3xl font-bold">${fullProduct.name}</h1><div class="flex mt-2 text-yellow text-sm">${renderStars(fullProduct.rating)}</div><div class="text-2xl font-bold text-yellow mt-3">${fullProduct.price}</div><p class="text-text-secondary text-sm mt-3">Experience next-gen technology with the ${fullProduct.name}. Engineered for perfection with premium materials and cutting-edge innovation.</p><div class="mt-5"><h3 class="font-semibold text-sm mb-2">Key Specifications</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-2">${specs.map(s => `<div class="bg-bg-card rounded-xl p-2 text-sm"><i class="fas fa-check-circle text-yellow mr-1.5"></i>${s}</div>`).join('')}</div></div><div class="flex gap-3 mt-6"><button class="btn-primary flex-1 py-2.5 detail-buy-btn" data-name="${fullProduct.name}">Buy Now</button><a href="tel:+923323403516" class="btn-outline flex-1 text-center py-2.5">Tech Support</a></div></div>`;
+    document.getElementById('detailOverlay').style.display = 'flex';
+    document.querySelectorAll('.detail-thumb').forEach(t => t.addEventListener('click', function() { detailContent.querySelector('img').src = this.dataset.img; document.querySelectorAll('.detail-thumb').forEach(x => x.classList.remove('active')); this.classList.add('active'); }));
+    document.querySelectorAll('.detail-buy-btn').forEach(btn => btn.addEventListener('click', () => { document.getElementById('orderProductName').value = btn.dataset.name; document.getElementById('orderModal').style.display = 'flex'; document.getElementById('detailOverlay').style.display = 'none'; }));
   }
   
   function attachEvents() {
-    document.querySelectorAll('.buy-now-btn').forEach(btn => btn.addEventListener('click', () => {
-      document.getElementById('productNameInputPremium').value = btn.dataset.name;
-      document.getElementById('orderModalPremium').style.display = 'flex';
-    }));
-    document.querySelectorAll('.view-detail-btn').forEach(btn => btn.addEventListener('click', () => showProductDetail(btn.dataset.name)));
+    document.querySelectorAll('.view-detail-btn').forEach(btn => { btn.removeEventListener('click', handleDetail); btn.addEventListener('click', handleDetail); });
+    document.querySelectorAll('.buy-from-card').forEach(btn => { btn.removeEventListener('click', handleBuy); btn.addEventListener('click', handleBuy); });
   }
+  function handleDetail(e) { const card = e.target.closest('.product-card'); showProductDetail(JSON.parse(card.getAttribute('data-product'))); }
+  function handleBuy(e) { document.getElementById('orderProductName').value = e.target.getAttribute('data-name'); document.getElementById('orderModal').style.display = 'flex'; }
   
-  function renderProductGrid(products, containerId, showBadge = true) {
-    const container = document.getElementById(containerId);
-    if(!container) return;
-    container.innerHTML = products.map(p => `
-      <div class="product-card-premium">
-        <div class="product-image-container"><img src="${p.img}" class="product-image-premium">${showBadge ? '<div class="product-badge-premium">Premium</div>' : ''}</div>
-        <div class="product-info-premium"><h3 class="product-title-premium">${p.name}</h3><div class="product-price-premium">${p.price}</div><div class="product-actions-premium"><button class="btn-buy-premium buy-now-btn" data-name="${p.name}">Buy Now</button><button class="btn-view-premium view-detail-btn" data-name="${p.name}">Details</button></div></div>
-      </div>
-    `).join('');
-    attachEvents();
-  }
+  setTimeout(attachEvents, 100);
+  new MutationObserver(() => attachEvents()).observe(document.getElementById('allCategoriesContainer'), { childList: true, subtree: true });
   
-  function renderCategoryGrids() {
-    const container = document.getElementById('dynamicCategoryGrids');
-    if(!container) return;
-    container.innerHTML = '';
-    const categories = ['Mobile', 'Laptop', 'Accessories', 'TV', 'Audio'];
-    categories.forEach(cat => {
-      const products = productDB[cat];
-      const section = document.createElement('section');
-      section.innerHTML = `
-        <div class="flex justify-between items-center mb-5">
-          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">${cat}</h2>
-          <span class="text-accent-gold text-sm cursor-pointer font-medium view-all transition hover:opacity-80" data-cat="${cat}">View All →</span>
-        </div>
-        <div class="product-grid-responsive" id="grid-${cat}"></div>
-      `;
-      container.appendChild(section);
-      const grid = section.querySelector(`#grid-${cat}`);
-      if(grid) {
-        grid.innerHTML = products.map(p => `
-          <div class="product-card-premium">
-            <div class="product-image-container"><img src="${p.img}" class="product-image-premium"></div>
-            <div class="product-info-premium"><h3 class="product-title-premium">${p.name}</h3><div class="product-price-premium">${p.price}</div><div class="product-actions-premium"><button class="btn-buy-premium buy-now-btn" data-name="${p.name}">Buy Now</button><button class="btn-view-premium view-detail-btn" data-name="${p.name}">Details</button></div></div>
-          </div>
-        `).join('');
-      }
-    });
-    attachEvents();
-    document.querySelectorAll('.view-all').forEach(el => {
-      el.addEventListener('click', () => alert(`Explore all ${el.dataset.cat} products at Fine Electronics`));
-    });
-  }
-  
-  new Swiper('.heroSwiper', { loop: true, autoplay: { delay: 5000 }, pagination: { clickable: true }, navigation: true });
-  new Swiper('.catSwiper', { slidesPerView: 2.2, spaceBetween: 16, breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 4.5 } } });
-  renderProductGrid(newArrivals, 'newArrivalsGrid', true);
-  renderCategoryGrids();
+  // Swipers
+  new Swiper('.heroSwiper', { loop: true, autoplay: { delay: 5000 }, pagination: { clickable: true }, navigation: true, effect: 'fade', fadeEffect: { crossFade: true } });
+  new Swiper('.catSwiper', { slidesPerView: 2.2, spaceBetween: 14, breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 4.5 } } });
+  new Swiper('.reviewsSwiper', { slidesPerView: 1, spaceBetween: 20, pagination: { clickable: true }, breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } });
   
   // Mobile Menu
-  document.getElementById('menuToggle')?.addEventListener('click', () => { document.getElementById('slideMenu').classList.add('open'); document.getElementById('menuOverlay').classList.add('active'); });
-  document.getElementById('closeMenuBtn')?.addEventListener('click', () => { document.getElementById('slideMenu').classList.remove('open'); document.getElementById('menuOverlay').classList.remove('active'); });
-  document.getElementById('menuOverlay')?.addEventListener('click', () => { document.getElementById('slideMenu').classList.remove('open'); document.getElementById('menuOverlay').classList.remove('active'); });
-  document.querySelectorAll('.home-nav-link').forEach(l => l.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('homeContainer').classList.remove('hide'); document.getElementById('productDetailContainer').classList.remove('active'); window.scrollTo(0,0); }));
-  document.getElementById('mobileCatHeader')?.addEventListener('click', () => { document.getElementById('mobileCatListDropdown').classList.toggle('open'); });
-  document.querySelectorAll('.mobile-cat-item-side').forEach(el => el.addEventListener('click', () => alert(`Explore ${el.dataset.cat} collection`)));
-  
-  // Order Modal
-  const modal = document.getElementById('orderModalPremium'), closeModal = document.getElementById('closeModalBtnPremium'), whatsappForm = document.getElementById('whatsappFormPremium');
-  closeModal?.addEventListener('click', () => modal.style.display = 'none');
-  window.addEventListener('click', (e) => { if(e.target === modal) modal.style.display = 'none'; });
-  whatsappForm?.addEventListener('submit', (e) => {
+  const menuToggle = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), menuOverlay = document.getElementById('menuOverlay'), closeMenuBtn = document.getElementById('closeMenuBtn');
+  menuToggle?.addEventListener('click', () => { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); });
+  closeMenuBtn?.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); });
+  menuOverlay?.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); });
+  document.querySelectorAll('.home-nav-link').forEach(l => l.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('homeContainer').style.display = 'block'; document.getElementById('detailOverlay').style.display = 'none'; window.scrollTo(0,0); if(mobileMenu.classList.contains('open')) { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); } }));
+  document.querySelectorAll('.cat-dropdown-item, .category-card').forEach(el => el.addEventListener('click', () => alert(`Explore premium ${el.dataset.cat || 'collection'} at Fine Electronics Pakistan.`)));
+  document.getElementById('closeDetailBtn').addEventListener('click', () => document.getElementById('detailOverlay').style.display = 'none');
+  document.getElementById('closeOrderBtn').addEventListener('click', () => document.getElementById('orderModal').style.display = 'none');
+  window.onclick = (e) => { if(e.target === document.getElementById('detailOverlay')) document.getElementById('detailOverlay').style.display = 'none'; if(e.target === document.getElementById('orderModal')) document.getElementById('orderModal').style.display = 'none'; };
+  document.getElementById('orderForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    const name = document.getElementById('fullNamePremium').value;
-    const phone = document.getElementById('phonePremium').value;
-    const address = document.getElementById('addressPremium').value;
-    const product = document.getElementById('productNameInputPremium').value;
-    const price = document.querySelector(`.buy-now-btn[data-name="${product}"]`)?.closest('.product-card-premium')?.querySelector('.product-price-premium')?.innerText || '$0';
-    
-    if(currentUser) {
-      addOrder(product, price, address);
-    }
-    
-    window.open(`https://wa.me/923323403516?text=FINE%20ELECTRONICS%20ORDER%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0AProduct: ${product}%0APrice: ${price}`, '_blank');
-    modal.style.display = 'none';
-    whatsappForm.reset();
+    const name = document.getElementById('fullName').value, phone = document.getElementById('phoneNumber').value, address = document.getElementById('address').value, product = document.getElementById('orderProductName').value;
+    window.open(`https://wa.me/923323403516?text=FINE%20ELECTRONICS%20PAKISTAN%20ORDER%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0AProduct: ${product}`, '_blank');
+    document.getElementById('orderModal').style.display = 'none';
+    e.target.reset();
   });
-  
-  document.querySelectorAll('.dropdown-item-premium').forEach(el => el.addEventListener('click', () => alert(`Explore ${el.dataset.cat} collection`)));
 </script>
 </body>
 </html>
