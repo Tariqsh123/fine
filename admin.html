@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Fine Electronics | Premium Admin Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0A0A0A;
+      color: #E0E0E0;
+      overflow-x: hidden;
+    }
+    :root {
+      --bg-deep: #050505;
+      --bg-dark: #0F0F0F;
+      --bg-card: #141414;
+      --bg-elevated: #1A1A1A;
+      --yellow: #F5C518;
+      --yellow-dark: #D4A800;
+      --yellow-glow: rgba(245,197,24,0.2);
+      --border-subtle: rgba(255,255,255,0.06);
+      --border-medium: rgba(255,255,255,0.1);
+      --danger: #EF4444;
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 10px; }
+    
+    .glass-card {
+      background: rgba(20,20,20,0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+    }
+    
+    .login-container {
+      background: radial-gradient(circle at 20% 30%, rgba(245,197,24,0.08) 0%, #050505 100%);
+    }
+    
+    .admin-sidebar {
+      background: linear-gradient(180deg, #0A0A0A 0%, #050505 100%);
+      border-right: 1px solid var(--border-subtle);
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+    
+    /* Mobile sidebar hidden by default */
+    @media (max-width: 1023px) {
+      .admin-sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        bottom: 0;
+        width: 280px;
+      }
+      .admin-sidebar.open {
+        left: 0;
+      }
+      .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(4px);
+        z-index: 999;
+        display: none;
+      }
+      .sidebar-overlay.open {
+        display: block;
+      }
+      body.sidebar-open {
+        overflow: hidden;
+      }
+    }
+    
+    /* Desktop: sidebar always visible */
+    @media (min-width: 1024px) {
+      .admin-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 280px;
+      }
+      .sidebar-overlay {
+        display: none !important;
+      }
+      main {
+        margin-left: 280px;
+      }
+    }
+    
+    .premium-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.3s ease;
+    }
+    .premium-card:hover {
+      border-color: var(--yellow);
+      transform: translateY(-2px);
+    }
+    
+    .product-grid-card {
+      background: var(--bg-dark);
+      border-radius: 20px;
+      border: 1px solid var(--border-subtle);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+    .product-grid-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--yellow);
+      box-shadow: 0 12px 24px -8px rgba(0,0,0,0.4);
+    }
+    .product-img-wrapper {
+      height: 200px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0F0F0F, #0A0A0A);
+    }
+    .product-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-grid-card:hover .product-img-wrapper img {
+      transform: scale(1.05);
+    }
+    
+    .btn-primary-premium {
+      background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+      color: #0A0A0A;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary-premium:hover {
+      transform: scale(0.98);
+      box-shadow: 0 4px 12px var(--yellow-glow);
+    }
+    .btn-outline-premium {
+      background: transparent;
+      border: 1.5px solid var(--border-medium);
+      color: #B0B0B0;
+      border-radius: 40px;
+      padding: 8px 20px;
+      font-weight: 500;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-outline-premium:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      background: rgba(245,197,24,0.05);
+    }
+    .btn-danger-premium {
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.3);
+      color: #f87171;
+    }
+    .btn-danger-premium:hover {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+    
+    .premium-input, .premium-select {
+      background: var(--bg-dark);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 12px 16px;
+      color: white;
+      width: 100%;
+      transition: all 0.2s;
+    }
+    .premium-input:focus, .premium-select:focus {
+      outline: none;
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 3px var(--yellow-glow);
+    }
+    
+    .image-upload-area {
+      border: 2px dashed var(--border-medium);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-dark);
+    }
+    .image-upload-area:hover {
+      border-color: var(--yellow);
+      background: rgba(245,197,24,0.05);
+    }
+    .image-preview {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin-top: 12px;
+    }
+    .extra-image-item {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 2px solid var(--border-subtle);
+    }
+    .extra-image-item:hover {
+      border-color: var(--yellow);
+    }
+    .remove-extra-img {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--danger);
+      color: white;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.96);
+      backdrop-filter: blur(16px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal-container {
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--bg-elevated);
+      border-radius: 32px;
+      border: 1px solid var(--border-medium);
+      animation: modalFadeIn 0.3s ease;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .category-badge {
+      background: rgba(245,197,24,0.12);
+      color: var(--yellow);
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeInUp {
+      animation: fadeInUp 0.5s ease-out;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN MODAL -->
+<div id="loginModal" class="fixed inset-0 z-[200] flex items-center justify-center login-container">
+  <div class="glass-card rounded-2xl p-8 w-full max-w-md mx-4 shadow-2xl animate-fadeInUp">
+    <div class="text-center mb-6">
+      <div class="w-20 h-20 rounded-full bg-yellow/10 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-crown text-3xl text-yellow"></i>
+      </div>
+      <h2 class="text-2xl font-bold text-white">Welcome Back</h2>
+      <p class="text-text-muted text-sm mt-2">Enter your credentials to access the admin panel</p>
+    </div>
+    <form id="loginForm">
+      <div class="mb-4">
+        <label class="text-sm font-medium text-text-secondary mb-2 block">Username</label>
+        <input type="text" id="loginUsername" placeholder="admin" class="premium-input" autocomplete="off">
+      </div>
+      <div class="mb-6">
+        <label class="text-sm font-medium text-text-secondary mb-2 block">Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••" class="premium-input">
+      </div>
+      <button type="submit" class="btn-primary-premium w-full py-3 text-base font-bold">
+        <i class="fas fa-arrow-right-to-bracket mr-2"></i> Sign In
+      </button>
+      <p class="text-center text-xs text-text-muted mt-4">Demo: <span class="text-yellow">admin / admin</span></p>
+    </form>
+  </div>
+</div>
+
+<!-- MAIN ADMIN PANEL -->
+<div id="adminPanel" style="display: none;">
+  <div id="sidebarOverlay" class="sidebar-overlay"></div>
+  
+  <aside id="adminSidebar" class="admin-sidebar flex flex-col">
+    <div class="p-6 border-b border-border-subtle flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-yellow/20 flex items-center justify-center">
+          <i class="fas fa-microchip text-yellow text-xl"></i>
+        </div>
+        <div>
+          <span class="text-xl font-bold text-white">FINE<span class="text-yellow">.</span></span>
+          <p class="text-xs text-text-muted">Premium Admin Console</p>
+        </div>
+      </div>
+      <button id="closeSidebarBtn" class="lg:hidden text-2xl text-text-secondary hover:text-yellow transition">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    
+    <nav class="flex-1 px-4 py-6 space-y-1">
+      <button data-tab="products" class="sidebar-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-white/5 hover:text-yellow transition-all group">
+        <i class="fas fa-mobile-alt w-5 group-hover:text-yellow"></i>
+        <span class="font-medium">Product Management</span>
+      </button>
+      <button data-tab="addProduct" class="sidebar-tab w-full flex items-center gap-3 px-4 py-3 rounded-xl text-text-secondary hover:bg-white/5 hover:text-yellow transition-all group">
+        <i class="fas fa-plus-circle w-5 group-hover:text-yellow"></i>
+        <span class="font-medium">Add New Product</span>
+      </button>
+    </nav>
+    
+    <div class="p-6 border-t border-border-subtle">
+      <div class="glass-card rounded-xl p-4 mb-4">
+        <div class="flex items-center gap-2 text-xs text-text-muted">
+          <i class="fas fa-shield-alt text-yellow"></i>
+          <span>Secure Session Active</span>
+        </div>
+      </div>
+      <button id="logoutBtn" class="w-full btn-outline-premium text-red-400 hover:text-red-300 border-red-500/30 hover:bg-red-500/10">
+        <i class="fas fa-sign-out-alt mr-2"></i> Logout
+      </button>
+    </div>
+  </aside>
+
+  <main>
+    <div class="sticky top-0 z-40 bg-black/90 backdrop-blur-xl border-b border-border-subtle px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <button id="mobileMenuToggle" class="lg:hidden text-white text-2xl hover:text-yellow transition">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="text-xl font-bold tracking-tight" id="pageTitle">Product Management</h1>
+            <p class="text-xs text-text-muted" id="pageSubtitle">Manage your premium electronics catalog</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 bg-bg-elevated px-4 py-2 rounded-full border border-border-subtle">
+          <i class="fas fa-store text-yellow text-sm"></i>
+          <span class="text-sm font-medium hidden sm:inline">Fine Electronics PK</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 md:p-8">
+      <!-- Products Tab -->
+      <div id="productsTab" class="admin-tab-content animate-fadeInUp">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+          <div>
+            <h2 class="text-2xl md:text-3xl font-bold bg-clip-text text-transparent" style="color: white;">All Products</h2>
+            <p class="text-text-muted text-sm mt-1"><span id="productCount">0</span> products in catalog</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+            <div class="relative flex-1 sm:w-64">
+              <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-text-muted text-sm"></i>
+              <input type="text" id="searchProductInput" placeholder="Search products..." class="premium-input pl-11 pr-4 py-2.5 text-sm rounded-full" >
+            </div>
+            <select id="categoryFilterSelect" class="premium-select text-sm rounded-full px-4 py-2.5 cursor-pointer" style="width: fit-content;"></select>
+          </div>
+        </div>
+        <div id="productsListContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-8"></div>
+      </div>
+
+      <!-- Add Product Tab -->
+      <div id="addProductTab" class="admin-tab-content hidden animate-fadeInUp">
+        <div class="premium-card p-6 md:p-8 max-w-4xl mx-auto">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-yellow/10 flex items-center justify-center">
+              <i class="fas fa-plus text-yellow text-2xl"></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold">Create New Product</h2>
+              <p class="text-text-muted text-sm">Add a premium product with images</p>
+            </div>
+          </div>
+          
+          <form id="addProductForm">
+            <div class="grid md:grid-cols-2 gap-5">
+              <div><label class="text-sm font-medium text-text-secondary block mb-2">Product Name *</label><input type="text" id="prodName" required placeholder="e.g., iPhone 16 Pro Max" class="premium-input"></div>
+              <div><label class="text-sm font-medium text-text-secondary block mb-2">Category *</label><select id="prodCategory" required class="premium-select">
+                <option value="Mobile">Mobile Phones</option><option value="Laptop">Laptops</option><option value="Accessories">Accessories</option><option value="TV">Televisions</option><option value="Audio">Audio</option><option value="Tablet">Tablets</option><option value="Smartwatch">Smartwatches</option><option value="Gaming">Gaming</option>
+              </select></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-5 mt-5">
+              <div><label class="text-sm font-medium text-text-secondary block mb-2">Price (PKR) *</label><input type="number" id="prodPrice" placeholder="389999" class="premium-input" required></div>
+              <div><label class="text-sm font-medium text-text-secondary block mb-2">Rating (0-5)</label><input type="number" step="0.1" id="prodRating" min="0" max="5" value="4.5" class="premium-input"></div>
+            </div>
+            
+            <div class="mt-5">
+              <label class="text-sm font-medium text-text-secondary block mb-2">Main Product Image *</label>
+              <div id="mainImageUploadArea" class="image-upload-area"><i class="fas fa-cloud-upload-alt text-3xl text-text-muted mb-2 block"></i><p class="text-sm text-text-muted">Click to upload main image</p><input type="file" id="mainImageInput" accept="image/*" style="display: none;"><img id="mainImagePreview" class="image-preview" style="display: none;"></div>
+            </div>
+            
+            <div class="mt-5">
+              <label class="text-sm font-medium text-text-secondary block mb-2">Additional Images (Optional)</label>
+              <div id="extraImagesArea" class="image-upload-area"><i class="fas fa-images text-3xl text-text-muted mb-2 block"></i><p class="text-sm text-text-muted">Click to upload more images</p><input type="file" id="extraImagesInput" accept="image/*" multiple style="display: none;"></div>
+              <div id="extraImagesPreview" class="flex flex-wrap gap-3 mt-3"></div>
+            </div>
+            
+            <div class="mt-5"><label class="text-sm font-medium text-text-secondary block mb-2">Specifications *</label><textarea id="prodSpecs" rows="3" placeholder="A17 Pro Chip, 48MP Camera, Titanium Design" class="premium-input" required></textarea><p class="text-xs text-text-muted mt-1">Separate each specification with a comma</p></div>
+            
+            <div class="flex gap-4 mt-8"><button type="submit" class="btn-primary-premium px-8 py-3"><i class="fas fa-save mr-2"></i> Add Product</button><button type="reset" class="btn-outline-premium px-6 py-3" onclick="resetImageUploads()"><i class="fas fa-undo-alt mr-2"></i> Clear</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- EDIT PRODUCT MODAL -->
+<div id="editModal" class="modal-overlay">
+  <div class="modal-container p-6 md:p-8">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold">✏️ Edit Product</h2>
+      <button onclick="closeEditModal()" class="text-3xl text-text-secondary hover:text-yellow">&times;</button>
+    </div>
+    <form id="editProductForm">
+      <input type="hidden" id="editProductId">
+      <div class="grid md:grid-cols-2 gap-4">
+        <div><label class="text-sm font-medium block mb-2">Product Name *</label><input type="text" id="editName" class="premium-input" required></div>
+        <div><label class="text-sm font-medium block mb-2">Category *</label><select id="editCategory" class="premium-select">
+          <option value="Mobile">Mobile</option><option value="Laptop">Laptop</option><option value="Accessories">Accessories</option><option value="TV">TV</option><option value="Audio">Audio</option><option value="Tablet">Tablet</option><option value="Smartwatch">Smartwatch</option><option value="Gaming">Gaming</option>
+        </select></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-4 mt-4">
+        <div><label class="text-sm font-medium block mb-2">Price (PKR) *</label><input type="number" id="editPrice" class="premium-input" required></div>
+        <div><label class="text-sm font-medium block mb-2">Rating (0-5)</label><input type="number" step="0.1" id="editRating" min="0" max="5" class="premium-input"></div>
+      </div>
+      
+      <div class="mt-4">
+        <label class="text-sm font-medium block mb-2">Main Product Image *</label>
+        <div id="editMainImageArea" class="image-upload-area">
+          <i class="fas fa-cloud-upload-alt text-3xl text-text-muted mb-2 block"></i>
+          <p class="text-sm text-text-muted">Click to change main image</p>
+          <input type="file" id="editMainImageInput" accept="image/*" style="display: none;">
+          <img id="editMainImagePreview" class="image-preview" style="display: none;">
+        </div>
+      </div>
+      
+      <div class="mt-4">
+        <label class="text-sm font-medium block mb-2">Additional Images (Optional)</label>
+        <div id="editExtraImagesArea" class="image-upload-area">
+          <i class="fas fa-images text-3xl text-text-muted mb-2 block"></i>
+          <p class="text-sm text-text-muted">Click to add more images</p>
+          <input type="file" id="editExtraImagesInput" accept="image/*" multiple style="display: none;">
+        </div>
+        <div id="editExtraImagesPreview" class="flex flex-wrap gap-3 mt-3"></div>
+      </div>
+      
+      <div class="mt-4"><label class="text-sm font-medium block mb-2">Specifications (comma separated) *</label><textarea id="editSpecs" rows="3" class="premium-input" required></textarea></div>
+      <div class="flex gap-3 mt-6"><button type="submit" class="btn-primary-premium flex-1 py-3"><i class="fas fa-save mr-2"></i> Update Product</button><button type="button" onclick="closeEditModal()" class="btn-outline-premium flex-1 py-3">Cancel</button></div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // Authentication
+  const AUTH = { username: "admin", password: "admin" };
+  let products = [];
+  let nextId = 100;
+  let editMainImageFile = null, editExtraImageFiles = [], editExistingExtraImages = [];
+  let mainImageFile = null, extraImageFiles = [];
+  
+  function formatPrice(num) { return "₨ " + num.toLocaleString('en-PK'); }
+  function parsePriceNum(priceStr) { if(!priceStr) return 0; let cleaned = priceStr.toString().replace(/[₨,]/g, '').trim(); return parseFloat(cleaned) || 0; }
+  
+  const initialProducts = [
+    { id: 1, name: "iPhone 16 Pro Max", price: 389999, img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["A17 Pro Chip", "48MP Camera", "Titanium Design"], category: "Mobile", extraImages: [] },
+    { id: 2, name: "MacBook Pro M4", price: 699999, img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["M4 Chip", "32GB RAM", "22hr Battery"], category: "Laptop", extraImages: [] }
+  ];
+  
+  function loadProducts() {
+    const stored = localStorage.getItem('fineProductsPremium');
+    if(stored) { products = JSON.parse(stored); nextId = Math.max(...products.map(p => p.id), 50) + 1; }
+    else { products = initialProducts.map(p => ({ ...p, price: formatPrice(p.price) })); nextId = 50; saveProducts(); }
+    updateCategoryFilter();
+  }
+  function saveProducts() { localStorage.setItem('fineProductsPremium', JSON.stringify(products)); updateCategoryFilter(); }
+  
+  // Update category dropdown with counts (no emojis)
+  function updateCategoryFilter() {
+    const categories = ["Mobile", "Laptop", "Accessories", "TV", "Audio", "Tablet", "Smartwatch", "Gaming"];
+    const counts = categories.map(cat => products.filter(p => p.category === cat).length);
+    const select = document.getElementById('categoryFilterSelect');
+    if(select) {
+      select.innerHTML = '<option value="">All Categories</option>' + 
+        categories.map((cat, i) => `<option value="${cat}">${cat} (${counts[i]})</option>`).join('');
+    }
+    // Also update product count display
+    document.getElementById('productCount').innerText = products.length;
+  }
+  
+  function renderStars(rating) {
+    let full = Math.floor(rating), half = rating % 1 >= 0.5, stars = '';
+    for(let i = 1; i <= 5; i++) {
+      if(i <= full) stars += '<i class="fas fa-star text-yellow text-xs"></i>';
+      else if(i === full+1 && half) stars += '<i class="fas fa-star-half-alt text-yellow text-xs"></i>';
+      else stars += '<i class="far fa-star text-text-muted text-xs"></i>';
+    }
+    return stars;
+  }
+  
+  function renderProducts() {
+    const search = document.getElementById('searchProductInput')?.value.toLowerCase() || '';
+    const category = document.getElementById('categoryFilterSelect')?.value || '';
+    let filtered = products.filter(p => p.name.toLowerCase().includes(search) && (!category || p.category === category));
+    const container = document.getElementById('productsListContainer');
+    if(!container) return;
+    if(filtered.length === 0) { container.innerHTML = `<div class="col-span-full text-center py-20"><i class="fas fa-box-open text-5xl text-text-muted mb-4"></i><p>No products found</p></div>`; return; }
+    container.innerHTML = filtered.map(p => `
+      <div class="product-grid-card group">
+        <div class="product-img-wrapper"><img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/600x400/1A1A1A/F5C518?text=Fine'"><div class="absolute top-3 right-3"><span class="category-badge"><i class="fas fa-tag text-xs"></i> ${p.category}</span></div></div>
+        <div class="p-4"><h3 class="font-bold text-base mb-1">${p.name}</h3><div class="flex items-center gap-2 mb-2"><div class="flex gap-0.5">${renderStars(p.rating)}</div><span class="text-text-muted text-xs">(${p.rating})</span></div><div class="text-yellow font-bold text-lg mb-3">${p.price}</div><div class="flex gap-2"><button onclick="openEditModal(${p.id})" class="flex-1 btn-outline-premium text-xs py-2"><i class="fas fa-edit mr-1"></i> Edit</button><button onclick="deleteProduct(${p.id})" class="flex-1 btn-danger-premium text-xs py-2"><i class="fas fa-trash-alt mr-1"></i> Delete</button></div></div>
+      </div>`).join('');
+  }
+  
+  window.deleteProduct = function(id) { if(confirm('Delete permanently?')) { products = products.filter(p => p.id !== id); saveProducts(); renderProducts(); } };
+  
+  window.openEditModal = function(id) {
+    const product = products.find(p => p.id === id);
+    if(!product) return;
+    editMainImageFile = null; editExtraImageFiles = []; editExistingExtraImages = product.extraImages || [];
+    document.getElementById('editProductId').value = product.id;
+    document.getElementById('editName').value = product.name;
+    document.getElementById('editCategory').value = product.category;
+    document.getElementById('editPrice').value = parsePriceNum(product.price);
+    document.getElementById('editRating').value = product.rating;
+    document.getElementById('editSpecs').value = product.specs.join(', ');
+    const mainPreview = document.getElementById('editMainImagePreview');
+    mainPreview.src = product.img;
+    mainPreview.style.display = 'block';
+    document.querySelector('#editMainImageArea p').style.display = 'none';
+    document.querySelector('#editMainImageArea i').style.display = 'none';
+    updateEditExtraImagesPreview();
+    document.getElementById('editModal').style.display = 'flex';
+  };
+  
+  function updateEditExtraImagesPreview() {
+    const container = document.getElementById('editExtraImagesPreview');
+    container.innerHTML = '';
+    editExistingExtraImages.forEach((imgUrl, idx) => {
+      const div = document.createElement('div'); div.className = 'extra-image-item';
+      div.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover"><div class="remove-extra-img" onclick="removeExistingExtraImage(${idx})"><i class="fas fa-times"></i></div><div class="absolute bottom-0 left-0 right-0 bg-black/50 text-[8px] text-center py-0.5">Existing</div>`;
+      container.appendChild(div);
+    });
+    editExtraImageFiles.forEach((file, idx) => {
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const div = document.createElement('div'); div.className = 'extra-image-item';
+        div.innerHTML = `<img src="${ev.target.result}" class="w-full h-full object-cover"><div class="remove-extra-img" onclick="removeNewExtraImage(${idx})"><i class="fas fa-times"></i></div><div class="absolute bottom-0 left-0 right-0 bg-green-500/70 text-[8px] text-center py-0.5">New</div>`;
+        container.appendChild(div);
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  window.removeExistingExtraImage = function(idx) { editExistingExtraImages.splice(idx, 1); updateEditExtraImagesPreview(); };
+  window.removeNewExtraImage = function(idx) { editExtraImageFiles.splice(idx, 1); updateEditExtraImagesPreview(); };
+  window.closeEditModal = function() { document.getElementById('editModal').style.display = 'none'; };
+  
+  document.getElementById('editMainImageArea')?.addEventListener('click', () => document.getElementById('editMainImageInput').click());
+  document.getElementById('editMainImageInput')?.addEventListener('change', (e) => {
+    if(e.target.files && e.target.files[0]) {
+      editMainImageFile = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (ev) => { const preview = document.getElementById('editMainImagePreview'); preview.src = ev.target.result; preview.style.display = 'block'; document.querySelector('#editMainImageArea p').style.display = 'none'; document.querySelector('#editMainImageArea i').style.display = 'none'; };
+      reader.readAsDataURL(editMainImageFile);
+    }
+  });
+  document.getElementById('editExtraImagesArea')?.addEventListener('click', () => document.getElementById('editExtraImagesInput').click());
+  document.getElementById('editExtraImagesInput')?.addEventListener('change', (e) => {
+    if(e.target.files) { for(let file of e.target.files) editExtraImageFiles.push(file); updateEditExtraImagesPreview(); }
+  });
+  
+  document.getElementById('editProductForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = parseInt(document.getElementById('editProductId').value);
+    const index = products.findIndex(p => p.id === id);
+    if(index !== -1) {
+      let finalMainImage = products[index].img;
+      if(editMainImageFile) finalMainImage = await new Promise((resolve) => { const reader = new FileReader(); reader.onload = (ev) => resolve(ev.target.result); reader.readAsDataURL(editMainImageFile); });
+      const newExtraImages = [...editExistingExtraImages];
+      for(let file of editExtraImageFiles) newExtraImages.push(await new Promise((resolve) => { const reader = new FileReader(); reader.onload = (ev) => resolve(ev.target.result); reader.readAsDataURL(file); }));
+      products[index] = { ...products[index], name: document.getElementById('editName').value, category: document.getElementById('editCategory').value, price: formatPrice(parseFloat(document.getElementById('editPrice').value)), rating: parseFloat(document.getElementById('editRating').value), img: finalMainImage, specs: document.getElementById('editSpecs').value.split(',').map(s => s.trim()), extraImages: newExtraImages };
+      saveProducts(); renderProducts(); closeEditModal();
+    }
+  });
+  
+  // Add product image handlers
+  document.getElementById('mainImageUploadArea')?.addEventListener('click', () => document.getElementById('mainImageInput').click());
+  document.getElementById('mainImageInput')?.addEventListener('change', (e) => {
+    if(e.target.files && e.target.files[0]) {
+      mainImageFile = e.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (ev) => { const preview = document.getElementById('mainImagePreview'); preview.src = ev.target.result; preview.style.display = 'block'; document.querySelector('#mainImageUploadArea p').style.display = 'none'; document.querySelector('#mainImageUploadArea i').style.display = 'none'; };
+      reader.readAsDataURL(mainImageFile);
+    }
+  });
+  document.getElementById('extraImagesArea')?.addEventListener('click', () => document.getElementById('extraImagesInput').click());
+  document.getElementById('extraImagesInput')?.addEventListener('change', (e) => {
+    if(e.target.files) { for(let file of e.target.files) extraImageFiles.push(file); updateExtraImagesPreview(); }
+  });
+  function updateExtraImagesPreview() {
+    const container = document.getElementById('extraImagesPreview'); container.innerHTML = '';
+    extraImageFiles.forEach((file, idx) => {
+      const reader = new FileReader();
+      reader.onload = (ev) => { const div = document.createElement('div'); div.className = 'extra-image-item'; div.innerHTML = `<img src="${ev.target.result}" class="w-full h-full object-cover"><div class="remove-extra-img" onclick="removeExtraImage(${idx})"><i class="fas fa-times"></i></div>`; container.appendChild(div); };
+      reader.readAsDataURL(file);
+    });
+  }
+  window.removeExtraImage = function(idx) { extraImageFiles.splice(idx, 1); updateExtraImagesPreview(); };
+  function resetImageUploads() { mainImageFile = null; extraImageFiles = []; document.getElementById('mainImageInput').value = ''; document.getElementById('extraImagesInput').value = ''; document.getElementById('mainImagePreview').style.display = 'none'; document.getElementById('extraImagesPreview').innerHTML = ''; document.querySelector('#mainImageUploadArea p').style.display = 'block'; document.querySelector('#mainImageUploadArea i').style.display = 'block'; }
+  
+  document.getElementById('addProductForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if(!mainImageFile) { alert("Please upload a main product image"); return; }
+    const mainImageURL = await new Promise((resolve) => { const reader = new FileReader(); reader.onload = (ev) => resolve(ev.target.result); reader.readAsDataURL(mainImageFile); });
+    const extraURLs = [];
+    for(let file of extraImageFiles) extraURLs.push(await new Promise((resolve) => { const reader = new FileReader(); reader.onload = (ev) => resolve(ev.target.result); reader.readAsDataURL(file); }));
+    const newProduct = { id: nextId++, name: document.getElementById('prodName').value, category: document.getElementById('prodCategory').value, price: formatPrice(parseFloat(document.getElementById('prodPrice').value)), rating: parseFloat(document.getElementById('prodRating').value), img: mainImageURL, specs: document.getElementById('prodSpecs').value.split(',').map(s => s.trim()), extraImages: extraURLs };
+    products.push(newProduct); saveProducts(); renderProducts(); alert(`✅ ${newProduct.name} added!`); document.getElementById('addProductForm').reset(); resetImageUploads(); showTab('products');
+  });
+  
+  function showTab(tabId) {
+    document.getElementById('productsTab').classList.add('hidden');
+    document.getElementById('addProductTab').classList.add('hidden');
+    document.getElementById(`${tabId}Tab`).classList.remove('hidden');
+    const titles = { products: "Product Management", addProduct: "Add New Product" };
+    document.getElementById('pageTitle').innerText = titles[tabId];
+    if(tabId === 'products') renderProducts();
+    closeMobileSidebar();
+  }
+  
+  // Mobile sidebar controls
+  function openMobileSidebar() {
+    const sidebar = document.getElementById('adminSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+    document.body.classList.add('sidebar-open');
+  }
+  function closeMobileSidebar() {
+    const sidebar = document.getElementById('adminSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+    document.body.classList.remove('sidebar-open');
+  }
+  
+  function checkAuth() {
+    const isLoggedIn = localStorage.getItem('fineAdminAuthPremium') === 'true';
+    if(isLoggedIn) {
+      document.getElementById('loginModal').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      loadProducts(); renderProducts();
+    } else {
+      document.getElementById('loginModal').style.display = 'flex';
+      document.getElementById('adminPanel').style.display = 'none';
+    }
+  }
+  
+  document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.getElementById('loginUsername').value;
+    const password = document.getElementById('loginPassword').value;
+    if(username === AUTH.username && password === AUTH.password) {
+      localStorage.setItem('fineAdminAuthPremium', 'true');
+      checkAuth();
+    } else alert('❌ Invalid credentials! Use admin / admin');
+  });
+  document.getElementById('logoutBtn')?.addEventListener('click', () => { localStorage.removeItem('fineAdminAuthPremium'); checkAuth(); });
+  
+  const mobileToggle = document.getElementById('mobileMenuToggle');
+  if(mobileToggle) mobileToggle.addEventListener('click', openMobileSidebar);
+  const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+  if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeMobileSidebar);
+  const overlay = document.getElementById('sidebarOverlay');
+  if(overlay) overlay.addEventListener('click', closeMobileSidebar);
+  
+  document.querySelectorAll('.sidebar-tab').forEach(btn => btn.addEventListener('click', () => showTab(btn.getAttribute('data-tab'))));
+  document.getElementById('searchProductInput')?.addEventListener('input', () => renderProducts());
+  document.getElementById('categoryFilterSelect')?.addEventListener('change', () => renderProducts());
+  
+  window.addEventListener('resize', () => { if(window.innerWidth >= 1024) closeMobileSidebar(); });
+  checkAuth();
+</script>
+</body>
+</html>

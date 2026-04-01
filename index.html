@@ -36,7 +36,6 @@
       overflow-x: hidden;
     }
     
-    /* No gradients - solid colors only */
     :root {
       --bg-deep: #050505;
       --bg-dark: #0F0F0F;
@@ -45,7 +44,6 @@
       --yellow: #F5C518;
       --blue: #2A7FFF;
       --yellow-dark: #D4A800;
-      --blue-dark: #1A5FD9;
       --text-primary: #FFFFFF;
       --text-secondary: #B0B0B0;
       --text-muted: #707070;
@@ -53,25 +51,16 @@
       --border-medium: rgba(255, 255, 255, 0.1);
     }
     
-    ::-webkit-scrollbar {
-      width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-dark);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--yellow);
-      border-radius: 4px;
-    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: var(--yellow); border-radius: 4px; }
     
-    /* Navbar */
     .navbar-premium {
       background: rgba(10, 10, 10, 0.96);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
     }
     
-    /* Product Cards */
     .product-card {
       background: var(--bg-card);
       border-radius: 20px;
@@ -155,7 +144,6 @@
       background: rgba(245, 197, 24, 0.08);
     }
     
-    /* Category Cards */
     .category-card {
       background: var(--bg-card);
       border-radius: 24px;
@@ -196,7 +184,6 @@
       color: var(--yellow);
     }
     
-    /* Feature Cards */
     .feature-card {
       background: var(--bg-card);
       border-radius: 20px;
@@ -216,16 +203,14 @@
       display: inline-block;
     }
     
-    /* Banner */
     .banner-card {
-      background: var(--bg-elevated);
+      background: #D4A800;
       border-radius: 28px;
       padding: 2.5rem 2rem;
       text-align: center;
       border: 1px solid var(--border-subtle);
     }
     
-    /* Hero Slider */
     .hero-slide {
       border-radius: 28px;
       overflow: hidden;
@@ -249,7 +234,6 @@
       border-radius: 44px;
       backdrop-filter: blur(4px);
       border: 1px solid var(--border-subtle);
-      display: none;
     }
     .swiper-button-next:after, .swiper-button-prev:after {
       font-size: 16px;
@@ -263,7 +247,6 @@
       opacity: 1;
     }
     
-    /* Reviews Carousel */
     .review-card {
       background: var(--bg-card);
       border-radius: 24px;
@@ -276,15 +259,6 @@
       margin-right: 2px;
     }
     
-    /* Newsletter */
-    .newsletter-card {
-      background: var(--bg-elevated);
-      border-radius: 28px;
-      padding: 2.5rem 2rem;
-      border: 1px solid var(--border-subtle);
-    }
-    
-    /* Detail Modal */
     .detail-overlay {
       position: fixed;
       inset: 0;
@@ -303,13 +277,7 @@
       border-radius: 32px;
       border: 1px solid var(--border-medium);
       overflow: auto;
-      height: 100%;
-    }
-    #closeDetailBtn{
-      color: red;
-      position: absolute;
-      top: 5px ;
-      right: 05px;
+      max-height: 90vh;
     }
     .detail-thumb {
       width: 70px;
@@ -323,7 +291,6 @@
       border-color: var(--yellow);
     }
     
-    /* Order Modal */
     .order-modal {
       display: none;
       position: fixed;
@@ -355,7 +322,6 @@
       border-color: var(--yellow);
     }
     
-    /* Mobile Menu */
     .mobile-menu {
       position: fixed;
       top: 0;
@@ -393,7 +359,6 @@
       color: #0A0A0A;
     }
     
-    /* Footer */
     .footer {
       background: #050505;
       border-top: 1px solid var(--border-subtle);
@@ -441,11 +406,30 @@
       color: #0A0A0A;
       gap: 10px;
     }
-    .view-all-link i {
-      font-size: 11px;
+    
+    /* Admin Access Button */
+    .admin-access-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-medium);
+      border-radius: 50px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      z-index: 100;
+      transition: all 0.2s;
+      backdrop-filter: blur(10px);
+    }
+    .admin-access-btn:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-2px);
     }
     
-    /* Mobile Responsive - Center Everything */
     @media (max-width: 768px) {
       .product-img { height: 200px; }
       .section-title { font-size: 1.5rem; text-align: center; }
@@ -460,23 +444,32 @@
       .banner-card { text-align: center; }
       .review-card { text-align: center; }
       .review-stars { justify-content: center; display: flex; }
-      .newsletter-card { text-align: center; }
       .hero-content { text-align: center; align-items: center; }
-      .hero-content h1 { text-align: center; }
-      .hero-content p { text-align: center; margin-left: auto; margin-right: auto; }
       .footer { text-align: center; }
       .footer .grid > div { text-align: center; }
       .footer ul { display: flex; flex-direction: column; align-items: center; }
-      .footer .flex.items-center { justify-content: center; }
+      .swiper-button-next, .swiper-button-prev { display: none; }
+      .admin-access-btn { bottom: 10px; right: 10px; padding: 6px 12px; font-size: 12px; }
     }
     
     @media (max-width: 480px) {
       .product-actions { flex-direction: column; gap: 8px; }
       .btn-primary, .btn-outline { width: 100%; }
       .hero-content h1 { font-size: 2rem; }
-      .banner-card { padding: 1.5rem; }
-      .banner-card h2 { font-size: 1.5rem; }
       .section-title { font-size: 1.3rem; }
+    }
+    .whatsapp-left-image-container{
+      height: 100px;
+      width: 100px;
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      border: 1px solid red;
+    }
+    .whatsapp-left-image-container img{
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -538,6 +531,12 @@
   </div>
 </nav>
 
+<!-- Admin Access Button -->
+<!-- <div class="admin-access-btn" onclick="window.location.href='admin.html'">
+  <i class="fas fa-crown text-yellow"></i>
+  <span class="text-sm font-medium">Admin Panel</span>
+</div> -->
+
 <div id="homeContainer">
   <main class="pt-24 max-w-[1440px] mx-auto px-6 md:px-12 pb-16">
     <!-- Hero Slider -->
@@ -546,26 +545,26 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide hero-slide">
             <div class="hero-bg"></div>
-            <img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1600" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
+            <img src="images/banner-1.png" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
             <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 hero-content">
-              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3">Next-Gen <span class="text-yellow">Tech</span></h1>
-              <p class="text-white/70 text-base max-w-md">Discover the future of electronics. Premium devices with expert support.</p>
+              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3" style="text-shadow: 1px 1px 5px white;">Next-Gen <span class="text-yellow">Tech</span></h1>
+              <p class="text-white/100 text-base max-w-md">Discover the future of electronics. Premium devices with expert support.</p>
             </div>
           </div>
           <div class="swiper-slide hero-slide">
             <div class="hero-bg"></div>
-            <img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1600" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
+            <img src="images/banner-2.png" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
             <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 hero-content">
-              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3">Flagship <span class="text-yellow">Power</span></h1>
-              <p class="text-white/70 text-base max-w-md">Uncompromising performance. Latest technology at your fingertips.</p>
+              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3" style="text-shadow: 1px 1px 5px white;">Flagship <span class="text-yellow">Power</span></h1>
+              <p class="text-white/100 text-base max-w-md">Uncompromising performance. Latest technology at your fingertips.</p>
             </div>
           </div>
           <div class="swiper-slide hero-slide">
             <div class="hero-bg"></div>
-            <img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=1600" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
+            <img src="images/banner-3.png" class="w-full h-[480px] md:h-[560px] object-cover brightness-75">
             <div class="absolute inset-0 flex flex-col justify-center px-8 md:px-16 hero-content">
-              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3">Smart <span class="text-yellow">Ecosystem</span></h1>
-              <p class="text-white/70 text-base max-w-md">Connect, create, innovate. Seamless integration across devices.</p>
+              <h1 class="text-4xl md:text-6xl font-bold text-white mb-3" style="text-shadow: 1px 1px 5px white;">Smart <span class="text-yellow">Ecosystem</span></h1>
+              <p class="text-white/100 text-base max-w-md">Connect, create, innovate. Seamless integration across devices.</p>
             </div>
           </div>
         </div>
@@ -580,14 +579,14 @@
       <div class="text-center mb-8"><h2 class="section-title">Shop by Category</h2><p class="section-subtitle">Explore our curated collections</p></div>
       <div class="swiper catSwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><div class="category-card" data-cat="Mobile"><img src="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Mobiles</div><div class="category-count">8 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Laptop"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Laptops</div><div class="category-count">6 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Tablet"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Tablets</div><div class="category-count">5 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Smartwatch"><img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Smartwatches</div><div class="category-count">6 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Accessories"><img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Accessories</div><div class="category-count">12 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="TV"><img src="https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">TVs</div><div class="category-count">5 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Audio"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Audio</div><div class="category-count">7 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Gaming"><img src="https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Gaming</div><div class="category-count">4 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Mobile"><img src="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Mobiles</div><div class="category-count" id="catCountMobile">0 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Laptop"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Laptops</div><div class="category-count" id="catCountLaptop">0 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Tablet"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Tablets</div><div class="category-count" id="catCountTablet">0 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Smartwatch"><img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Smartwatches</div><div class="category-count" id="catCountSmartwatch">0 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Accessories"><img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Accessories</div><div class="category-count" id="catCountAccessories">0 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="TV"><img src="https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">TVs</div><div class="category-count" id="catCountTV">0 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Audio"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Audio</div><div class="category-count" id="catCountAudio">0 Products</div></div></div></div>
+          <div class="swiper-slide"><div class="category-card" data-cat="Gaming"><img src="https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Gaming</div><div class="category-count" id="catCountGaming">0 Products</div></div></div></div>
         </div>
       </div>
     </section>
@@ -595,8 +594,8 @@
     <!-- New Arrivals -->
     <section id="arrivals" class="mb-16" data-aos="fade-up">
       <div class="section-header">
-        <div><h2 class="section-title">New Arrivals</h2><p class="section-subtitle">Fresh from the tech world — 12 new arrivals</p></div>
-        <div class="view-all-link" onclick="alert('View all new arrivals coming soon!')">View All <i class="fas fa-arrow-right"></i></div>
+        <div><h2 class="section-title">New Arrivals</h2><p class="section-subtitle">Fresh from the tech world</p></div>
+        <div class="view-all-link" onclick="filterByNewArrivals()">View All <i class="fas fa-arrow-right"></i></div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="newArrivalsGrid"></div>
     </section>
@@ -605,7 +604,7 @@
     <section id="trending" class="mb-16" data-aos="fade-up">
       <div class="section-header">
         <div><h2 class="section-title">Trending Now</h2><p class="section-subtitle">Most popular products this week</p></div>
-        <div class="view-all-link" onclick="alert('View all trending products coming soon!')">View All <i class="fas fa-arrow-right"></i></div>
+        <div class="view-all-link" onclick="filterByTrending()">View All <i class="fas fa-arrow-right"></i></div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="trendingGrid"></div>
     </section>
@@ -622,18 +621,16 @@
       </div>
     </section>
     
-    <!-- All Categories Sections -->
+    <!-- All Categories Sections (Dynamic) -->
     <div id="allCategoriesContainer" class="space-y-14"></div>
     
     <!-- Brands Section -->
     <section id="brands" class="my-16" data-aos="fade-up">
       <div class="section-header">
         <div><h2 class="section-title">Trusted Brands</h2><p class="section-subtitle">We partner with the world's leading technology brands</p></div>
-        <!-- <div class="view-all-link" onclick="alert('View all brands coming soon!')">View All <i class="fas fa-arrow-right"></i></div> -->
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-apple text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Apple</p></div>
-        <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-samsung text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Samsung</p></div>
         <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-google text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Google</p></div>
         <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fab fa-microsoft text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Microsoft</p></div>
         <div class="bg-bg-card rounded-xl p-4 text-center border border-border-subtle"><i class="fas fa-headphones text-3xl text-text-muted"></i><p class="text-sm font-medium mt-2">Sony</p></div>
@@ -651,25 +648,11 @@
           <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-text-secondary text-sm">"Exceptional service and premium quality products. The delivery was lightning fast and customer support is top-notch."</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Ahmed Raza</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
           <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-text-secondary text-sm">"The iPhone 16 Pro Max arrived in perfect condition. The concierge service helped me choose the right device. Highly recommend!"</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Sarah Khan</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
           <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div><p class="text-text-secondary text-sm">"Great selection of premium electronics. The 2-year warranty gives me peace of mind. Will shop again!"</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Omar Farooq</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
-          <div class="swiper-slide"><div class="review-card"><div class="review-stars mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p class="text-text-secondary text-sm">"Amazing customer service! They helped me find the perfect laptop for my needs. Highly professional."</p><div class="mt-4 flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-bg-elevated flex items-center justify-center"><i class="fas fa-user text-text-muted"></i></div><div><p class="font-semibold text-sm">Zain Malik</p><p class="text-xs text-text-muted">Verified Buyer</p></div></div></div></div>
         </div>
         <div class="swiper-pagination mt-6"></div>
       </div>
     </section>
     
-    <!-- Newsletter Section -->
-    <!-- <section class="my-16" data-aos="fade-up">
-      <div class="newsletter-card">
-        <div class="max-w-2xl mx-auto text-center">
-          <i class="fas fa-envelope-open-text text-3xl text-yellow mb-3"></i>
-          <h2 class="text-2xl md:text-3xl font-bold mb-3">Stay Tech Informed</h2>
-          <p class="text-text-secondary mb-6">Subscribe for exclusive deals,新品通知, and tech insights.</p>
-          <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"><input type="email" placeholder="Your email address" class="form-input flex-1"><button class="btn-primary px-6 py-3 whitespace-nowrap">Subscribe</button></div>
-          <p class="text-xs text-text-muted mt-4">No spam. Unsubscribe anytime.</p>
-        </div>
-      </div>
-    </section>
-     -->
     <!-- Features -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
       <div class="feature-card"><i class="fas fa-truck-fast"></i><h3 class="font-semibold text-sm">Express Delivery</h3><p class="text-xs text-text-muted mt-1">2-3 business days</p></div>
@@ -708,123 +691,230 @@
 <footer class="footer pt-16 pb-8 px-6">
   <div class="max-w-[1440px] mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
-      <div><div class="flex items-center gap-2 mb-4"><i class="fas fa-microchip text-yellow text-xl"></i><span class="text-xl font-bold text-white">FINE<span class="text-yellow">.</span></span></div><p class="text-sm text-text-muted mb-4">Premium electronics destination since 2025. Curated collection of flagship devices with expert support.</p><div class="flex gap-3"><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-facebook-f text-sm"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-twitter text-sm"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-instagram text-sm"></i></a><a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-linkedin-in text-sm"></i></a></div></div>
+      <div>
+        <div class="flex items-center gap-2 mb-4" style="justify-content: center;align-items: center;">
+          <i class="fas fa-microchip text-yellow text-xl"></i>
+          <span class="text-xl font-bold text-white" >FINE<span class="text-yellow">.</span></span>
+        </div>
+      <p class="text-sm text-text-muted mb-4" style="text-align: center;">Premium electronics destination since 2025. Curated collection of flagship devices with expert support.</p>
+      <div class="flex gap-3" style="justify-content: center;align-items: center;">
+        <a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-facebook-f text-sm"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-twitter text-sm"></i></a>
+        <a href="#" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition"><i class="fab fa-instagram text-sm"></i></a>
+      </div></div>
       <div><h4 class="text-white font-semibold mb-4">Shop</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">Mobile Phones</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Laptops</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Tablets</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Smartwatches</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Audio</a></li></ul></div>
-      <div><h4 class="text-white font-semibold mb-4">Support</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">Help Center</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Warranty Info</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Returns & Refunds</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Shipping Info</a></li><li><a href="#" class="text-text-muted hover:text-yellow">FAQs</a></li></ul></div>
-      <div><h4 class="text-white font-semibold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">About Us</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Careers</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Press</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Privacy Policy</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Terms of Service</a></li></ul></div>
-      <div><h4 class="text-white font-semibold mb-4">Contact Us</h4><ul class="space-y-3 text-sm"><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-phone-alt w-4 text-yellow"></i> +92 332 3403516</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-envelope w-4 text-yellow"></i> info@fineelectronics.pk</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-map-marker-alt w-4 text-yellow"></i> 123 Tech Plaza, Gulberg, Lahore, Pakistan</li></ul><div class="mt-4"><p class="text-xs text-text-muted mb-2">Opening Hours:</p><p class="text-xs text-text-muted">Mon-Fri: 9AM - 8PM<br>Sat-Sun: 10AM - 6PM</p></div></div>
+      <div><h4 class="text-white font-semibold mb-4">Support</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">Help Center</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Warranty Info</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Returns & Refunds</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Shipping Info</a></li></ul></div>
+      <div><h4 class="text-white font-semibold mb-4">Company</h4><ul class="space-y-2 text-sm"><li><a href="#" class="text-text-muted hover:text-yellow">About Us</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Careers</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Privacy Policy</a></li><li><a href="#" class="text-text-muted hover:text-yellow">Terms of Service</a></li></ul></div>
+      <div><h4 class="text-white font-semibold mb-4">Contact Us</h4><ul class="space-y-3 text-sm"><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-phone-alt w-4 text-yellow"></i> +92 332 3403516</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-envelope w-4 text-yellow"></i> info@fineelectronics.pk</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-map-marker-alt w-4 text-yellow"></i> 123 Tech Plaza, Gulberg, Lahore</li></ul></div>
     </div>
-    <div class="border-t border-white/10 pt-6 text-center text-text-muted text-xs">© 2025 Fine Electronics Pakistan. All rights reserved. Premium Technology Concierge.</div>
+    <div class="border-t border-white/10 pt-6 text-center text-text-muted text-xs">© 2025 Fine Electronics Pakistan. All rights reserved.</div>
   </div>
 </footer>
+
+
+<a href="https://api.whatsapp.com/send?phone=+923363403516" class="whatsapp-left-image-container">
+  <img src="https://img.icons8.com/?size=100&id=uZWiLUyryScN&format=png&color=000000" alt="">
+</a>
+
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 500, once: true });
   
-  // Product Database with PKR pricing
-  const productsData = {
-    Mobile: [
-      { id: 1, name: "iPhone 16 Pro Max", price: "₨ 389,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["A17 Pro Chip", "48MP Main Camera", "Titanium Design", "5x Optical Zoom"] },
-      { id: 2, name: "Samsung Galaxy S24 Ultra", price: "₨ 349,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Galaxy AI", "200MP Camera", "S Pen Included", "7 Years Updates"] },
-      { id: 3, name: "Google Pixel 9 Pro", price: "₨ 279,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Tensor G4", "Gemini AI", "Pro Camera", "Pure Android"] },
-      { id: 4, name: "OnePlus 12", price: "₨ 219,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Snapdragon 8 Gen 3", "100W Charging", "Hasselblad Camera", "Fluid AMOLED"] }
-    ],
-    Laptop: [
-      { id: 5, name: "MacBook Pro M4", price: "₨ 699,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["M4 Chip", "32GB RAM", "Liquid Retina XDR", "22hr Battery"] },
-      { id: 6, name: "Dell XPS 16", price: "₨ 559,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Intel Core Ultra 9", "OLED Touch", "RTX 4070", "InfinityEdge"] },
-      { id: 7, name: "ASUS ROG Zephyrus", price: "₨ 529,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Ryzen 9", "RTX 4080", "240Hz Display", "RGB Keyboard"] },
-      { id: 8, name: "HP Spectre x360", price: "₨ 419,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4, specs: ["2-in-1 Design", "OLED Display", "Intel Evo", "Thunderbolt 4"] }
-    ],
-    Accessories: [
-      { id: 9, name: "Logitech MX Master 3S", price: "₨ 27,999", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["8K DPI", "MagSpeed Wheel", "Ergonomic", "Multi-device"] },
-      { id: 10, name: "Keychron Q1 Pro", price: "₨ 52,999", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Wireless", "QMK/VIA", "Aluminum Body", "Hot-swappable"] },
-      { id: 11, name: "Anker Prime 240W", price: "₨ 38,999", img: "https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["GaN Technology", "240W Output", "Smart Display", "3 Ports"] },
-      { id: 12, name: "Samsung T9 SSD", price: "₨ 52,999", img: "https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["2TB Storage", "2000MB/s", "Rugged", "USB 3.2 Gen 2x2"] }
-    ],
-    TV: [
-      { id: 13, name: "LG G4 OLED 65", price: "₨ 809,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["MLA Technology", "Brightness Booster", "Gallery Design", "AI Processor"] },
-      { id: 14, name: "Samsung S95D", price: "₨ 729,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["QD-OLED", "Glare Free", "144Hz", "Neural Processor"] },
-      { id: 15, name: "Sony A95L", price: "₨ 919,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["QD-OLED", "XR Processor", "Acoustic Surface", "Google TV"] },
-      { id: 16, name: "TCL QM851G", price: "₨ 339,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4, specs: ["Mini-LED", "High Brightness", "Google TV", "120Hz"] }
-    ],
-    Audio: [
-      { id: 17, name: "Sony WH-1000XM5", price: "₨ 97,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Noise Cancelling", "30hr Battery", "LDAC", "Comfort Fit"] },
-      { id: 18, name: "Bose QuietComfort Ultra", price: "₨ 119,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Immersive Audio", "Aware Mode", "CustomTune", "24hr Battery"] },
-      { id: 19, name: "AirPods Pro 2", price: "₨ 69,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["H2 Chip", "ANC", "MagSafe", "Adaptive Audio"] },
-      { id: 20, name: "JBL Charge 5", price: "₨ 55,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4, specs: ["IP67 Waterproof", "20hr Playtime", "Powerbank", "JBL Pro Sound"] }
-    ]
-  };
+  // Load products from localStorage (synced with admin panel)
+  let allProducts = [];
+  let currentProductId = 100;
   
-  // 12 New Arrivals with PKR
-  const newArrivals = [
-    { id: 101, name: "iPhone 16 Pro Max", price: "₨ 389,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
-    { id: 102, name: "Samsung Galaxy S24 Ultra", price: "₨ 349,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
-    { id: 103, name: "MacBook Pro M4", price: "₨ 699,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
-    { id: 104, name: "Dell XPS 16", price: "₨ 559,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
-    { id: 105, name: "Sony WH-1000XM5", price: "₨ 97,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
-    { id: 106, name: "Bose QuietComfort Ultra", price: "₨ 119,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
-    { id: 107, name: "LG G4 OLED 65", price: "₨ 809,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
-    { id: 108, name: "Samsung S95D", price: "₨ 729,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5 },
-    { id: 109, name: "Google Pixel 9 Pro", price: "₨ 279,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
-    { id: 110, name: "ASUS ROG Zephyrus", price: "₨ 529,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
-    { id: 111, name: "AirPods Pro 2", price: "₨ 69,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5 },
-    { id: 112, name: "Sony A95L", price: "₨ 919,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5 }
-  ];
+  function loadProductsFromStorage() {
+    const stored = localStorage.getItem('fineProductsPremium');
+    if(stored) {
+      allProducts = JSON.parse(stored);
+    } else {
+      // Default products if no stored data
+      allProducts = [
+        { id: 1, name: "iPhone 16 Pro Max", price: "₨ 389,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["A17 Pro Chip", "48MP Main Camera", "Titanium Design"], category: "Mobile", extraImages: [] },
+        { id: 2, name: "Samsung Galaxy S24 Ultra", price: "₨ 349,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Galaxy AI", "200MP Camera", "S Pen Included"], category: "Mobile", extraImages: [] },
+        { id: 3, name: "MacBook Pro M4", price: "₨ 699,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["M4 Chip", "32GB RAM", "22hr Battery"], category: "Laptop", extraImages: [] },
+        { id: 4, name: "Sony WH-1000XM5", price: "₨ 97,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Noise Cancelling", "30hr Battery"], category: "Audio", extraImages: [] },
+        { id: 5, name: "LG G4 OLED 65", price: "₨ 809,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["MLA Technology", "4K OLED"], category: "TV", extraImages: [] },
+        { id: 6, name: "AirPods Pro 2", price: "₨ 69,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["H2 Chip", "ANC", "MagSafe"], category: "Audio", extraImages: [] },
+        { id: 7, name: "Dell XPS 16", price: "₨ 559,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Intel Core Ultra 9", "OLED Touch"], category: "Laptop", extraImages: [] },
+        { id: 8, name: "Google Pixel 9 Pro", price: "₨ 279,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Tensor G4", "Gemini AI"], category: "Mobile", extraImages: [] }
+      ];
+      saveProductsToStorage();
+    }
+    updateCategoryCounts();
+    renderAllSections();
+  }
   
-  const trending = newArrivals.slice(0, 8);
+  function saveProductsToStorage() {
+    localStorage.setItem('fineProductsPremium', JSON.stringify(allProducts));
+  }
+  
+  function updateCategoryCounts() {
+    const categories = ['Mobile', 'Laptop', 'Tablet', 'Smartwatch', 'Accessories', 'TV', 'Audio', 'Gaming'];
+    categories.forEach(cat => {
+      const count = allProducts.filter(p => p.category === cat).length;
+      const elem = document.getElementById(`catCount${cat}`);
+      if(elem) elem.innerText = `${count} Product${count !== 1 ? 's' : ''}`;
+    });
+  }
   
   function renderStars(rating) {
     let stars = '';
-    for(let i=1; i<=5; i++) stars += `<i class="fas fa-star${i<=Math.floor(rating) ? '' : i<=rating ? '-half-alt' : '-o'}"></i>`;
+    for(let i = 1; i <= 5; i++) {
+      if(i <= Math.floor(rating)) stars += '<i class="fas fa-star text-yellow text-xs"></i>';
+      else if(i <= rating) stars += '<i class="fas fa-star-half-alt text-yellow text-xs"></i>';
+      else stars += '<i class="far fa-star text-text-muted text-xs"></i>';
+    }
     return stars;
   }
   
   function renderProductCard(product) {
-    return `<div class="product-card" data-product='${JSON.stringify(product)}'><div><img src="${product.img}" class="product-img"></div><div class="product-info"><h3 class="product-title">${product.name}</h3><div class="product-rating">${renderStars(product.rating)} <span class="text-text-muted text-xs">(${product.rating})</span></div><div class="product-price">${product.price}</div><div class="product-actions"><button class="btn-primary buy-from-card" data-name="${product.name}">Buy Now</button><button class="btn-outline view-detail-btn">Details</button></div></div></div>`;
+    return `<div class="product-card" data-product='${JSON.stringify(product)}'>
+      <div><img src="${product.img}" class="product-img" onerror="this.src='https://placehold.co/600x400/1A1A1A/F5C518?text=Fine+Electronics'"></div>
+      <div class="product-info">
+        <h3 class="product-title">${product.name}</h3>
+        <div class="product-rating">${renderStars(product.rating)} <span class="text-text-muted text-xs">(${product.rating})</span></div>
+        <div class="product-price">${product.price}</div>
+        <div class="product-actions">
+          <button class="btn-primary buy-from-card" data-name="${product.name}">Buy Now</button>
+          <button class="btn-outline view-detail-btn">Details</button>
+        </div>
+      </div>
+    </div>`;
   }
   
-  document.getElementById('newArrivalsGrid').innerHTML = newArrivals.map(p => renderProductCard(p)).join('');
-  document.getElementById('trendingGrid').innerHTML = trending.map(p => renderProductCard(p)).join('');
+  // Get new arrivals (last 8 added products)
+  function getNewArrivals() {
+    return [...allProducts].sort((a, b) => b.id - a.id).slice(0, 8);
+  }
   
-  const container = document.getElementById('allCategoriesContainer');
-  ['Mobile', 'Laptop', 'Accessories', 'TV', 'Audio'].forEach(cat => {
-    const products = productsData[cat];
-    if(products) {
-      const section = document.createElement('section');
-      section.className = 'mb-12';
-      section.setAttribute('data-aos', 'fade-up');
-      section.innerHTML = `
-        <div class="section-header">
-          <div><h2 class="text-xl md:text-2xl font-bold tracking-tight">${cat} Collection</h2><p class="text-text-muted text-sm">Curated premium selection</p></div>
-          <div class="view-all-link" onclick="alert('View all ${cat} products coming soon!')">View All <i class="fas fa-arrow-right"></i></div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="grid-${cat}"></div>
-      `;
-      container.appendChild(section);
-      section.querySelector(`#grid-${cat}`).innerHTML = products.map(p => renderProductCard(p)).join('');
-    }
-  });
+  // Get trending (top rated products)
+  function getTrending() {
+    return [...allProducts].sort((a, b) => b.rating - a.rating).slice(0, 8);
+  }
+  
+  function renderAllSections() {
+    // New Arrivals
+    const newArrivals = getNewArrivals();
+    document.getElementById('newArrivalsGrid').innerHTML = newArrivals.map(p => renderProductCard(p)).join('');
+    
+    // Trending
+    const trending = getTrending();
+    document.getElementById('trendingGrid').innerHTML = trending.map(p => renderProductCard(p)).join('');
+    
+    // Category Sections
+    const categories = ['Mobile', 'Laptop', 'Accessories', 'TV', 'Audio'];
+    const container = document.getElementById('allCategoriesContainer');
+    container.innerHTML = '';
+    
+    categories.forEach(cat => {
+      const catProducts = allProducts.filter(p => p.category === cat);
+      if(catProducts.length > 0) {
+        const section = document.createElement('section');
+        section.className = 'mb-12';
+        section.setAttribute('data-aos', 'fade-up');
+        section.innerHTML = `
+          <div class="section-header">
+            <div><h2 class="text-xl md:text-2xl font-bold tracking-tight">${cat} Collection</h2><p class="text-text-muted text-sm">Curated premium selection</p></div>
+            <div class="view-all-link" onclick="filterByCategory('${cat}')">View All <i class="fas fa-arrow-right"></i></div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="grid-${cat}"></div>
+        `;
+        container.appendChild(section);
+        section.querySelector(`#grid-${cat}`).innerHTML = catProducts.slice(0, 4).map(p => renderProductCard(p)).join('');
+      }
+    });
+    
+    attachEvents();
+  }
+  
+  function filterByCategory(category) {
+    alert(`Showing all ${category} products. This feature will be fully implemented soon!`);
+  }
+  
+  function filterByNewArrivals() {
+    alert(`Showing latest arrivals. Check out our newest products!`);
+  }
+  
+  function filterByTrending() {
+    alert(`Showing trending products based on customer ratings and popularity!`);
+  }
   
   function showProductDetail(product) {
-    const fullProduct = productsData[Object.keys(productsData).find(cat => productsData[cat]?.some(p => p.name === product.name))]?.find(p => p.name === product.name) || product;
+    const fullProduct = allProducts.find(p => p.name === product.name) || product;
     const specs = fullProduct.specs || ["Premium Build", "Latest Technology", "Advanced Features"];
     const detailContent = document.getElementById('detailContent');
-    detailContent.innerHTML = `<div><img src="${fullProduct.img}" class="w-full rounded-xl h-80 lg:h-96 object-cover"><div class="flex gap-2 mt-3"><img src="${fullProduct.img}" class="detail-thumb active" data-img="${fullProduct.img}"></div></div><div><h1 class="text-2xl lg:text-3xl font-bold">${fullProduct.name}</h1><div class="flex mt-2 text-yellow text-sm">${renderStars(fullProduct.rating)}</div><div class="text-2xl font-bold text-yellow mt-3">${fullProduct.price}</div><p class="text-text-secondary text-sm mt-3">Experience next-gen technology with the ${fullProduct.name}. Engineered for perfection with premium materials and cutting-edge innovation.</p><div class="mt-5"><h3 class="font-semibold text-sm mb-2">Key Specifications</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-2">${specs.map(s => `<div class="bg-bg-card rounded-xl p-2 text-sm"><i class="fas fa-check-circle text-yellow mr-1.5"></i>${s}</div>`).join('')}</div></div><div class="flex gap-3 mt-6"><button class="btn-primary flex-1 py-2.5 detail-buy-btn" data-name="${fullProduct.name}">Buy Now</button><a href="tel:+923323403516" class="btn-outline flex-1 text-center py-2.5">Tech Support</a></div></div>`;
+    detailContent.innerHTML = `
+      <div>
+        <img src="${fullProduct.img}" class="w-full rounded-xl h-80 lg:h-96 object-cover">
+        <div class="flex gap-2 mt-3">
+          <img src="${fullProduct.img}" class="detail-thumb active" data-img="${fullProduct.img}">
+          ${fullProduct.extraImages && fullProduct.extraImages.length > 0 ? fullProduct.extraImages.slice(0, 3).map(img => `<img src="${img}" class="detail-thumb" data-img="${img}">`).join('') : ''}
+        </div>
+      </div>
+      <div>
+        <h1 class="text-2xl lg:text-3xl font-bold">${fullProduct.name}</h1>
+        <div class="flex mt-2 text-yellow text-sm">${renderStars(fullProduct.rating)}</div>
+        <div class="text-2xl font-bold text-yellow mt-3">${fullProduct.price}</div>
+        <p class="text-text-secondary text-sm mt-3">Experience next-gen technology with the ${fullProduct.name}. Engineered for perfection with premium materials and cutting-edge innovation.</p>
+        <div class="mt-5">
+          <h3 class="font-semibold text-sm mb-2">Key Specifications</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            ${specs.map(s => `<div class="bg-bg-card rounded-xl p-2 text-sm"><i class="fas fa-check-circle text-yellow mr-1.5"></i>${s}</div>`).join('')}
+          </div>
+        </div>
+        <div class="flex gap-3 mt-6">
+          <button class="btn-primary flex-1 py-2.5 detail-buy-btn" data-name="${fullProduct.name}">Buy Now</button>
+          <a href="tel:+923323403516" class="btn-outline flex-1 text-center py-2.5">Tech Support</a>
+        </div>
+      </div>
+    `;
     document.getElementById('detailOverlay').style.display = 'flex';
-    document.querySelectorAll('.detail-thumb').forEach(t => t.addEventListener('click', function() { detailContent.querySelector('img').src = this.dataset.img; document.querySelectorAll('.detail-thumb').forEach(x => x.classList.remove('active')); this.classList.add('active'); }));
-    document.querySelectorAll('.detail-buy-btn').forEach(btn => btn.addEventListener('click', () => { document.getElementById('orderProductName').value = btn.dataset.name; document.getElementById('orderModal').style.display = 'flex'; document.getElementById('detailOverlay').style.display = 'none'; }));
+    
+    document.querySelectorAll('.detail-thumb').forEach(t => t.addEventListener('click', function() {
+      detailContent.querySelector('img').src = this.dataset.img;
+      document.querySelectorAll('.detail-thumb').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
+    }));
+    
+    document.querySelectorAll('.detail-buy-btn').forEach(btn => btn.addEventListener('click', () => {
+      document.getElementById('orderProductName').value = btn.dataset.name;
+      document.getElementById('orderModal').style.display = 'flex';
+      document.getElementById('detailOverlay').style.display = 'none';
+    }));
   }
   
   function attachEvents() {
-    document.querySelectorAll('.view-detail-btn').forEach(btn => { btn.removeEventListener('click', handleDetail); btn.addEventListener('click', handleDetail); });
-    document.querySelectorAll('.buy-from-card').forEach(btn => { btn.removeEventListener('click', handleBuy); btn.addEventListener('click', handleBuy); });
+    document.querySelectorAll('.view-detail-btn').forEach(btn => {
+      btn.removeEventListener('click', handleDetail);
+      btn.addEventListener('click', handleDetail);
+    });
+    document.querySelectorAll('.buy-from-card').forEach(btn => {
+      btn.removeEventListener('click', handleBuy);
+      btn.addEventListener('click', handleBuy);
+    });
   }
-  function handleDetail(e) { const card = e.target.closest('.product-card'); showProductDetail(JSON.parse(card.getAttribute('data-product'))); }
-  function handleBuy(e) { document.getElementById('orderProductName').value = e.target.getAttribute('data-name'); document.getElementById('orderModal').style.display = 'flex'; }
   
-  setTimeout(attachEvents, 100);
-  new MutationObserver(() => attachEvents()).observe(document.getElementById('allCategoriesContainer'), { childList: true, subtree: true });
+  function handleDetail(e) {
+    const card = e.target.closest('.product-card');
+    if(card && card.getAttribute('data-product')) {
+      showProductDetail(JSON.parse(card.getAttribute('data-product')));
+    }
+  }
+  
+  function handleBuy(e) {
+    document.getElementById('orderProductName').value = e.target.getAttribute('data-name');
+    document.getElementById('orderModal').style.display = 'flex';
+  }
+  
+  // Listen for storage changes (when admin updates products)
+  window.addEventListener('storage', function(e) {
+    if(e.key === 'fineProductsPremium') {
+      loadProductsFromStorage();
+    }
+  });
   
   // Swipers
   new Swiper('.heroSwiper', { loop: true, autoplay: { delay: 5000 }, pagination: { clickable: true }, navigation: true, effect: 'fade', fadeEffect: { crossFade: true } });
@@ -836,6 +926,7 @@
   menuToggle?.addEventListener('click', () => { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); });
   closeMenuBtn?.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); });
   menuOverlay?.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); });
+  
   document.querySelectorAll('.home-nav-link').forEach(l => l.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('homeContainer').style.display = 'block'; document.getElementById('detailOverlay').style.display = 'none'; window.scrollTo(0,0); if(mobileMenu.classList.contains('open')) { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); } }));
   document.querySelectorAll('.cat-dropdown-item, .category-card').forEach(el => el.addEventListener('click', () => alert(`Explore premium ${el.dataset.cat || 'collection'} at Fine Electronics Pakistan.`)));
   document.getElementById('closeDetailBtn').addEventListener('click', () => document.getElementById('detailOverlay').style.display = 'none');
@@ -848,6 +939,14 @@
     document.getElementById('orderModal').style.display = 'none';
     e.target.reset();
   });
+  
+  // Initialize
+  loadProductsFromStorage();
+  
+  // Refresh every 2 seconds to sync with admin panel
+  // setInterval(() => {
+  //   loadProductsFromStorage();
+  // }, 2000);
 </script>
 </body>
 </html>
