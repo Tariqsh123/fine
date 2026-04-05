@@ -21,7 +21,6 @@
   
   <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  
   <style>
     * {
       margin: 0;
@@ -144,45 +143,63 @@
       background: rgba(245, 197, 24, 0.08);
     }
     
-    .category-card {
-      background: var(--bg-card);
-      border-radius: 24px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      border: 1px solid var(--border-subtle);
-      cursor: pointer;
-      position: relative;
-    }
-    .category-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--yellow);
-    }
-    .category-img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .category-card:hover .category-img {
-      transform: scale(1.02);
-    }
-    .category-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
-      padding: 1.25rem;
-    }
-    .category-name {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: white;
-    }
-    .category-count {
-      font-size: 0.75rem;
-      color: var(--yellow);
-    }
+   .category-card {
+  background: var(--bg-card);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 2px solid #2A7FFF;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Image */
+.category-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+/* 🔥 Overlay FIX (yahan lagao) */
+.category-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 180px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); /* adjust opacity */
+  pointer-events: none;
+}
+
+/* Hover Zoom */
+.category-card:hover .category-img {
+  transform: scale(1.2);
+}
+
+/* Bottom Gradient Overlay (already correct) */
+.category-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(5,5,5,0.95), transparent);
+  padding: 1.25rem;
+  z-index: 2;
+}
+
+/* Text */
+.category-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.category-count {
+  font-size: 0.75rem;
+  color: var(--yellow);
+}
     
     .feature-card {
       background: var(--bg-card);
@@ -430,6 +447,20 @@
       transform: translateY(-2px);
     }
     
+    /* NEW: unified carousel card style (preserves exact same product card look) */
+    .unified-carousel-section {
+      margin-bottom: 3rem;
+    }
+    .carousel-card-wrapper {
+      padding: 0 4px;
+    }
+    .carousel-swiper {
+      overflow: visible;
+    }
+    .carousel-swiper .swiper-slide {
+      height: auto;
+    }
+    
     @media (max-width: 768px) {
       .product-img { height: 200px; }
       .section-title { font-size: 1.5rem; text-align: center; }
@@ -477,7 +508,7 @@
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="mobile-menu" id="mobileMenu">
   <div class="flex justify-between items-center mb-8 pb-4 border-b border-border-subtle">
-    <span class="text-xl font-bold text-yellow">FINE</span>
+    <span class="text-xl font-bold text-yellow">FINE Electronics</span>
     <button id="closeMenuBtn" class="text-2xl text-text-secondary hover:text-yellow">&times;</button>
   </div>
   <nav class="flex flex-col gap-5">
@@ -501,7 +532,7 @@
   <div class="max-w-[1440px] mx-auto flex justify-between items-center">
     <div class="flex items-center gap-2 cursor-pointer home-nav-link">
       <i class="fas fa-microchip text-yellow text-xl"></i>
-      <span class="text-xl font-bold tracking-tight text-white">FINE<span class="text-yellow">.</span></span>
+      <span class="text-xl font-bold tracking-tight text-white">FINE ELECTRONICS</span>
     </div>
     <div class="hidden md:flex items-center gap-8">
       <a href="#" class="home-nav-link text-sm font-medium text-text-secondary hover:text-yellow transition">Home</a>
@@ -529,12 +560,6 @@
     </div>
   </div>
 </nav>
-
-<!-- Admin Access Button -->
-<!-- <div class="admin-access-btn" onclick="window.location.href='admin.html'">
-  <i class="fas fa-crown text-yellow"></i>
-  <span class="text-sm font-medium">Admin Panel</span>
-</div> -->
 
 <div id="homeContainer">
   <main class="pt-24 max-w-[1440px] mx-auto px-6 md:px-12 pb-16">
@@ -578,35 +603,133 @@
       <div class="text-center mb-8"><h2 class="section-title">Shop by Category</h2><p class="section-subtitle">Explore our curated collections</p></div>
       <div class="swiper catSwiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><div class="category-card" data-cat="Mobile"><img src="https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Mobiles</div><div class="category-count" id="catCountMobile">0 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Laptop"><img src="https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Laptops</div><div class="category-count" id="catCountLaptop">0 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Tablet"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Tablets</div><div class="category-count" id="catCountTablet">0 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Smartwatch"><img src="https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Smartwatches</div><div class="category-count" id="catCountSmartwatch">0 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Accessories"><img src="https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Accessories</div><div class="category-count" id="catCountAccessories">0 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="TV"><img src="https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">TVs</div><div class="category-count" id="catCountTV">0 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Audio"><img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Audio</div><div class="category-count" id="catCountAudio">0 Products</div></div></div></div>
-          <div class="swiper-slide"><div class="category-card" data-cat="Gaming"><img src="https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600" class="category-img"><div class="category-overlay"><div class="category-name">Gaming</div><div class="category-count" id="catCountGaming">0 Products</div></div></div></div>
-        </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Electronics Parts">
+      <img src="https://t4.ftcdn.net/jpg/02/21/50/41/360_F_221504126_O722SOhrVSGcCMAE7sQea821f05RPkpe.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Electronics Parts</div>
+        <div class="category-count" id="catCountElectronicsParts">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Repairing Tools">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/017/386/545/small/repairing-and-upgrade-mobile-phone-electronic-computer-hardware-and-technology-concept-photo.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Repairing Tools</div>
+        <div class="category-count" id="catCountRepairingTools">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="CCTV & Security">
+      <img src="https://wallpapers.com/images/featured/cctv-camera-azq6hzc8rppry6eu.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">CCTV & Security</div>
+        <div class="category-count" id="catCountCCTVSecurity">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Power & Battery">
+      <img src="https://png.pngtree.com/thumb_back/fh260/background/20230721/pngtree-3d-rendering-of-a-battery-with-color-coded-charging-indicators-image_3715550.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Power & Battery</div>
+        <div class="category-count" id="catCountPowerBattery">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Electrical Items">
+      <img src="https://c1.wallpaperflare.com/preview/194/938/414/tool-work-repair-electrician.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Electrical Items</div>
+        <div class="category-count" id="catCountElectricalItems">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Home Appliances">
+      <img src="https://st2.depositphotos.com/1001877/6374/i/450/depositphotos_63745311-stock-photo-home-appliances-gas-cooker-tv.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Home Appliances</div>
+        <div class="category-count" id="catCountHomeAppliances">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Machine Parts">
+      <img src="https://png.pngtree.com/thumb_back/fh260/background/20240522/pngtree-above-view-of-tools-on-open-watch-on-spare-parts-image_15682623.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Machine Parts</div>
+        <div class="category-count" id="catCountMachineParts">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Tools & Hardware">
+      <img src="https://media.istockphoto.com/id/1460743033/photo/composition-with-a-variety-of-metal-tools.jpg?s=612x612&w=0&k=20&c=rFeBxyP7ANpCWOLPFPcN5b7EjJfX9GuzFVI_exRh5Nw=" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Tools & Hardware</div>
+        <div class="category-count" id="catCountToolsHardware">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Mobile & Computer Accessories">
+      <img src="https://thumbs.dreamstime.com/b/collection-usb-flash-drives-memory-cards-external-hard-against-laptop-showcase-computer-accessories-data-storage-440177460.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Mobile & Computer Accessories</div>
+        <div class="category-count" id="catCountMobileComputerAccessories">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Personal Care Items">
+      <img src="https://www.eraglobal.co.in/wp-content/uploads/2025/10/Gemini_Generated_Image_1fbhi51fbhi51fbh-1536x838.png" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Personal Care Items</div>
+        <div class="category-count" id="catCountPersonalCareItems">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="Kitchen Accessories">
+      <img src="https://img.freepik.com/free-photo/electric-blender-mixer-juicer-set_140725-7263.jpg?semt=ais_incoming&w=740&q=80" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">Kitchen Accessories</div>
+        <div class="category-count" id="catCountKitchenAccessories">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper-slide">
+    <div class="category-card" data-cat="General Items">
+      <img src="https://t3.ftcdn.net/jpg/06/37/89/18/360_F_637891805_dUfZ6w3Jlcr1y7XW7yAtx1vUT4HJEnMa.jpg" class="category-img">
+      <div class="category-overlay">
+        <div class="category-name">General Items</div>
+        <div class="category-count" id="catCountGeneralItems">0 Products</div>
+      </div>
+    </div>
+  </div>
+
+</div>
       </div>
     </section>
     
-    <!-- New Arrivals -->
-    <section id="arrivals" class="mb-16" data-aos="fade-up">
-      <div class="section-header">
-        <div><h2 class="section-title">New Arrivals</h2><p class="section-subtitle">Fresh from the tech world</p></div>
-        <div class="view-all-link" onclick="filterByNewArrivals()">View All <i class="fas fa-arrow-right"></i></div>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="newArrivalsGrid"></div>
-    </section>
-    
-    <!-- Trending Products -->
-    <section id="trending" class="mb-16" data-aos="fade-up">
-      <div class="section-header">
-        <div><h2 class="section-title">Trending Now</h2><p class="section-subtitle">Most popular products this week</p></div>
-        <div class="view-all-link" onclick="filterByTrending()">View All <i class="fas fa-arrow-right"></i></div>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="trendingGrid"></div>
-    </section>
+    <!-- ========= NEW UNIFIED CAROUSEL SECTION (New Arrivals, Trending, Mobile, Laptop, Audio) ========= -->
+    <div id="unifiedCarouselRoot" class="space-y-12 mb-16"></div>
     
     <!-- Offer Banner -->
     <section id="offers" class="mb-16" data-aos="fade-up">
@@ -619,9 +742,6 @@
         </div>
       </div>
     </section>
-    
-    <!-- All Categories Sections (Dynamic) -->
-    <div id="allCategoriesContainer" class="space-y-14"></div>
     
     <!-- Brands Section -->
     <section id="brands" class="my-16" data-aos="fade-up">
@@ -711,16 +831,38 @@
 </footer>
 
 
+<!-- ==================== CATEGORY OVERLAY ==================== -->
+<div id="categoryOverlay" class="detail-overlay">
+  <div class="detail-container" style="max-width: 1280px; width: 96%;">
+    <div class="relative p-6 md:p-8">
+      <!-- Close Button -->
+      <button id="closeCategoryBtn" 
+              class="absolute top-6 right-6 text-4xl text-text-secondary hover:text-yellow transition z-10">
+        &times;
+      </button>
+
+      <div class="mb-8 text-center md:text-left">
+        <h2 id="categoryTitle" class="text-3xl md:text-4xl font-bold text-white">Category Name</h2>
+        <p id="categoryCount" class="text-text-secondary mt-2 text-lg">XX Products</p>
+      </div>
+
+      <!-- Products Grid -->
+      <div id="categoryProductsGrid" 
+           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+        <!-- JavaScript will fill this -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <a href="https://api.whatsapp.com/send?phone=+923363403516" class="whatsapp-left-image-container">
   <img src="https://img.icons8.com/?size=100&id=uZWiLUyryScN&format=png&color=000000" alt="">
 </a>
-
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
   AOS.init({ duration: 500, once: true });
   
-  // Load products from localStorage (synced with admin panel)
   let allProducts = [];
   let currentProductId = 100;
   
@@ -729,21 +871,100 @@
     if(stored) {
       allProducts = JSON.parse(stored);
     } else {
-      // Default products if no stored data
       allProducts = [
-        { id: 1, name: "iPhone 16 Pro Max", price: "₨ 389,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["A17 Pro Chip", "48MP Main Camera", "Titanium Design"], category: "Mobile", extraImages: [] },
-        { id: 2, name: "Samsung Galaxy S24 Ultra", price: "₨ 349,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Galaxy AI", "200MP Camera", "S Pen Included"], category: "Mobile", extraImages: [] },
-        { id: 3, name: "MacBook Pro M4", price: "₨ 699,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["M4 Chip", "32GB RAM", "22hr Battery"], category: "Laptop", extraImages: [] },
-        { id: 4, name: "Sony WH-1000XM5", price: "₨ 97,999", img: "https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["Noise Cancelling", "30hr Battery"], category: "Audio", extraImages: [] },
-        { id: 5, name: "LG G4 OLED 65", price: "₨ 809,999", img: "https://images.pexels.com/photos/4458/sitting-living-room-table-computer.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["MLA Technology", "4K OLED"], category: "TV", extraImages: [] },
-        { id: 6, name: "AirPods Pro 2", price: "₨ 69,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["H2 Chip", "ANC", "MagSafe"], category: "Audio", extraImages: [] },
-        { id: 7, name: "Dell XPS 16", price: "₨ 559,999", img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Intel Core Ultra 9", "OLED Touch"], category: "Laptop", extraImages: [] },
-        { id: 8, name: "Google Pixel 9 Pro", price: "₨ 279,999", img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 4.5, specs: ["Tensor G4", "Gemini AI"], category: "Mobile", extraImages: [] }
+
+        // Electronics Parts
+        { id: 1, name: "Resistor Pack Kit", price: "₨ 1,200", img: "", rating: 4, specs: ["1000pcs Kit", "Various Ohms"], category: "Electronics Parts", extraImages: [] },
+        { id: 2, name: "Capacitor Bundle", price: "₨ 1,500", img: "", rating: 4, specs: ["Ceramic + Electrolytic"], category: "Electronics Parts", extraImages: [] },
+        { id: 3, name: "Arduino Uno R3", price: "₨ 2,800", img: "", rating: 5, specs: ["ATmega328P", "USB Interface"], category: "Electronics Parts", extraImages: [] },
+        { id: 4, name: "LED Assorted Kit", price: "₨ 900", img: "", rating: 4, specs: ["Multiple Colors"], category: "Electronics Parts", extraImages: [] },
+        { id: 5, name: "Breadboard 830 Points", price: "₨ 600", img: "", rating: 4, specs: ["Reusable Board"], category: "Electronics Parts", extraImages: [] },
+
+        // Repairing Tools
+        { id: 6, name: "Soldering Iron 60W", price: "₨ 1,800", img: "", rating: 4, specs: ["Fast Heating"], category: "Repairing Tools", extraImages: [] },
+        { id: 7, name: "Precision Screwdriver Set", price: "₨ 2,200", img: "", rating: 5, specs: ["32 in 1"], category: "Repairing Tools", extraImages: [] },
+        { id: 8, name: "Hot Air Gun", price: "₨ 4,500", img: "", rating: 4, specs: ["Temperature Control"], category: "Repairing Tools", extraImages: [] },
+        { id: 9, name: "Multimeter Digital", price: "₨ 2,000", img: "", rating: 4, specs: ["Voltage/Current"], category: "Repairing Tools", extraImages: [] },
+        { id: 10, name: "Solder Wire 100g", price: "₨ 700", img: "", rating: 4, specs: ["Lead Free"], category: "Repairing Tools", extraImages: [] },
+
+        // CCTV & Security
+        { id: 11, name: "CCTV Camera HD", price: "₨ 3,500", img: "", rating: 4, specs: ["1080p", "Night Vision"], category: "CCTV & Security", extraImages: [] },
+        { id: 12, name: "DVR 4 Channel", price: "₨ 8,000", img: "", rating: 4, specs: ["Remote Access"], category: "CCTV & Security", extraImages: [] },
+        { id: 13, name: "Security Alarm System", price: "₨ 6,500", img: "", rating: 4, specs: ["Wireless"], category: "CCTV & Security", extraImages: [] },
+        { id: 14, name: "IP Camera WiFi", price: "₨ 5,200", img: "", rating: 4, specs: ["Mobile View"], category: "CCTV & Security", extraImages: [] },
+        { id: 15, name: "Motion Sensor", price: "₨ 1,800", img: "", rating: 4, specs: ["Auto Detection"], category: "CCTV & Security", extraImages: [] },
+
+        // Power & Battery
+        { id: 16, name: "Power Bank 20000mAh", price: "₨ 4,000", img: "", rating: 5, specs: ["Fast Charging"], category: "Power & Battery", extraImages: [] },
+        { id: 17, name: "Lithium Battery 18650", price: "₨ 900", img: "", rating: 4, specs: ["Rechargeable"], category: "Power & Battery", extraImages: [] },
+        { id: 18, name: "UPS Backup System", price: "₨ 18,000", img: "", rating: 4, specs: ["Home Backup"], category: "Power & Battery", extraImages: [] },
+        { id: 19, name: "Battery Charger", price: "₨ 2,500", img: "", rating: 4, specs: ["Multi Slot"], category: "Power & Battery", extraImages: [] },
+        { id: 20, name: "Solar Panel 100W", price: "₨ 12,000", img: "", rating: 4, specs: ["High Efficiency"], category: "Power & Battery", extraImages: [] },
+
+        // Electrical Items
+        { id: 21, name: "Extension Board", price: "₨ 1,200", img: "", rating: 4, specs: ["4 Ports"], category: "Electrical Items", extraImages: [] },
+        { id: 22, name: "Switch Board", price: "₨ 800", img: "", rating: 4, specs: ["Durable"], category: "Electrical Items", extraImages: [] },
+        { id: 23, name: "LED Bulb 12W", price: "₨ 300", img: "", rating: 4, specs: ["Energy Saver"], category: "Electrical Items", extraImages: [] },
+        { id: 24, name: "Electric Wire Roll", price: "₨ 3,000", img: "", rating: 4, specs: ["Copper"], category: "Electrical Items", extraImages: [] },
+        { id: 25, name: "Circuit Breaker", price: "₨ 1,500", img: "", rating: 4, specs: ["Safety"], category: "Electrical Items", extraImages: [] },
+
+        // Home Appliances
+        { id: 26, name: "Electric Kettle", price: "₨ 3,200", img: "", rating: 4, specs: ["1.7L"], category: "Home Appliances", extraImages: [] },
+        { id: 27, name: "Vacuum Cleaner", price: "₨ 12,000", img: "", rating: 4, specs: ["High Power"], category: "Home Appliances", extraImages: [] },
+        { id: 28, name: "Air Fryer", price: "₨ 15,000", img: "", rating: 5, specs: ["Oil Free"], category: "Home Appliances", extraImages: [] },
+        { id: 29, name: "Iron Steam", price: "₨ 4,500", img: "", rating: 4, specs: ["Non-stick"], category: "Home Appliances", extraImages: [] },
+        { id: 30, name: "Room Heater", price: "₨ 6,000", img: "", rating: 4, specs: ["Fast Heating"], category: "Home Appliances", extraImages: [] },
+
+        // Machine Parts
+        { id: 31, name: "Ball Bearing Set", price: "₨ 2,000", img: "", rating: 4, specs: ["High Speed"], category: "Machine Parts", extraImages: [] },
+        { id: 32, name: "Gear Motor", price: "₨ 3,500", img: "", rating: 4, specs: ["DC Motor"], category: "Machine Parts", extraImages: [] },
+        { id: 33, name: "Hydraulic Pump", price: "₨ 25,000", img: "", rating: 4, specs: ["Industrial"], category: "Machine Parts", extraImages: [] },
+        { id: 34, name: "Metal Shaft", price: "₨ 1,200", img: "", rating: 4, specs: ["Durable"], category: "Machine Parts", extraImages: [] },
+        { id: 35, name: "Pulley Set", price: "₨ 2,800", img: "", rating: 4, specs: ["Heavy Duty"], category: "Machine Parts", extraImages: [] },
+
+        // Tools & Hardware
+        { id: 36, name: "Hammer Steel", price: "₨ 900", img: "", rating: 4, specs: ["Grip Handle"], category: "Tools & Hardware", extraImages: [] },
+        { id: 37, name: "Drill Machine", price: "₨ 7,500", img: "", rating: 5, specs: ["Electric Drill"], category: "Tools & Hardware", extraImages: [] },
+        { id: 38, name: "Wrench Set", price: "₨ 2,500", img: "", rating: 4, specs: ["Multiple Sizes"], category: "Tools & Hardware", extraImages: [] },
+        { id: 39, name: "Cutting Plier", price: "₨ 1,200", img: "", rating: 4, specs: ["Sharp Edge"], category: "Tools & Hardware", extraImages: [] },
+        { id: 40, name: "Screw Set", price: "₨ 1,000", img: "", rating: 4, specs: ["Mixed Pack"], category: "Tools & Hardware", extraImages: [] },
+
+        // Mobile & Computer Accessories
+        { id: 41, name: "USB Cable Fast", price: "₨ 500", img: "", rating: 4, specs: ["Type-C"], category: "Mobile & Computer Accessories", extraImages: [] },
+        { id: 42, name: "Wireless Mouse", price: "₨ 1,500", img: "", rating: 4, specs: ["Ergonomic"], category: "Mobile & Computer Accessories", extraImages: [] },
+        { id: 43, name: "Keyboard RGB", price: "₨ 3,000", img: "", rating: 4, specs: ["Gaming"], category: "Mobile & Computer Accessories", extraImages: [] },
+        { id: 44, name: "Laptop Stand", price: "₨ 2,200", img: "", rating: 4, specs: ["Adjustable"], category: "Mobile & Computer Accessories", extraImages: [] },
+        { id: 45, name: "Earbuds Bluetooth", price: "₨ 3,500", img: "", rating: 4, specs: ["Noise Cancel"], category: "Mobile & Computer Accessories", extraImages: [] },
+
+        // Personal Care Items
+        { id: 46, name: "Hair Trimmer", price: "₨ 2,800", img: "", rating: 4, specs: ["Rechargeable"], category: "Personal Care Items", extraImages: [] },
+        { id: 47, name: "Electric Shaver", price: "₨ 3,500", img: "", rating: 4, specs: ["Waterproof"], category: "Personal Care Items", extraImages: [] },
+        { id: 48, name: "Hair Dryer", price: "₨ 2,200", img: "", rating: 4, specs: ["Hot & Cold"], category: "Personal Care Items", extraImages: [] },
+        { id: 49, name: "Face Massager", price: "₨ 1,800", img: "", rating: 4, specs: ["Skin Care"], category: "Personal Care Items", extraImages: [] },
+        { id: 50, name: "Electric Toothbrush", price: "₨ 2,500", img: "", rating: 4, specs: ["Soft Bristles"], category: "Personal Care Items", extraImages: [] },
+
+        // Kitchen Accessories
+        { id: 51, name: "Knife Set", price: "₨ 3,000", img: "", rating: 4, specs: ["Stainless Steel"], category: "Kitchen Accessories", extraImages: [] },
+        { id: 52, name: "Blender Machine", price: "₨ 5,500", img: "", rating: 4, specs: ["High Speed"], category: "Kitchen Accessories", extraImages: [] },
+        { id: 53, name: "Chopper Manual", price: "₨ 1,200", img: "", rating: 4, specs: ["Easy Use"], category: "Kitchen Accessories", extraImages: [] },
+        { id: 54, name: "Dish Rack", price: "₨ 2,000", img: "", rating: 4, specs: ["Steel"], category: "Kitchen Accessories", extraImages: [] },
+        { id: 55, name: "Storage Boxes", price: "₨ 1,800", img: "", rating: 4, specs: ["Airtight"], category: "Kitchen Accessories", extraImages: [] },
+
+        // General Items
+        { id: 56, name: "Plastic Storage Box", price: "₨ 900", img: "", rating: 4, specs: ["Multi Use"], category: "General Items", extraImages: [] },
+        { id: 57, name: "LED Torch", price: "₨ 700", img: "", rating: 4, specs: ["Rechargeable"], category: "General Items", extraImages: [] },
+        { id: 58, name: "Wall Clock", price: "₨ 1,500", img: "", rating: 4, specs: ["Modern Design"], category: "General Items", extraImages: [] },
+        { id: 59, name: "Water Bottle", price: "₨ 600", img: "", rating: 4, specs: ["BPA Free"], category: "General Items", extraImages: [] },
+        { id: 60, name: "Shopping Basket", price: "₨ 1,200", img: "", rating: 4, specs: ["Durable"], category: "General Items", extraImages: [] }
+
       ];
+
       saveProductsToStorage();
     }
+
     updateCategoryCounts();
     renderAllSections();
+    renderUnifiedCarousels();
   }
   
   function saveProductsToStorage() {
@@ -751,7 +972,20 @@
   }
   
   function updateCategoryCounts() {
-    const categories = ['Mobile', 'Laptop', 'Tablet', 'Smartwatch', 'Accessories', 'TV', 'Audio', 'Gaming'];
+    const categories = [
+  "Electronics Parts",
+  "Repairing Tools",
+  "CCTV & Security",
+  "Power & Battery",
+  "Electrical Items",
+  "Home Appliances",
+  "Machine Parts",
+  "Tools & Hardware",
+  "Mobile & Computer Accessories",
+  "Personal Care Items",
+  "Kitchen Accessories",
+  "General Items"
+];
     categories.forEach(cat => {
       const count = allProducts.filter(p => p.category === cat).length;
       const elem = document.getElementById(`catCount${cat}`);
@@ -784,61 +1018,95 @@
     </div>`;
   }
   
-  // Get new arrivals (last 8 added products)
-  function getNewArrivals() {
-    return [...allProducts].sort((a, b) => b.id - a.id).slice(0, 8);
-  }
+  function getNewArrivals() { return [...allProducts].sort((a, b) => b.id - a.id).slice(0, 10); }
+  function getTrending() { return [...allProducts].sort((a, b) => b.rating - a.rating).slice(0, 10); }
+  function getByCategory(cat) { return allProducts.filter(p => p.category === cat).slice(0, 10); }
   
-  // Get trending (top rated products)
-  function getTrending() {
-    return [...allProducts].sort((a, b) => b.rating - a.rating).slice(0, 8);
-  }
-  
-  function renderAllSections() {
-    // New Arrivals
-    const newArrivals = getNewArrivals();
-    document.getElementById('newArrivalsGrid').innerHTML = newArrivals.map(p => renderProductCard(p)).join('');
-    
-    // Trending
-    const trending = getTrending();
-    document.getElementById('trendingGrid').innerHTML = trending.map(p => renderProductCard(p)).join('');
-    
-    // Category Sections
-    const categories = ['Mobile', 'Laptop', 'Accessories', 'TV', 'Audio'];
-    const container = document.getElementById('allCategoriesContainer');
-    container.innerHTML = '';
-    
-    categories.forEach(cat => {
-      const catProducts = allProducts.filter(p => p.category === cat);
-      if(catProducts.length > 0) {
-        const section = document.createElement('section');
-        section.className = 'mb-12';
-        section.setAttribute('data-aos', 'fade-up');
-        section.innerHTML = `
-          <div class="section-header">
-            <div><h2 class="text-xl md:text-2xl font-bold tracking-tight">${cat} Collection</h2><p class="text-text-muted text-sm">Curated premium selection</p></div>
-            <div class="view-all-link" onclick="filterByCategory('${cat}')">View All <i class="fas fa-arrow-right"></i></div>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="grid-${cat}"></div>
-        `;
-        container.appendChild(section);
-        section.querySelector(`#grid-${cat}`).innerHTML = catProducts.slice(0, 4).map(p => renderProductCard(p)).join('');
-      }
+  function renderUnifiedCarousels() {
+    const sections = [
+  { title: "New Arrivals", subtitle: "Fresh from the store", products: getNewArrivals(), id: "carouselNew" },
+  { title: "Trending Now", subtitle: "Most popular items", products: getTrending(), id: "carouselTrending" },
+
+  { title: "Electronics Parts", subtitle: "Components & circuits", products: getByCategory("Electronics Parts"), id: "carouselElectronicsParts" },
+  { title: "Repairing Tools", subtitle: "Tools for fixing & repair", products: getByCategory("Repairing Tools"), id: "carouselRepairingTools" },
+  { title: "CCTV & Security", subtitle: "Security solutions", products: getByCategory("CCTV & Security"), id: "carouselCCTVSecurity" },
+  { title: "Power & Battery", subtitle: "Energy & backup", products: getByCategory("Power & Battery"), id: "carouselPowerBattery" },
+  { title: "Electrical Items", subtitle: "Wires, switches & more", products: getByCategory("Electrical Items"), id: "carouselElectricalItems" },
+  { title: "Home Appliances", subtitle: "Everyday essentials", products: getByCategory("Home Appliances"), id: "carouselHomeAppliances" },
+  { title: "Machine Parts", subtitle: "Industrial components", products: getByCategory("Machine Parts"), id: "carouselMachineParts" },
+  { title: "Tools & Hardware", subtitle: "Heavy duty tools", products: getByCategory("Tools & Hardware"), id: "carouselToolsHardware" },
+  { title: "Mobile & Computer Accessories", subtitle: "Accessories & gadgets", products: getByCategory("Mobile & Computer Accessories"), id: "carouselMobileComputerAccessories" },
+  { title: "Personal Care Items", subtitle: "Daily care products", products: getByCategory("Personal Care Items"), id: "carouselPersonalCareItems" },
+  { title: "Kitchen Accessories", subtitle: "Kitchen essentials", products: getByCategory("Kitchen Accessories"), id: "carouselKitchenAccessories" },
+  { title: "General Items", subtitle: "Miscellaneous products", products: getByCategory("General Items"), id: "carouselGeneralItems" }
+];
+    const root = document.getElementById("unifiedCarouselRoot");
+    if(!root) return;
+    root.innerHTML = "";
+    sections.forEach(section => {
+      if(!section.products.length) return;
+      const swiperId = `swiper-${section.id}`;
+      const wrapperId = `wrapper-${section.id}`;
+      const sectionEl = document.createElement('div');
+      sectionEl.className = 'unified-carousel-section';
+      sectionEl.setAttribute('data-aos', 'fade-up');
+      sectionEl.innerHTML = `
+        <div class="section-header">
+          <div><h2 class="section-title">${section.title}</h2><p class="section-subtitle">${section.subtitle}</p></div>
+          <div class="view-all-link" data-view-all-category="${section.title}">View All <i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="swiper ${swiperId} carousel-swiper">
+          <div class="swiper-wrapper" id="${wrapperId}"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      `;
+      root.appendChild(sectionEl);
+      const wrapper = document.getElementById(wrapperId);
+      wrapper.innerHTML = section.products.map(p => `<div class="swiper-slide carousel-card-wrapper">${renderProductCard(p)}</div>`).join('');
+      new Swiper(`.${swiperId}`, {
+        slidesPerView: 1.2,
+        spaceBetween: 16,
+        navigation: { nextEl: `.${swiperId} .swiper-button-next`, prevEl: `.${swiperId} .swiper-button-prev` },
+        breakpoints: { 640: { slidesPerView: 2.2 }, 768: { slidesPerView: 3 }, 1024: { slidesPerView: 4 } }
+      });
+      const viewAllBtn = sectionEl.querySelector('.view-all-link');
+      if(viewAllBtn) viewAllBtn.addEventListener('click', (e) => { e.stopPropagation(); alert(`Explore all ${section.title} at Fine Electronics Pakistan.`); });
     });
-    
     attachEvents();
   }
   
-  function filterByCategory(category) {
-    alert(`Showing all ${category} products. This feature will be fully implemented soon!`);
-  }
-  
-  function filterByNewArrivals() {
-    alert(`Showing latest arrivals. Check out our newest products!`);
-  }
-  
-  function filterByTrending() {
-    alert(`Showing trending products based on customer ratings and popularity!`);
+  function renderAllSections() {
+    const newArrivals = getNewArrivals();
+    const trending = getTrending();
+    const newGrid = document.getElementById('newArrivalsGrid');
+    const trendingGrid = document.getElementById('trendingGrid');
+    if(newGrid) newGrid.innerHTML = newArrivals.slice(0,4).map(p => renderProductCard(p)).join('');
+    if(trendingGrid) trendingGrid.innerHTML = trending.slice(0,4).map(p => renderProductCard(p)).join('');
+    
+    const categories = ['Mobile', 'Laptop', 'Accessories', 'TV', 'Audio'];
+    const container = document.getElementById('allCategoriesContainer');
+    if(container) {
+      container.innerHTML = '';
+      categories.forEach(cat => {
+        const catProducts = allProducts.filter(p => p.category === cat);
+        if(catProducts.length > 0) {
+          const section = document.createElement('section');
+          section.className = 'mb-12';
+          section.setAttribute('data-aos', 'fade-up');
+          section.innerHTML = `
+            <div class="section-header">
+              <div><h2 class="text-xl md:text-2xl font-bold tracking-tight">${cat} Collection</h2><p class="text-text-muted text-sm">Curated premium selection</p></div>
+              <div class="view-all-link" onclick="filterByCategory('${cat}')">View All <i class="fas fa-arrow-right"></i></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="grid-${cat}"></div>
+          `;
+          container.appendChild(section);
+          section.querySelector(`#grid-${cat}`).innerHTML = catProducts.slice(0, 4).map(p => renderProductCard(p)).join('');
+        }
+      });
+    }
+    attachEvents();
   }
   
   function showProductDetail(product) {
@@ -871,13 +1139,11 @@
       </div>
     `;
     document.getElementById('detailOverlay').style.display = 'flex';
-    
     document.querySelectorAll('.detail-thumb').forEach(t => t.addEventListener('click', function() {
       detailContent.querySelector('img').src = this.dataset.img;
       document.querySelectorAll('.detail-thumb').forEach(x => x.classList.remove('active'));
       this.classList.add('active');
     }));
-    
     document.querySelectorAll('.detail-buy-btn').forEach(btn => btn.addEventListener('click', () => {
       document.getElementById('orderProductName').value = btn.dataset.name;
       document.getElementById('orderModal').style.display = 'flex';
@@ -908,26 +1174,20 @@
     document.getElementById('orderModal').style.display = 'flex';
   }
   
-  // Listen for storage changes (when admin updates products)
   window.addEventListener('storage', function(e) {
-    if(e.key === 'fineProductsPremium') {
-      loadProductsFromStorage();
-    }
+    if(e.key === 'fineProductsPremium') { loadProductsFromStorage(); renderUnifiedCarousels(); }
   });
   
-  // Swipers
   new Swiper('.heroSwiper', { loop: true, autoplay: { delay: 5000 }, pagination: { clickable: true }, navigation: true, effect: 'fade', fadeEffect: { crossFade: true } });
   new Swiper('.catSwiper', { slidesPerView: 2.2, spaceBetween: 14, breakpoints: { 640: { slidesPerView: 3 }, 1024: { slidesPerView: 4.5 } } });
   new Swiper('.reviewsSwiper', { slidesPerView: 1, spaceBetween: 20, pagination: { clickable: true }, breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } } });
   
-  // Mobile Menu
   const menuToggle = document.getElementById('menuToggle'), mobileMenu = document.getElementById('mobileMenu'), menuOverlay = document.getElementById('menuOverlay'), closeMenuBtn = document.getElementById('closeMenuBtn');
   menuToggle?.addEventListener('click', () => { mobileMenu.classList.add('open'); menuOverlay.classList.add('active'); });
   closeMenuBtn?.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); });
   menuOverlay?.addEventListener('click', () => { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); });
-  
   document.querySelectorAll('.home-nav-link').forEach(l => l.addEventListener('click', (e) => { e.preventDefault(); document.getElementById('homeContainer').style.display = 'block'; document.getElementById('detailOverlay').style.display = 'none'; window.scrollTo(0,0); if(mobileMenu.classList.contains('open')) { mobileMenu.classList.remove('open'); menuOverlay.classList.remove('active'); } }));
-  document.querySelectorAll('.cat-dropdown-item, .category-card').forEach(el => el.addEventListener('click', () => alert(`Explore premium ${el.dataset.cat || 'collection'} at Fine Electronics Pakistan.`)));
+  // document.querySelectorAll('.cat-dropdown-item, .category-card').forEach(el => el.addEventListener('click', () => alert(`Explore premium ${el.dataset.cat || 'collection'} at Fine Electronics Pakistan.`)));
   document.getElementById('closeDetailBtn').addEventListener('click', () => document.getElementById('detailOverlay').style.display = 'none');
   document.getElementById('closeOrderBtn').addEventListener('click', () => document.getElementById('orderModal').style.display = 'none');
   window.onclick = (e) => { if(e.target === document.getElementById('detailOverlay')) document.getElementById('detailOverlay').style.display = 'none'; if(e.target === document.getElementById('orderModal')) document.getElementById('orderModal').style.display = 'none'; };
@@ -939,13 +1199,93 @@
     e.target.reset();
   });
   
-  // Initialize
-  loadProductsFromStorage();
+  window.filterByCategory = (cat) => alert(`Showing all ${cat} products. This feature will be fully implemented soon!`);
+  window.filterByNewArrivals = () => alert(`Showing latest arrivals. Check out our newest products!`);
+  window.filterByTrending = () => alert(`Showing trending products based on customer ratings and popularity!`);
   
-  // Refresh every 2 seconds to sync with admin panel
-  // setInterval(() => {
-  //   loadProductsFromStorage();
-  // }, 2000);
+  // ==================== CATEGORY OVERLAY FUNCTIONALITY ====================
+
+function showCategoryOverlay(categoryName) {
+  const filteredProducts = allProducts.filter(p => p.category === categoryName);
+
+  // Update title and count
+  document.getElementById('categoryTitle').textContent = categoryName;
+  document.getElementById('categoryCount').textContent = `${filteredProducts.length} Products`;
+
+  const gridContainer = document.getElementById('categoryProductsGrid');
+  gridContainer.innerHTML = '';
+
+  if (filteredProducts.length === 0) {
+    gridContainer.innerHTML = `
+      <p class="col-span-full text-center py-20 text-text-muted text-xl">
+        No products available in this category yet.
+      </p>`;
+  } else {
+    filteredProducts.forEach(product => {
+      const cardHTML = renderProductCard(product);   // Reuse your existing function
+      gridContainer.innerHTML += cardHTML;
+    });
+  }
+
+  // Show overlay
+  document.getElementById('categoryOverlay').style.display = 'flex';
+
+  // Re-attach click events for Buy Now & Details buttons
+  setTimeout(() => {
+    attachEvents();
+  }, 200);
+}
+
+// Close Category Overlay
+function closeCategoryOverlay() {
+  document.getElementById('categoryOverlay').style.display = 'none';
+}
+
+// Add event listeners for all category cards
+function attachCategoryClickEvents() {
+  document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('click', function() {
+      const categoryName = this.getAttribute('data-cat');
+      if (categoryName) {
+        showCategoryOverlay(categoryName);
+      }
+    });
+  });
+}
+
+// Also update the existing dropdown items (optional but recommended)
+document.querySelectorAll('.cat-dropdown-item').forEach(item => {
+  item.addEventListener('click', function() {
+    const categoryName = this.getAttribute('data-cat');
+    if (categoryName) {
+      // You can map old names to new ones if needed
+      const map = {
+        "Mobile": "Mobile & Computer Accessories",
+        "Laptop": "Mobile & Computer Accessories",
+        "Accessories": "Mobile & Computer Accessories"
+      };
+      const finalCat = map[categoryName] || categoryName;
+      showCategoryOverlay(finalCat);
+    }
+  });
+});
+
+document.getElementById('closeCategoryBtn').addEventListener('click', closeCategoryOverlay);
+
+// Also close when clicking outside
+window.addEventListener('click', (e) => {
+  const overlay = document.getElementById('categoryOverlay');
+  if (e.target === overlay) {
+    closeCategoryOverlay();
+  }
+});
+// Initialize category clicks
+attachCategoryClickEvents();
+
+  loadProductsFromStorage();
+
+
+  
 </script>
 </body>
 </html>

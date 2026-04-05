@@ -120,6 +120,7 @@
       height: 200px;
       overflow: hidden;
       background: linear-gradient(135deg, #0F0F0F, #0A0A0A);
+      position: relative;
     }
     .product-img-wrapper img {
       width: 100%;
@@ -408,12 +409,13 @@
             <div class="grid md:grid-cols-2 gap-5">
               <div><label class="text-sm font-medium text-text-secondary block mb-2">Product Name *</label><input type="text" id="prodName" required placeholder="e.g., iPhone 16 Pro Max" class="premium-input"></div>
               <div><label class="text-sm font-medium text-text-secondary block mb-2">Category *</label><select id="prodCategory" required class="premium-select">
-                <option value="Mobile">Mobile Phones</option><option value="Laptop">Laptops</option><option value="Accessories">Accessories</option><option value="TV">Televisions</option><option value="Audio">Audio</option><option value="Tablet">Tablets</option><option value="Smartwatch">Smartwatches</option><option value="Gaming">Gaming</option>
+                <!-- Full category list matching store -->
+                <option value="Electronics Parts">Electronics Parts</option><option value="Repairing Tools">Repairing Tools</option><option value="CCTV & Security">CCTV & Security</option><option value="Power & Battery">Power & Battery</option><option value="Electrical Items">Electrical Items</option><option value="Home Appliances">Home Appliances</option><option value="Machine Parts">Machine Parts</option><option value="Tools & Hardware">Tools & Hardware</option><option value="Mobile & Computer Accessories">Mobile & Computer Accessories</option><option value="Personal Care Items">Personal Care Items</option><option value="Kitchen Accessories">Kitchen Accessories</option><option value="General Items">General Items</option>
               </select></div>
             </div>
             
             <div class="grid md:grid-cols-2 gap-5 mt-5">
-              <div><label class="text-sm font-medium text-text-secondary block mb-2">Price (PKR) *</label><input type="number" id="prodPrice" placeholder="389999" class="premium-input" required></div>
+              <div><label class="text-sm font-medium text-text-secondary block mb-2">Price (PKR) *</label><input type="number" id="prodPrice" placeholder="1200" class="premium-input" required></div>
               <div><label class="text-sm font-medium text-text-secondary block mb-2">Rating (0-5)</label><input type="number" step="0.1" id="prodRating" min="0" max="5" value="4.5" class="premium-input"></div>
             </div>
             
@@ -428,7 +430,7 @@
               <div id="extraImagesPreview" class="flex flex-wrap gap-3 mt-3"></div>
             </div>
             
-            <div class="mt-5"><label class="text-sm font-medium text-text-secondary block mb-2">Specifications *</label><textarea id="prodSpecs" rows="3" placeholder="A17 Pro Chip, 48MP Camera, Titanium Design" class="premium-input" required></textarea><p class="text-xs text-text-muted mt-1">Separate each specification with a comma</p></div>
+            <div class="mt-5"><label class="text-sm font-medium text-text-secondary block mb-2">Specifications *</label><textarea id="prodSpecs" rows="3" placeholder="High quality, Durable, Latest Technology" class="premium-input" required></textarea><p class="text-xs text-text-muted mt-1">Separate each specification with a comma</p></div>
             
             <div class="flex gap-4 mt-8"><button type="submit" class="btn-primary-premium px-8 py-3"><i class="fas fa-save mr-2"></i> Add Product</button><button type="reset" class="btn-outline-premium px-6 py-3" onclick="resetImageUploads()"><i class="fas fa-undo-alt mr-2"></i> Clear</button></div>
           </form>
@@ -450,7 +452,7 @@
       <div class="grid md:grid-cols-2 gap-4">
         <div><label class="text-sm font-medium block mb-2">Product Name *</label><input type="text" id="editName" class="premium-input" required></div>
         <div><label class="text-sm font-medium block mb-2">Category *</label><select id="editCategory" class="premium-select">
-          <option value="Mobile">Mobile</option><option value="Laptop">Laptop</option><option value="Accessories">Accessories</option><option value="TV">TV</option><option value="Audio">Audio</option><option value="Tablet">Tablet</option><option value="Smartwatch">Smartwatch</option><option value="Gaming">Gaming</option>
+          <option value="Electronics Parts">Electronics Parts</option><option value="Repairing Tools">Repairing Tools</option><option value="CCTV & Security">CCTV & Security</option><option value="Power & Battery">Power & Battery</option><option value="Electrical Items">Electrical Items</option><option value="Home Appliances">Home Appliances</option><option value="Machine Parts">Machine Parts</option><option value="Tools & Hardware">Tools & Hardware</option><option value="Mobile & Computer Accessories">Mobile & Computer Accessories</option><option value="Personal Care Items">Personal Care Items</option><option value="Kitchen Accessories">Kitchen Accessories</option><option value="General Items">General Items</option>
         </select></div>
       </div>
       <div class="grid md:grid-cols-2 gap-4 mt-4">
@@ -488,36 +490,105 @@
   // Authentication
   const AUTH = { username: "admin", password: "admin" };
   let products = [];
-  let nextId = 100;
+  let nextId = 1000;
   let editMainImageFile = null, editExtraImageFiles = [], editExistingExtraImages = [];
   let mainImageFile = null, extraImageFiles = [];
   
+  // Helper: format price with PKR symbol
   function formatPrice(num) { return "₨ " + num.toLocaleString('en-PK'); }
   function parsePriceNum(priceStr) { if(!priceStr) return 0; let cleaned = priceStr.toString().replace(/[₨,]/g, '').trim(); return parseFloat(cleaned) || 0; }
   
-  const initialProducts = [
-    { id: 1, name: "iPhone 16 Pro Max", price: 389999, img: "https://images.pexels.com/photos/699122/pexels-photo-699122.jpeg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["A17 Pro Chip", "48MP Camera", "Titanium Design"], category: "Mobile", extraImages: [] },
-    { id: 2, name: "MacBook Pro M4", price: 699999, img: "https://images.pexels.com/photos/18105/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600", rating: 5, specs: ["M4 Chip", "32GB RAM", "22hr Battery"], category: "Laptop", extraImages: [] }
-  ];
+  // Full 12 categories exactly as store, each with 5 products minimum (total 60 products)
+  const generateFullCatalog = () => {
+    const categories = [
+      "Electronics Parts", "Repairing Tools", "CCTV & Security", "Power & Battery",
+      "Electrical Items", "Home Appliances", "Machine Parts", "Tools & Hardware",
+      "Mobile & Computer Accessories", "Personal Care Items", "Kitchen Accessories", "General Items"
+    ];
+    let idCounter = 1;
+    const productsList = [];
+    const placeholderImg = "https://placehold.co/600x400/1A1A1A/F5C518?text=Fine+Electronics";
+    
+    for (let cat of categories) {
+      for (let i = 1; i <= 5; i++) {
+        let name = "";
+        let specs = [];
+        let priceVal = 0;
+        // generate meaningful product names per category
+        switch(cat) {
+          case "Electronics Parts": name = `${["Resistor Kit","Capacitor Set","Arduino Board","LED Bundle","IC Chip Set"][i-1]}`; specs = ["High Precision","Durable Components"]; priceVal = [1200,1500,2800,900,600][i-1]; break;
+          case "Repairing Tools": name = `${["Soldering Iron","Screwdriver Kit","Hot Air Gun","Multimeter","Solder Wire"][i-1]}`; specs = ["Pro Grade","Ergonomic"]; priceVal = [1800,2200,4500,2000,700][i-1]; break;
+          case "CCTV & Security": name = `${["HD Camera","DVR Recorder","Alarm System","IP Camera","Motion Sensor"][i-1]}`; specs = ["Night Vision","Remote Access"]; priceVal = [3500,8000,6500,5200,1800][i-1]; break;
+          case "Power & Battery": name = `${["Power Bank","Li-ion Battery","UPS Backup","Smart Charger","Solar Panel"][i-1]}`; specs = ["Fast Charging","Long Life"]; priceVal = [4000,900,18000,2500,12000][i-1]; break;
+          case "Electrical Items": name = `${["Extension Board","Switch Board","LED Bulb","Wire Roll","Circuit Breaker"][i-1]}`; specs = ["Safety Certified","Energy Efficient"]; priceVal = [1200,800,300,3000,1500][i-1]; break;
+          case "Home Appliances": name = `${["Electric Kettle","Vacuum Cleaner","Air Fryer","Steam Iron","Room Heater"][i-1]}`; specs = ["Premium Quality","Warranty Included"]; priceVal = [3200,12000,15000,4500,6000][i-1]; break;
+          case "Machine Parts": name = `${["Ball Bearing","Gear Motor","Hydraulic Pump","Metal Shaft","Pulley Set"][i-1]}`; specs = ["Industrial Grade","Heavy Duty"]; priceVal = [2000,3500,25000,1200,2800][i-1]; break;
+          case "Tools & Hardware": name = `${["Hammer","Drill Machine","Wrench Set","Cutting Plier","Screw Set"][i-1]}`; specs = ["Durable Steel","Non-slip Grip"]; priceVal = [900,7500,2500,1200,1000][i-1]; break;
+          case "Mobile & Computer Accessories": name = `${["USB Cable","Wireless Mouse","RGB Keyboard","Laptop Stand","Earbuds"][i-1]}`; specs = ["Universal Compatibility","Premium Build"]; priceVal = [500,1500,3000,2200,3500][i-1]; break;
+          case "Personal Care Items": name = `${["Hair Trimmer","Electric Shaver","Hair Dryer","Face Massager","Toothbrush"][i-1]}`; specs = ["Rechargeable","Skin Safe"]; priceVal = [2800,3500,2200,1800,2500][i-1]; break;
+          case "Kitchen Accessories": name = `${["Knife Set","Blender","Chopper","Dish Rack","Storage Boxes"][i-1]}`; specs = ["Stainless Steel","Easy Clean"]; priceVal = [3000,5500,1200,2000,1800][i-1]; break;
+          case "General Items": name = `${["Storage Box","LED Torch","Wall Clock","Water Bottle","Shopping Basket"][i-1]}`; specs = ["Multi-purpose","Everyday Use"]; priceVal = [900,700,1500,600,1200][i-1]; break;
+        }
+        productsList.push({
+          id: idCounter++,
+          name: `${cat.split(' ')[0]} ${name}`,
+          price: formatPrice(priceVal),
+          img: placeholderImg,
+          rating: 4 + (i % 2) * 0.5,
+          specs: specs,
+          category: cat,
+          extraImages: []
+        });
+      }
+    }
+    return productsList;
+  };
   
   function loadProducts() {
     const stored = localStorage.getItem('fineProductsPremium');
-    if(stored) { products = JSON.parse(stored); nextId = Math.max(...products.map(p => p.id), 50) + 1; }
-    else { products = initialProducts.map(p => ({ ...p, price: formatPrice(p.price) })); nextId = 50; saveProducts(); }
+    if(stored) {
+      products = JSON.parse(stored);
+      // ensure all 12 categories exist & each has at least 5 products - if not, merge with fresh data
+      const freshCatalog = generateFullCatalog();
+      const catMap = new Map();
+      freshCatalog.forEach(p => { if(!catMap.has(p.category)) catMap.set(p.category, []); catMap.get(p.category).push(p); });
+      // if any category has <5 products, add from fresh
+      let updated = false;
+      for(let [cat, freshList] of catMap.entries()) {
+        const existingCatProducts = products.filter(p => p.category === cat);
+        if(existingCatProducts.length < 5) {
+          updated = true;
+          const needed = 5 - existingCatProducts.length;
+          const toAdd = freshList.slice(0, needed).map(p => ({ ...p, id: Math.max(...products.map(p2=>p2.id), 0) + Math.random()*1000 }));
+          products.push(...toAdd);
+        }
+      }
+      if(updated) saveProducts();
+      nextId = Math.max(...products.map(p => p.id), 1000) + 1;
+    } else {
+      products = generateFullCatalog();
+      nextId = Math.max(...products.map(p => p.id), 1000) + 1;
+      saveProducts();
+    }
     updateCategoryFilter();
+    renderProducts();
   }
-  function saveProducts() { localStorage.setItem('fineProductsPremium', JSON.stringify(products)); updateCategoryFilter(); }
   
-  // Update category dropdown with counts (no emojis)
+  function saveProducts() { localStorage.setItem('fineProductsPremium', JSON.stringify(products)); updateCategoryFilter(); renderProducts(); }
+  
+  // Update category dropdown with counts (12 categories exactly matching store)
   function updateCategoryFilter() {
-    const categories = ["Mobile", "Laptop", "Accessories", "TV", "Audio", "Tablet", "Smartwatch", "Gaming"];
+    const categories = [
+      "Electronics Parts", "Repairing Tools", "CCTV & Security", "Power & Battery",
+      "Electrical Items", "Home Appliances", "Machine Parts", "Tools & Hardware",
+      "Mobile & Computer Accessories", "Personal Care Items", "Kitchen Accessories", "General Items"
+    ];
     const counts = categories.map(cat => products.filter(p => p.category === cat).length);
     const select = document.getElementById('categoryFilterSelect');
     if(select) {
       select.innerHTML = '<option value="">All Categories</option>' + 
         categories.map((cat, i) => `<option value="${cat}">${cat} (${counts[i]})</option>`).join('');
     }
-    // Also update product count display
     document.getElementById('productCount').innerText = products.length;
   }
   
@@ -560,8 +631,10 @@
     const mainPreview = document.getElementById('editMainImagePreview');
     mainPreview.src = product.img;
     mainPreview.style.display = 'block';
-    document.querySelector('#editMainImageArea p').style.display = 'none';
-    document.querySelector('#editMainImageArea i').style.display = 'none';
+    const areaI = document.querySelector('#editMainImageArea i');
+    const areaP = document.querySelector('#editMainImageArea p');
+    if(areaI) areaI.style.display = 'none';
+    if(areaP) areaP.style.display = 'none';
     updateEditExtraImagesPreview();
     document.getElementById('editModal').style.display = 'flex';
   };
@@ -593,7 +666,7 @@
     if(e.target.files && e.target.files[0]) {
       editMainImageFile = e.target.files[0];
       const reader = new FileReader();
-      reader.onload = (ev) => { const preview = document.getElementById('editMainImagePreview'); preview.src = ev.target.result; preview.style.display = 'block'; document.querySelector('#editMainImageArea p').style.display = 'none'; document.querySelector('#editMainImageArea i').style.display = 'none'; };
+      reader.onload = (ev) => { const preview = document.getElementById('editMainImagePreview'); preview.src = ev.target.result; preview.style.display = 'block'; const p = document.querySelector('#editMainImageArea p'); if(p) p.style.display = 'none'; const i = document.querySelector('#editMainImageArea i'); if(i) i.style.display = 'none'; };
       reader.readAsDataURL(editMainImageFile);
     }
   });
@@ -639,7 +712,7 @@
     });
   }
   window.removeExtraImage = function(idx) { extraImageFiles.splice(idx, 1); updateExtraImagesPreview(); };
-  function resetImageUploads() { mainImageFile = null; extraImageFiles = []; document.getElementById('mainImageInput').value = ''; document.getElementById('extraImagesInput').value = ''; document.getElementById('mainImagePreview').style.display = 'none'; document.getElementById('extraImagesPreview').innerHTML = ''; document.querySelector('#mainImageUploadArea p').style.display = 'block'; document.querySelector('#mainImageUploadArea i').style.display = 'block'; }
+  function resetImageUploads() { mainImageFile = null; extraImageFiles = []; document.getElementById('mainImageInput').value = ''; document.getElementById('extraImagesInput').value = ''; document.getElementById('mainImagePreview').style.display = 'none'; document.getElementById('extraImagesPreview').innerHTML = ''; const area = document.querySelector('#mainImageUploadArea p'); if(area) area.style.display = 'block'; const icon = document.querySelector('#mainImageUploadArea i'); if(icon) icon.style.display = 'block'; }
   
   document.getElementById('addProductForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -648,7 +721,7 @@
     const extraURLs = [];
     for(let file of extraImageFiles) extraURLs.push(await new Promise((resolve) => { const reader = new FileReader(); reader.onload = (ev) => resolve(ev.target.result); reader.readAsDataURL(file); }));
     const newProduct = { id: nextId++, name: document.getElementById('prodName').value, category: document.getElementById('prodCategory').value, price: formatPrice(parseFloat(document.getElementById('prodPrice').value)), rating: parseFloat(document.getElementById('prodRating').value), img: mainImageURL, specs: document.getElementById('prodSpecs').value.split(',').map(s => s.trim()), extraImages: extraURLs };
-    products.push(newProduct); saveProducts(); renderProducts(); alert(`✅ ${newProduct.name} added!`); document.getElementById('addProductForm').reset(); resetImageUploads(); showTab('products');
+    products.push(newProduct); saveProducts(); alert(`✅ ${newProduct.name} added!`); document.getElementById('addProductForm').reset(); resetImageUploads(); showTab('products');
   });
   
   function showTab(tabId) {
@@ -661,56 +734,30 @@
     closeMobileSidebar();
   }
   
-  // Mobile sidebar controls
-  function openMobileSidebar() {
-    const sidebar = document.getElementById('adminSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    sidebar.classList.add('open');
-    overlay.classList.add('open');
-    document.body.classList.add('sidebar-open');
-  }
-  function closeMobileSidebar() {
-    const sidebar = document.getElementById('adminSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    sidebar.classList.remove('open');
-    overlay.classList.remove('open');
-    document.body.classList.remove('sidebar-open');
-  }
+  function openMobileSidebar() { const sidebar = document.getElementById('adminSidebar'); const overlay = document.getElementById('sidebarOverlay'); sidebar.classList.add('open'); overlay.classList.add('open'); document.body.classList.add('sidebar-open'); }
+  function closeMobileSidebar() { const sidebar = document.getElementById('adminSidebar'); const overlay = document.getElementById('sidebarOverlay'); sidebar.classList.remove('open'); overlay.classList.remove('open'); document.body.classList.remove('sidebar-open'); }
   
   function checkAuth() {
     const isLoggedIn = localStorage.getItem('fineAdminAuthPremium') === 'true';
-    if(isLoggedIn) {
-      document.getElementById('loginModal').style.display = 'none';
-      document.getElementById('adminPanel').style.display = 'block';
-      loadProducts(); renderProducts();
-    } else {
-      document.getElementById('loginModal').style.display = 'flex';
-      document.getElementById('adminPanel').style.display = 'none';
-    }
+    if(isLoggedIn) { document.getElementById('loginModal').style.display = 'none'; document.getElementById('adminPanel').style.display = 'block'; loadProducts(); }
+    else { document.getElementById('loginModal').style.display = 'flex'; document.getElementById('adminPanel').style.display = 'none'; }
   }
   
   document.getElementById('loginForm')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
-    if(username === AUTH.username && password === AUTH.password) {
-      localStorage.setItem('fineAdminAuthPremium', 'true');
-      checkAuth();
-    } else alert('❌ Invalid credentials! Use admin / admin');
+    if(username === AUTH.username && password === AUTH.password) { localStorage.setItem('fineAdminAuthPremium', 'true'); checkAuth(); }
+    else alert('❌ Invalid credentials! Use admin / admin');
   });
   document.getElementById('logoutBtn')?.addEventListener('click', () => { localStorage.removeItem('fineAdminAuthPremium'); checkAuth(); });
   
-  const mobileToggle = document.getElementById('mobileMenuToggle');
-  if(mobileToggle) mobileToggle.addEventListener('click', openMobileSidebar);
-  const closeSidebarBtn = document.getElementById('closeSidebarBtn');
-  if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeMobileSidebar);
-  const overlay = document.getElementById('sidebarOverlay');
-  if(overlay) overlay.addEventListener('click', closeMobileSidebar);
-  
+  const mobileToggle = document.getElementById('mobileMenuToggle'); if(mobileToggle) mobileToggle.addEventListener('click', openMobileSidebar);
+  const closeSidebarBtn = document.getElementById('closeSidebarBtn'); if(closeSidebarBtn) closeSidebarBtn.addEventListener('click', closeMobileSidebar);
+  const overlay = document.getElementById('sidebarOverlay'); if(overlay) overlay.addEventListener('click', closeMobileSidebar);
   document.querySelectorAll('.sidebar-tab').forEach(btn => btn.addEventListener('click', () => showTab(btn.getAttribute('data-tab'))));
   document.getElementById('searchProductInput')?.addEventListener('input', () => renderProducts());
   document.getElementById('categoryFilterSelect')?.addEventListener('change', () => renderProducts());
-  
   window.addEventListener('resize', () => { if(window.innerWidth >= 1024) closeMobileSidebar(); });
   checkAuth();
 </script>
