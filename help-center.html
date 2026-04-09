@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Help Center | Fine Electronics Pakistan</title>
+  <meta name="description" content="Fine Electronics Pakistan Help Center - Find answers to your questions about orders, warranty, returns, shipping, and tech support.">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ==================== NAVBAR (same as original, only essential) ==================== -->
+<nav class="navbar-premium fixed top-0 left-0 right-0 z-50 py-3.5 px-6 md:px-12">
+  <div class="max-w-[1440px] mx-auto flex justify-between items-center">
+    <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+      <i class="fas fa-microchip text-yellow text-xl"></i>
+      <span class="text-xl font-bold tracking-tight text-white">FINE ELECTRONICS</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="tel:+923323403516" class="nav-call">Call Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HELP CENTER MAIN CONTENT ==================== -->
+<main class="pt-28 max-w-[1280px] mx-auto px-6 md:px-12 pb-20">
+  
+  <!-- Hero / Header -->
+  <div class="text-center mb-12" data-aos="fade-up">
+    <div class="inline-block px-3 py-1 rounded-full bg-yellow/10 border border-yellow/20 text-yellow text-xs font-semibold tracking-wide mb-4">
+      <i class="fas fa-life-ring mr-1"></i> Customer Support
+    </div>
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">How can we help you?</h1>
+    <p class="text-text-secondary text-lg max-w-2xl mx-auto">Find answers to common questions, guides, and contact information for Fine Electronics support team.</p>
+  </div>
+  
+  <!-- Quick Help Categories (Grid) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16" data-aos="fade-up" data-aos-delay="100">
+    <div class="help-card p-6 text-center cursor-pointer" onclick="scrollToSection('orders')">
+      <div class="w-14 h-14 rounded-full bg-yellow/10 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-shopping-cart text-yellow text-2xl"></i>
+      </div>
+      <h3 class="text-white font-semibold text-lg mb-1">Orders & Payments</h3>
+      <p class="text-text-muted text-sm">Order status, payment methods, invoices</p>
+    </div>
+    <div class="help-card p-6 text-center cursor-pointer" onclick="scrollToSection('shipping')">
+      <div class="w-14 h-14 rounded-full bg-yellow/10 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-truck-fast text-yellow text-2xl"></i>
+      </div>
+      <h3 class="text-white font-semibold text-lg mb-1">Shipping & Delivery</h3>
+      <p class="text-text-muted text-sm">Delivery times, tracking, shipping fees</p>
+    </div>
+    <div class="help-card p-6 text-center cursor-pointer" onclick="scrollToSection('warranty')">
+      <div class="w-14 h-14 rounded-full bg-yellow/10 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-shield-alt text-yellow text-2xl"></i>
+      </div>
+      <h3 class="text-white font-semibold text-lg mb-1">Warranty & Returns</h3>
+      <p class="text-text-muted text-sm">2-year warranty, returns process, claims</p>
+    </div>
+    <div class="help-card p-6 text-center cursor-pointer" onclick="scrollToSection('tech')">
+      <div class="w-14 h-14 rounded-full bg-yellow/10 flex items-center justify-center mx-auto mb-4">
+        <i class="fas fa-headset text-yellow text-2xl"></i>
+      </div>
+      <h3 class="text-white font-semibold text-lg mb-1">Tech Support</h3>
+      <p class="text-text-muted text-sm">24/7 expert assistance, troubleshooting</p>
+    </div>
+  </div>
+  
+  <!-- FAQ Section (Accordion) -->
+  <div class="mb-16" id="faqSection" data-aos="fade-up">
+    <div class="text-center mb-8">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Quick answers to most common inquiries</p>
+    </div>
+    
+    <div class="max-w-3xl mx-auto space-y-3" id="faqContainer">
+      <!-- FAQ 1 - Orders -->
+      <div class="faq-item p-5" id="orders">
+        <div class="faq-question flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-credit-card text-yellow"></i>
+            <h3 class="font-semibold text-white">What payment methods do you accept?</h3>
+          </div>
+          <div class="faq-icon text-yellow"><i class="fas fa-chevron-down text-sm transition-transform"></i></div>
+        </div>
+        <div class="faq-answer text-text-secondary text-sm leading-relaxed">
+          We accept Cash on Delivery (COD) across Pakistan, bank transfers, Easypaisa, JazzCash, and credit/debit cards via secure gateway. For premium orders, we also offer advance bank transfer options. All payments are processed securely.
+        </div>
+      </div>
+      
+      <!-- FAQ 2 - Shipping -->
+      <div class="faq-item p-5" id="shipping">
+        <div class="faq-question flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-map-marker-alt text-yellow"></i>
+            <h3 class="font-semibold text-white">How long does delivery take?</h3>
+          </div>
+          <div class="faq-icon text-yellow"><i class="fas fa-chevron-down text-sm transition-transform"></i></div>
+        </div>
+        <div class="faq-answer text-text-secondary text-sm leading-relaxed">
+          Express delivery takes 2-3 business days for major cities (Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad). For remote areas, allow 4-6 business days. You'll receive a tracking link via SMS once shipped.
+        </div>
+      </div>
+      
+      <!-- FAQ 3 - Warranty -->
+      <div class="faq-item p-5" id="warranty">
+        <div class="faq-question flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-file-alt text-yellow"></i>
+            <h3 class="font-semibold text-white">What does the 2-year warranty cover?</h3>
+          </div>
+          <div class="faq-icon text-yellow"><i class="fas fa-chevron-down text-sm transition-transform"></i></div>
+        </div>
+        <div class="faq-answer text-text-secondary text-sm leading-relaxed">
+          Our 2-year warranty covers manufacturing defects, hardware failures, and battery issues under normal use. It does NOT cover physical damage, water/liquid damage, unauthorized repairs, or accessories like chargers/cables. To claim warranty, contact our support team with invoice.
+        </div>
+      </div>
+      
+      <!-- FAQ 4 - Returns -->
+      <div class="faq-item p-5">
+        <div class="faq-question flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-undo-alt text-yellow"></i>
+            <h3 class="font-semibold text-white">How do I return a product?</h3>
+          </div>
+          <div class="faq-icon text-yellow"><i class="fas fa-chevron-down text-sm transition-transform"></i></div>
+        </div>
+        <div class="faq-answer text-text-secondary text-sm leading-relaxed">
+          Returns are accepted within 7 days of delivery for unopened, unused items in original packaging. For defective products, we offer free pickup and replacement. Please contact our concierge at +92 332 3403516 or email support@fineelectronics.pk to initiate return.
+        </div>
+      </div>
+      
+      <!-- FAQ 5 - Tech Support -->
+      <div class="faq-item p-5" id="tech">
+        <div class="faq-question flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-microchip text-yellow"></i>
+            <h3 class="font-semibold text-white">Do you provide technical support after purchase?</h3>
+          </div>
+          <div class="faq-icon text-yellow"><i class="fas fa-chevron-down text-sm transition-transform"></i></div>
+        </div>
+        <div class="faq-answer text-text-secondary text-sm leading-relaxed">
+          Absolutely! We offer free 24/7 tech support via WhatsApp and phone. Our experts can help with setup, troubleshooting, software updates, and product guidance. Just call +92 332 3403516 or message us anytime.
+        </div>
+      </div>
+      
+      <!-- FAQ 6 - Bulk Orders -->
+      <div class="faq-item p-5">
+        <div class="faq-question flex justify-between items-center">
+          <div class="flex items-center gap-3">
+            <i class="fas fa-chart-line text-yellow"></i>
+            <h3 class="font-semibold text-white">Do you offer bulk or corporate pricing?</h3>
+          </div>
+          <div class="faq-icon text-yellow"><i class="fas fa-chevron-down text-sm transition-transform"></i></div>
+        </div>
+        <div class="faq-answer text-text-secondary text-sm leading-relaxed">
+          Yes, we provide special discounts for bulk orders, businesses, schools, and corporate gifting. Contact our B2B team at +92 332 3403516 or email corporate@fineelectronics.pk for a customized quote.
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Contact Support Banner -->
+  <div class="contact-badge rounded-2xl p-8 mb-16 text-center" data-aos="fade-up">
+    <i class="fas fa-headset text-yellow text-4xl mb-3"></i>
+    <h3 class="text-2xl font-bold text-white mb-2">Still need help?</h3>
+    <p class="text-text-secondary max-w-lg mx-auto mb-6">Our support team is ready to assist you with any product inquiries or technical issues.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="tel:+923323403516" class="inline-flex items-center justify-center gap-2 bg-yellow text-black px-6 py-3 rounded-full font-semibold hover:bg-yellow-dark transition">
+        <i class="fas fa-phone-alt"></i> Call Support
+      </a>
+      <a href="https://wa.me/923323403516" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#20b859] transition">
+        <i class="fab fa-whatsapp"></i> WhatsApp Chat
+      </a>
+      <a href="mailto:info@fineelectronics.pk" class="inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 text-white px-6 py-3 rounded-full font-semibold hover:bg-white/10 transition">
+        <i class="fas fa-envelope"></i> Email Us
+      </a>
+    </div>
+  </div>
+  
+</main>
+
+<!-- ==================== FOOTER (exactly same as original but simplified) ==================== -->
+<footer class="footer pt-16 pb-8 px-6">
+  <div class="max-w-[1440px] mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <div>
+        <div class="flex items-center gap-2 mb-4" style="justify-content: center;align-items: center;">
+          <i class="fas fa-microchip text-yellow text-xl"></i>
+          <span class="text-xl font-bold text-white" >FINE ELECTRONICS</span>
+        </div>
+      <p class="text-sm text-text-muted mb-4" style="text-align: center;">Premium electronics destination since 2025. Curated collection of flagship devices with expert support.</p>
+      <div class="flex gap-3" style="justify-content: center;align-items: center;">
+    <a href="https://www.tiktok.com/@fineelectronics.pk?_r=1&_t=ZS-95BiQgLBFq8" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition">
+        <i class="fab fa-tiktok text-sm"></i>
+    </a>
+    <a href="https://www.facebook.com/share/1GLAQt6gCE/" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition">
+        <i class="fab fa-facebook text-sm"></i>
+    </a>
+    <a href="https://youtube.com/@arsalankhan2415?si=Rc2se4UTEWnPyTNO" class="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center hover:bg-yellow hover:text-black transition">
+        <i class="fab fa-youtube text-sm"></i>
+    </a>
+</div>
+</div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Support</h4><ul class="space-y-2 text-sm">
+          <li><a href="help-center.html" class="text-text-muted hover:text-yellow">Help Center</a></li>
+          <li><a href="warranty-info.html" class="text-text-muted hover:text-yellow">Warranty Info</a></li>
+          <li><a href="refund-policy.html" class="text-text-muted hover:text-yellow">Returns & Refunds</a></li>
+          <li><a href="shipping-info.html" class="text-text-muted hover:text-yellow">Shipping Info</a></li></ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Company</h4><ul class="space-y-2 text-sm">
+          <li><a href="about-us.html" class="text-text-muted hover:text-yellow">About Us</a></li>
+          <li><a href="privacy.html" class="text-text-muted hover:text-yellow">Privacy Policy</a></li>
+          <li><a href="terms.html" class="text-text-muted hover:text-yellow">Terms of Service</a></li></ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Contact Us</h4><ul class="space-y-3 text-sm"><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-phone-alt w-4 text-yellow"></i> +92 332 3403516</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-envelope w-4 text-yellow"></i> info@fineelectronics.pk</li><li class="flex items-center gap-2 text-text-muted"><i class="fas fa-map-marker-alt w-4 text-yellow"></i> 123 Tech Plaza, Gulberg, Lahore</li></ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 text-center text-text-muted text-xs">© 2026 Fine Electronics Pakistan. All rights reserved.</div>
+  </div>
+</footer>
+
+<a href="https://api.whatsapp.com/send?phone=+923363403516" class="whatsapp-left-image-container">
+  <img src="https://img.icons8.com/?size=100&id=uZWiLUyryScN&format=png&color=000000" alt="">
+</a>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({ duration: 500, once: true });
+  
+  // ========== ACCORDION FAQ LOGIC ==========
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const questionDiv = item.querySelector('.faq-question');
+    questionDiv.addEventListener('click', () => {
+      const currentlyActive = document.querySelector('.faq-item.active');
+      if (currentlyActive && currentlyActive !== item) {
+        currentlyActive.classList.remove('active');
+      }
+      item.classList.toggle('active');
+    });
+  });
+  
+  // ========== SMOOTH SCROLL TO SECTION (by id) ==========
+  window.scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 100;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: elementPosition - offset, behavior: 'smooth' });
+      // highlight the faq item if it's inside an faq
+      const parentFaq = element.closest('.faq-item');
+      if (parentFaq && !parentFaq.classList.contains('active')) {
+        parentFaq.classList.add('active');
+      }
+    } else {
+      // fallback: scroll to FAQ section anyway
+      document.getElementById('faqSection')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  
+  // ========== FORM SUBMIT HANDLER (WhatsApp integration) ==========
+  const helpForm = document.getElementById('helpForm');
+  if (helpForm) {
+    helpForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('helpName').value.trim();
+      const email = document.getElementById('helpEmail').value.trim();
+      const phone = document.getElementById('helpPhone').value.trim();
+      const topic = document.getElementById('helpTopic').value;
+      const message = document.getElementById('helpMessage').value.trim();
+      
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields (Name, Email, Message).');
+        return;
+      }
+      
+      const whatsappMsg = `FINE ELECTRONICS HELP CENTER INQUIRY%0A%0A*Name:* ${encodeURIComponent(name)}%0A*Email:* ${encodeURIComponent(email)}%0A*Phone:* ${encodeURIComponent(phone || 'Not provided')}%0A*Topic:* ${encodeURIComponent(topic)}%0A*Message:* ${encodeURIComponent(message)}%0A%0A-- Sent via Help Center Form`;
+      window.open(`https://wa.me/923323403516?text=${whatsappMsg}`, '_blank');
+      helpForm.reset();
+      alert('Your message has been prepared via WhatsApp. Please send it to connect with our support team.');
+    });
+  }
+  
+  // Home link placeholder behavior (just redirect to main page if needed)
+  const homeLink = document.getElementById('homeLinkPlaceholder');
+  if (homeLink) {
+    homeLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = '#';   // can be replaced with actual index
+      alert('Home page would redirect to main store.');
+    });
+  }
+  
+  // extra helper: make all footer links non-refresh dummy (except contact info)
+  document.querySelectorAll('footer a[href="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert('Navigation will be enabled in full website version.');
+    });
+  });
+</script>
+</body>
+</html>
