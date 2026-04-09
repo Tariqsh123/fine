@@ -1624,10 +1624,11 @@ html{
 
 @media(max-width:600px){
   .swiper-slide h1{
-    font-size: 35px;
+    font-size: 30px;
     text-align: center;
   }
   .swiper-slide p{
+    font-size: small;
     text-align: center;
   }
   .section-header{
