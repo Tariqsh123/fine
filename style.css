@@ -146,9 +146,9 @@ html{
   position: absolute;
   top: 0;
   left: 0;
-  height: 180px;
+  height: 100%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.5); /* adjust opacity */
+  background: rgba(0, 0, 0, 0.5); 
   pointer-events: none;
 }
 
@@ -1357,6 +1357,7 @@ html{
       background: #111111;
       border-radius: 1rem;
       overflow: hidden;
+      max-width: 320px;
       transition: all 0.3s ease;
       border: 1px solid rgba(255, 255, 255, 0.06);
       cursor: pointer;
